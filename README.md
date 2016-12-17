@@ -15,3 +15,6 @@
 * projectPath/server
 * npm install
 * node .
+
+# Development tasks
+https://github.com/kapit4n/react-seller/projects/1
