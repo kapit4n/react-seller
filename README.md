@@ -18,3 +18,7 @@
 
 # Development tasks
 https://github.com/kapit4n/react-seller/projects/1
+
+# Util Commands
+## Create new component
+* yo react-webpack:component my/namespaced/components/name
