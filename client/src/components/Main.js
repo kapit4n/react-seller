@@ -4,10 +4,6 @@ require('styles/App.css');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
-import About from './components/AboutComponent';
-import Contact from './components/ContactComponent';
-import Home from './components/HomeComponent';
-
 
 let yeomanImage = require('../images/yeoman.png');
 
@@ -16,9 +12,9 @@ class AppComponent extends React.Component {
     return (
          <div>
             <ul>
-               <li>Home</li>
-               <li>About</li>
-               <li>Contact</li>
+               <li><a href="/home">Home</a> </li>
+               <li><a href="/about">About</a> </li>
+               <li><a href="/contact">Contact</a> </li>
             </ul>
            {this.props.children}
          </div>
