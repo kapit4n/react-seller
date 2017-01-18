@@ -5,6 +5,11 @@ import App from './components/Main';
 import About from './components/AboutComponent';
 import Contact from './components/ContactComponent';
 import Home from './components/HomeComponent';
+import ProductList from './components/product/ProductListComponent';
+import ProductShow from './components/product/ProductShowComponent';
+import ProductAdd from './components/product/ProductAddComponent';
+import ProductEdit from './components/product/ProductEditComponent';
+
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 
 
@@ -18,6 +23,10 @@ ReactDOM.render((
          <Route path = "home" component = {Home} />
          <Route path = "about" component = {About} />
          <Route path = "contact" component = {Contact} />
+         <Route path = "product-list" component = {ProductList} />
+         <Route path = "product-show" component = {ProductShow} />
+         <Route path = "product-add" component = {ProductAdd} />
+         <Route path = "product-edit" component = {ProductEdit} />
       </Route>
    </Router>
 ), document.getElementById('app'))
