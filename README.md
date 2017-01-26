@@ -16,7 +16,7 @@
 * npm install
 * node .
 
-## Install Sever
+## API
 * GET /products
 * GET /stock
 * GET /sells
