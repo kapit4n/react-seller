@@ -1,0 +1,38 @@
+{
+  "name": "order",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "customerId": {
+      "type": "number",
+      "required": true
+    },
+    "createdDate": {
+      "type": "date"
+    },
+    "description": {
+      "type": "string"
+    },
+    "paid": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "delivered": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "deliveryDate": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

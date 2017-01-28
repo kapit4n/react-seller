@@ -31,5 +31,21 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "product": {
+    "dataSource": "db",
+    "public": true
+  },
+  "order": {
+    "dataSource": "db",
+    "public": true
+  },
+  "orderDetail": {
+    "dataSource": "db",
+    "public": true
+  },
+  "customer": {
+    "dataSource": "db",
+    "public": true
   }
 }
