@@ -1,17 +1,22 @@
 'use strict';
 
 import React from 'react';
+import {browserHistory} from 'react-router';
 
 require('styles/product/ProductAdd.css');
-import { Button, ButtonToolbar, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
+import { Button, ButtonToolbar, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 class ProductAddComponent extends React.Component {
+  handleClick = () => {
+    browserHistory.push('/product-list');
+  };
+
   render() {
     return (
       <div className="productadd-component">
         <ButtonToolbar>
-          <Button>Save</Button>
-          <Button bsStyle="danger">Cancel</Button>
+          <Button onClick={this.handleClick} >Save</Button>
+          <Button bsStyle="danger" onClick={this.handleClick} >Cancel</Button>
         </ButtonToolbar>
         <FormGroup controlId="formName">
           <ControlLabel>Name</ControlLabel>
@@ -38,8 +43,8 @@ class ProductAddComponent extends React.Component {
           <FormControl type="text"placeholder="Enter text"/>
         </FormGroup>
         <ButtonToolbar>
-          <Button>Save</Button>
-          <Button bsStyle="danger">Cancel</Button>
+          <Button onClick={this.handleClick} >Save</Button>
+          <Button bsStyle="danger" onClick={this.handleClick} >Cancel</Button>
         </ButtonToolbar>
 
       </div>
