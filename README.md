@@ -16,6 +16,23 @@
 * npm install
 * node .
 
+## API
+* GET /products
+* GET /stock
+* GET /sells
+* GET /customers
+
+* POST /products
+* POST /stock
+* POST /sells
+* POST /customers
+
+* PUT /products
+* PUT /stock
+* PUT /sells
+* PUT /customers
+
+
 # Development tasks
 https://github.com/kapit4n/react-seller/projects/1
 
