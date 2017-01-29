@@ -3,7 +3,7 @@
 import React from 'react';
 
 require('styles/product/ProductList.css');
-import { Table, Image, Button} from 'react-bootstrap';
+import { Table, Image, Button, Grid, Row, Col} from 'react-bootstrap';
 
 class ProductListComponent extends React.Component {
   constructor() {
@@ -44,27 +44,29 @@ class ProductListComponent extends React.Component {
   render() {
     return (
       <div>
-        <h2><a href="/product-add">+</a></h2>
-         <Table striped bordered condensed hover>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Code</th>
-              <th>Image</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.products.map(function (product) {
-              return  <tr>
-                        <td>{product.name}</td>
-                        <td>{product.code}</td>
-                        <td><Image src={product.src} thumbnail width={60} height={60} /></td>
-                        <td><Button href={'product-show/' + product.id}>Show</Button></td>
-                      </tr>;
-              })}
-          </tbody>
-        </Table>
+        <Grid>
+          <h2><a href="/product-add">+</a></h2>
+          <Table striped bordered condensed hover>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Image</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.products.map(function (product) {
+                return  <tr>
+                          <td>{product.name}</td>
+                          <td>{product.code}</td>
+                          <td><Image src={product.src} thumbnail width={60} height={60} /></td>
+                          <td><Button href={'product-show/' + product.id}>Show</Button></td>
+                        </tr>;
+                })}
+            </tbody>
+          </Table>
+          </Grid>
       </div>
     );
   }
