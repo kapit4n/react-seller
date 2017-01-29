@@ -3,7 +3,6 @@ require('styles/App.css');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 
 let yeomanImage = require('../images/yeoman.png');
 

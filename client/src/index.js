@@ -19,12 +19,11 @@ import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 ReactDOM.render((
    <Router history = {browserHistory}>
       <Route path = "/" component = {App}>
-         <IndexRoute component = {App} />
          <Route path = "home" component = {Home} />
          <Route path = "about" component = {About} />
          <Route path = "contact" component = {Contact} />
          <Route path = "product-list" component = {ProductList} />
-         <Route path = "product-show" component = {ProductShow} />
+         <Route path = "product-show/:id" component = {ProductShow} />
          <Route path = "product-add" component = {ProductAdd} />
          <Route path = "product-edit" component = {ProductEdit} />
       </Route>
