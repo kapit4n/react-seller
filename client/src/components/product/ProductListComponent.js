@@ -52,16 +52,14 @@ class ProductListComponent extends React.Component {
                 <th>Name</th>
                 <th>Code</th>
                 <th>Image</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
               {this.products.map(function (product) {
                 return  <tr>
-                          <td>{product.name}</td>
+                          <td><a href={'product-show/' + product.id}>{product.name}</a></td>
                           <td>{product.code}</td>
                           <td><Image src={product.src} thumbnail width={60} height={60} /></td>
-                          <td><Button href={'product-show/' + product.id}>Show</Button></td>
                         </tr>;
                 })}
             </tbody>

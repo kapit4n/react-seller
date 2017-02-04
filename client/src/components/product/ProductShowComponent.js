@@ -49,7 +49,7 @@ class ProductShowComponent extends React.Component {
         <Grid>
           <Media>
             <Media.Left>
-              <img width={200} height={200} src={this.products.find(product=> product.id == this.props.params.id).src} alt="Image"/>
+              <img width={350} height={350} src={this.products.find(product=> product.id == this.props.params.id).src} alt="Image"/>
             </Media.Left>
             <Media.Body>
               <Media.Heading>{this.products.find(product=> product.id == this.props.params.id).name}</Media.Heading>
