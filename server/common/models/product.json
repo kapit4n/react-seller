@@ -25,6 +25,10 @@
       "type": "number",
       "required": true,
       "default": 0
+    },
+    "img": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
