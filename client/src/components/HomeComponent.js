@@ -7,36 +7,36 @@ import { Grid, Row, Col, Image, Button} from 'react-bootstrap';
 
 class HomeComponent extends React.Component {
    constructor(){
-      super();
-      this.productURL = 'http://localhost:3000/api/products';
-      this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
+    super();
+    this.productURL = 'http://localhost:3000/api/products';
+    this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
 
-      this.productsMock = [
-          {
-            id: 1,
-            name: "Product Name 1",
-            src: "http://www.shinzoo.com/images002/toys-01/toys/04.jpg"
-          },
-          {
-            id: 2,
-            name: "Product Name 2",
-            src: "http://www.shinzoo.com/images002/toys-01/toys/03.jpg",
-          },
-          {
-            id: 3,
-            name: "Product name 3",
-            src: "https://foodheart.org/assets/toys-main-5c1feeb193fe726a922fafb59d82d512.png",
-          },
-          ];
-      this.state = { products: [] };
-    }
+    this.productsMock = [
+        {
+          id: 1,
+          name: "Product Name 1",
+          src: "http://www.shinzoo.com/images002/toys-01/toys/04.jpg"
+        },
+        {
+          id: 2,
+          name: "Product Name 2",
+          src: "http://www.shinzoo.com/images002/toys-01/toys/03.jpg",
+        },
+        {
+          id: 3,
+          name: "Product name 3",
+          src: "https://foodheart.org/assets/toys-main-5c1feeb193fe726a922fafb59d82d512.png",
+        },
+        ];
+    this.state = { products: this.productsMock };
+  }
 
-    componentDidMount() {
-    fetch(this.productURL + '?access_token=' + this.access_token) 
-        .then((response) => response.json())
-        .then((responseJson) => { this.setState({products:responseJson});})
-        .catch((error) => { console.error(error); });
-    }
+  componentDidMount() {
+  fetch(this.productURL + '?access_token=' + this.access_token) 
+      .then((response) => response.json())
+      .then((responseJson) => { this.setState({products:responseJson});})
+      .catch((error) => { console.error(error); });
+  }
 
   render() {
     return (
