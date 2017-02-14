@@ -8,7 +8,7 @@ import { Nav, NavItem,Navbar,MenuItem,NavDropdown,    Table, Image, Button, Grid
 let yeomanImage = require('../images/yeoman.png');
 
 class AppComponent extends React.Component {
-  
+
   render() {
     return (
       <div>
@@ -21,19 +21,19 @@ class AppComponent extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="/home">Home</NavItem>
-            <NavItem eventKey={2} href="/about">About</NavItem>
-            <NavDropdown eventKey={3} title="Products" id="basic-nav-dropdown">
+            <MenuItem eventKey={1} href="/home">Home</MenuItem>
+            <NavDropdown eventKey={3} title="Products"  id="basic-nav-dropdown">
               <MenuItem eventKey={3.1} href="/product-list">List</MenuItem>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider />
               <MenuItem eventKey={3.3}>Separated link</MenuItem>
             </NavDropdown>
+            <MenuItem eventKey={2} href="/about">About</MenuItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href="#">Facebook</NavItem>
-            <NavItem eventKey={2} href="#">Login</NavItem>
+            <MenuItem eventKey={1} href="#">Facebook</MenuItem>
+            <MenuItem eventKey={2} href="#">Login</MenuItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

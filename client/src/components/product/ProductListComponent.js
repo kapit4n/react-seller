@@ -45,10 +45,10 @@ class ProductListComponent extends React.Component {
   }
 
   componentDidMount() {
-  fetch(this.productURL + '?access_token=' + this.access_token) 
-    .then((response) => response.json())
-    .then((responseJson) => { this.setState({products:responseJson});})
-    .catch((error) => { console.error(error); });
+    fetch(this.productURL + '?access_token=' + this.access_token) 
+      .then((response) => response.json())
+      .then((responseJson) => { this.setState({products:responseJson});})
+      .catch((error) => { console.error(error); });
   }
 
   render() {
