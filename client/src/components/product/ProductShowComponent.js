@@ -4,53 +4,21 @@ import React from 'react';
 
 require('styles/product/ProductShow.css');
 
-import { Media, Grid} from 'react-bootstrap';
+import { Media, Grid, ListGroup, ListGroupItem} from 'react-bootstrap';
 
 class ProductShowComponent extends React.Component {
   constructor(props) {
     super(props);
     this.productURL = 'http://localhost:3000/api/products/';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
-
-    this.productsMock = [
-      {
-        id: 1,
-        name: "Product Name 1",
-        code: "Code1",
-        img: "http://www.shinzoo.com/images002/toys-01/toys/04.jpg",
-        description: "Description of the product"
-      },
-      {
-        id: 2,
-        name: "Product Name 2",
-        code: "Code2",
-        img: "http://www.shinzoo.com/images002/toys-01/toys/03.jpg",
-        description: "Description of the product"
-      },
-      {
-        id: 3,
-        name: "Product Name 3",
-        code: "Code3",
-        img: "https://foodheart.org/assets/toys-main-5c1feeb193fe726a922fafb59d82d512.png",
-        description: "Description of the product"
-      },
-      {
-        id: 4,
-        name: "Product Name 4",
-        code: "Code4",
-        img: "https://foodheart.org/assets/toys-main-5c1feeb193fe726a922fafb59d82d512.png",
-        description: "Description of the product"
-      }
-    ];
-    let idProduct = 1;
     this.props = props;
-    this.state = { product : this.productsMock.find(product=> product.id == props.params.id)};
+    this.state = { product : {}};
   }
 
   componentDidMount() {
   fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token) 
     .then((response) => response.json())
-    .then((responseJson) => { this.setState({product:responseJson});})
+    .then((responseJson) => { this.setState({product: responseJson});})
     .catch((error) => { console.error(error); });
   }
 
@@ -63,8 +31,12 @@ class ProductShowComponent extends React.Component {
               <img width={350} height={350} src={this.state.product.img} alt="Image"/>
             </Media.Left>
             <Media.Body>
-              <Media.Heading>{this.state.product.name}</Media.Heading>
-              <h2>{this.state.product.code}</h2>
+              <Media.Heading>Name: {this.state.product.name}</Media.Heading>
+              <ListGroup>
+                <ListGroupItem><h4 style={{display: 'inline'}}>Code: </h4>{this.state.product.code}</ListGroupItem>
+                <ListGroupItem><h4 style={{display: 'inline'}}>Stock: </h4>{this.state.product.stock}</ListGroupItem>
+                <ListGroupItem><h4 style={{display: 'inline'}}>Price: </h4>{this.state.product.price}</ListGroupItem>
+              </ListGroup>
               <p>{this.state.product.description}</p>
             </Media.Body>
           </Media>
