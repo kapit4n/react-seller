@@ -3,8 +3,8 @@
 import React from 'react';
 
 require('styles/product/ProductShow.css');
-
-import { Media, Grid, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { browserHistory } from 'react-router';
+import { Media, Grid, ListGroup, ListGroupItem, Button, ButtonToolbar} from 'react-bootstrap';
 
 class ProductShowComponent extends React.Component {
   constructor(props) {
@@ -14,6 +14,10 @@ class ProductShowComponent extends React.Component {
     this.props = props;
     this.state = { product : {}};
   }
+
+  handleClick = () => {
+    browserHistory.push('/product-edit/' + this.state.product.id);
+  };
 
   componentDidMount() {
   fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token) 
@@ -31,6 +35,8 @@ class ProductShowComponent extends React.Component {
               <img width={350} height={350} src={this.state.product.img} alt="Image"/>
             </Media.Left>
             <Media.Body>
+              <ButtonToolbar>
+                <Button onClick = { this.handleClick }> Edit </Button></ButtonToolbar>
               <Media.Heading>Name: {this.state.product.name}</Media.Heading>
               <ListGroup>
                 <ListGroupItem><h4 style={{display: 'inline'}}>Code: </h4>{this.state.product.code}</ListGroupItem>

@@ -25,7 +25,7 @@ ReactDOM.render((
          <Route path = "product-list" component = {ProductList} />
          <Route path = "product-show/:id" component = {ProductShow} />
          <Route path = "product-add" component = {ProductAdd} />
-         <Route path = "product-edit" component = {ProductEdit} />
+         <Route path = "product-edit/:id" component = {ProductEdit} />
       </Route>
    </Router>
 ), document.getElementById('app'))

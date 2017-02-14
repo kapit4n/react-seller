@@ -24,6 +24,7 @@ class AppComponent extends React.Component {
             <MenuItem eventKey={1} href="/home">Home</MenuItem>
             <NavDropdown eventKey={3} title="Products"  id="basic-nav-dropdown">
               <MenuItem eventKey={3.1} href="/product-list">List</MenuItem>
+              <MenuItem eventKey={3.1} href="/product-add">New</MenuItem>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider />
