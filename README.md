@@ -4,7 +4,7 @@
 ![Planning Board](https://github.com/kapit4n/react-seller/projects/1)
 
 # Mockups
-![Championshipś](https://github.com/kapit4n/angular-ball/raw/master/mockups/product_view.png)
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/product_view.png)
 
 ## Pre-requisites
 
