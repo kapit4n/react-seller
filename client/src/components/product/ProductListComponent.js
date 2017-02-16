@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-
+import $ from 'jquery'
 require('styles/product/ProductList.css');
 import { Table, Image, Button, Grid, Row, Col} from 'react-bootstrap';
 
@@ -49,6 +49,16 @@ class ProductListComponent extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => { this.setState({products:responseJson});})
       .catch((error) => { console.error(error); });
+    this.addPreviewEvent();
+  }
+
+  addPreviewEvent() {
+    var preview = $('#preview');
+    $('.img-thumbnail').hover(function () {
+        preview.attr('src', $(this).attr('src'));
+    }, function () {
+        preview.attr('src', 'https://upload.wikimedia.org/wikipedia/en/e/ea/Preview_(Mac_OS_X).png');
+    });
   }
 
   render() {
@@ -56,6 +66,7 @@ class ProductListComponent extends React.Component {
       <div>
         <Grid>
           <h2><a href="/product-add">+</a></h2>
+          <img id="preview" style={{width: 200, height: 200}} src={"https://upload.wikimedia.org/wikipedia/en/e/ea/Preview_(Mac_OS_X).png"}/>
           <Table striped bordered condensed hover>
             <thead>
               <tr>

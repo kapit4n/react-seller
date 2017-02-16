@@ -32,7 +32,7 @@ class ProductShowComponent extends React.Component {
         <Grid>
           <Media>
             <Media.Left>
-              <img width={350} height={350} src={this.state.product.img} alt="Image"/>
+              <img style={{clip: 'rect(0px,350px,200px,0px)', position: 'relative'}} width={350} src={this.state.product.img} alt="Image"/>
             </Media.Left>
             <Media.Body>
               <ButtonToolbar>
