@@ -54,10 +54,11 @@ class ProductListComponent extends React.Component {
 
   addPreviewEvent() {
     var preview = $('#preview');
-    $('.img-thumbnail').hover(function () {
-        preview.attr('src', $(this).attr('src'));
+    $('.productRow').hover(function () {
+      preview.attr('src', $(this).find('.img-thumbnail').attr('src'));
+      preview.show();
     }, function () {
-        preview.attr('src', 'https://upload.wikimedia.org/wikipedia/en/e/ea/Preview_(Mac_OS_X).png');
+      preview.hide();
     });
   }
 
@@ -66,7 +67,7 @@ class ProductListComponent extends React.Component {
       <div>
         <Grid>
           <h2><a href="/product-add">+</a></h2>
-          <img id="preview" style={{width: 200, height: 200}} src={"https://upload.wikimedia.org/wikipedia/en/e/ea/Preview_(Mac_OS_X).png"}/>
+          <img id="preview" style={{width: 300, position: 'absolute', left: '30%', top: '15%'}}/>
           <Table striped bordered condensed hover>
             <thead>
               <tr>
@@ -77,7 +78,7 @@ class ProductListComponent extends React.Component {
             </thead>
             <tbody>
               {this.state.products.map(function (product) {
-                return  <tr>
+                return  <tr className={'productRow'}>
                           <td><a href={'product-show/' + product.id}>{product.name}</a></td>
                           <td>{product.code}</td>
                           <td><Image src={product.img} thumbnail width={60} height={60} /></td>
