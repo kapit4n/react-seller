@@ -9,6 +9,11 @@ import ProductList from './components/product/ProductListComponent';
 import ProductShow from './components/product/ProductShowComponent';
 import ProductAdd from './components/product/ProductAddComponent';
 import ProductEdit from './components/product/ProductEditComponent';
+import CardCurrent from './components/card/CardCurrentComponent';
+import CardList from './components/card/CardListComponent';
+import CardShow from './components/card/CardShowComponent';
+import CardAdd from './components/card/CardAddComponent';
+import CardEdit from './components/card/CardEditComponent';
 
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 
@@ -26,6 +31,11 @@ ReactDOM.render((
          <Route path = "product-show/:id" component = {ProductShow} />
          <Route path = "product-add" component = {ProductAdd} />
          <Route path = "product-edit/:id" component = {ProductEdit} />
+         <Route path = "card-current" component = {CardCurrent} />
+         <Route path = "card-list" component = {CardList} />
+         <Route path = "card-show/:id" component = {CardShow} />
+         <Route path = "card-add" component = {CardAdd} />
+         <Route path = "card-edit/:id" component = {CardEdit} />
       </Route>
    </Router>
 ), document.getElementById('app'))

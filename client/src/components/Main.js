@@ -15,7 +15,7 @@ class AppComponent extends React.Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">React-Bootstrap</a>
+            <a href="#">React-Seller</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -33,7 +33,7 @@ class AppComponent extends React.Component {
             <MenuItem eventKey={2} href="/about">About</MenuItem>
           </Nav>
           <Nav pullRight>
-            <MenuItem eventKey={1} href="#"><Glyphicon glyph="shopping-cart"/> Card</MenuItem>
+            <MenuItem eventKey={1} href="/card-current"><Glyphicon glyph="shopping-cart"/> Card</MenuItem>
             <MenuItem eventKey={2} href="#">Login</MenuItem>
           </Nav>
         </Navbar.Collapse>
