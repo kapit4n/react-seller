@@ -10,25 +10,7 @@ class HomeComponent extends React.Component {
     super();
     this.productURL = 'http://localhost:3000/api/products';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
-
-    this.productsMock = [
-        {
-          id: 1,
-          name: "Product Name 1",
-          src: "http://www.shinzoo.com/images002/toys-01/toys/04.jpg"
-        },
-        {
-          id: 2,
-          name: "Product Name 2",
-          src: "http://www.shinzoo.com/images002/toys-01/toys/03.jpg",
-        },
-        {
-          id: 3,
-          name: "Product name 3",
-          src: "https://foodheart.org/assets/toys-main-5c1feeb193fe726a922fafb59d82d512.png",
-        },
-        ];
-    this.state = { products: this.productsMock };
+    this.state = { products: [] };
   }
 
   componentDidMount() {
@@ -45,10 +27,10 @@ class HomeComponent extends React.Component {
             <Row className="show-grid">
                {this.state.products.map(function (product) {
                   return <Col xs={6} md={4} height={400}>
-                    <Image width={300} height={300} src={product.img} thumbnail />
-                    <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button>
-                     <ButtonToolbar>
-                      <Button><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
+                      <Image width={300} height={300} src={product.img} thumbnail />
+                      <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button>
+                      <ButtonToolbar>
+                        <Button style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
                       </ButtonToolbar>
                   </Col>;
                 })}
