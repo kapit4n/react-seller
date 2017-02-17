@@ -3,7 +3,7 @@
 import React from 'react';
 
 require('styles//Home.css');
-import { Grid, Row, Col, Image, Button} from 'react-bootstrap';
+import { Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon} from 'react-bootstrap';
 
 class HomeComponent extends React.Component {
    constructor(){
@@ -47,6 +47,9 @@ class HomeComponent extends React.Component {
                   return <Col xs={6} md={4} height={400}>
                     <Image width={300} height={300} src={product.img} thumbnail />
                     <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button>
+                     <ButtonToolbar>
+                      <Button><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
+                      </ButtonToolbar>
                   </Col>;
                 })}
             </Row>

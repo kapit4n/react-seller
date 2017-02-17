@@ -3,7 +3,7 @@ require('styles/App.css');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Nav, NavItem,Navbar,MenuItem,NavDropdown,    Table, Image, Button, Grid, Row, Col} from 'react-bootstrap';
+import { Nav, NavItem,Navbar,MenuItem,NavDropdown, Table, Image, Button, Grid, Row, Col} from 'react-bootstrap';
 
 let yeomanImage = require('../images/yeoman.png');
 
