@@ -3,7 +3,7 @@ require('styles/App.css');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Nav, NavItem,Navbar,MenuItem,NavDropdown, Table, Image, Button, Grid, Row, Col} from 'react-bootstrap';
+import { Nav, NavItem,Navbar,MenuItem,NavDropdown, Table, Image, Button, Grid, Row, Col, Glyphicon} from 'react-bootstrap';
 
 let yeomanImage = require('../images/yeoman.png');
 
@@ -33,7 +33,7 @@ class AppComponent extends React.Component {
             <MenuItem eventKey={2} href="/about">About</MenuItem>
           </Nav>
           <Nav pullRight>
-            <MenuItem eventKey={1} href="#">Facebook</MenuItem>
+            <MenuItem eventKey={1} href="#"><Glyphicon glyph="shopping-cart"/> Card</MenuItem>
             <MenuItem eventKey={2} href="#">Login</MenuItem>
           </Nav>
         </Navbar.Collapse>
