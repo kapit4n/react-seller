@@ -981,6 +981,29 @@ paths:
                 type: number
                 format: double
       deprecated: false
+  '/orders/{id}/customer':
+    get:
+      tags:
+        - order
+      summary: Fetches belongsTo relation customer.
+      operationId: order.prototype.__get__customer
+      parameters:
+        - name: refresh
+          in: query
+          required: false
+          type: boolean
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/customer'
+      deprecated: false
   /orders:
     post:
       tags:
@@ -1340,6 +1363,52 @@ paths:
               count:
                 type: number
                 format: double
+      deprecated: false
+  '/orderDetails/{id}/product':
+    get:
+      tags:
+        - orderDetail
+      summary: Fetches belongsTo relation product.
+      operationId: orderDetail.prototype.__get__product
+      parameters:
+        - name: refresh
+          in: query
+          required: false
+          type: boolean
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/product'
+      deprecated: false
+  '/orderDetails/{id}/order':
+    get:
+      tags:
+        - orderDetail
+      summary: Fetches belongsTo relation order.
+      operationId: orderDetail.prototype.__get__order
+      parameters:
+        - name: refresh
+          in: query
+          required: false
+          type: boolean
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/order'
       deprecated: false
   /orderDetails:
     post:
@@ -2126,6 +2195,8 @@ definitions:
         default: 0
         type: number
         format: double
+      img:
+        type: string
       id:
         type: number
         format: double
@@ -2133,6 +2204,26 @@ definitions:
       - name
       - price
       - stock
+      - img
+    additionalProperties: false
+  customer:
+    properties:
+      name:
+        type: string
+      address:
+        default: None
+        type: string
+      budget:
+        default: 0
+        type: number
+        format: double
+      id:
+        type: number
+        format: double
+    required:
+      - name
+      - address
+      - budget
     additionalProperties: false
   order:
     properties:
@@ -2183,29 +2274,16 @@ definitions:
       id:
         type: number
         format: double
+      productId:
+        type: number
+        format: double
+      orderId:
+        type: number
+        format: double
     required:
       - quantity
       - price
       - totalPrice
-    additionalProperties: false
-  customer:
-    properties:
-      name:
-        type: string
-      address:
-        default: None
-        type: string
-      budget:
-        default: 0
-        type: number
-        format: double
-      id:
-        type: number
-        format: double
-    required:
-      - name
-      - address
-      - budget
     additionalProperties: false
 basePath: /api
 swagger: '2.0'

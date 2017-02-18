@@ -32,7 +32,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "customer": {
+      "type": "belongsTo",
+      "model": "customer",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

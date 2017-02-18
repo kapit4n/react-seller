@@ -27,7 +27,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "product": {
+      "type": "belongsTo",
+      "model": "product",
+      "foreignKey": ""
+    },
+    "order": {
+      "type": "belongsTo",
+      "model": "order",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
