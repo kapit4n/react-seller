@@ -8,17 +8,17 @@ import { Table, Image, Button, Grid, Row, Col} from 'react-bootstrap';
 class CardCurrentComponent extends React.Component {
   constructor() {
     super();
-    this.productURL = 'http://localhost:3000/api/orderDetails';
+    this.orderDetailURL = 'http://localhost:3000/api/orderDetails';
+    this.orderFilter = '?filter[include]=product'
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.state = { orderDetails: []};
   }
 
   componentDidMount() {
-    fetch(this.productURL + '?access_token=' + this.access_token) 
+    fetch(this.orderDetailURL + this.orderFilter + '&access_token=' + this.access_token) 
       .then((response) => response.json())
-      .then((responseJson) => { this.setState({orderDetails:responseJson});})
+      .then((responseJson) => {console.log(responseJson);  this.setState({orderDetails:responseJson});})
       .catch((error) => { console.error(error); });
-    this.addPreviewEvent();
   }
 
   render() {
@@ -32,15 +32,17 @@ class CardCurrentComponent extends React.Component {
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Total</th>
+                <th>Image</th>
               </tr>
             </thead>
             <tbody>
               {this.state.orderDetails.map(function (detail) {
                 return  <tr className={'detailRow'}>
-                          <td><a href={'detail-show/' + detail.id}>{detail.id}</a></td>
+                          <td><a href={'product-show/' + detail.product.id}>{detail.product.id}</a></td>
                           <td>{detail.quantity}</td>
                           <td>${detail.price}</td>
                           <td>${detail.totalPrice}</td>
+                          <td><Image src={detail.product.img} thumbnail width={60} height={60} /></td>
                         </tr>;
                 })}
             </tbody>
