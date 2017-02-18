@@ -87,7 +87,7 @@ class ProductAddComponent extends React.Component {
                     />
                 </FormGroup>
                 <FormGroup controlId = "formPrice">
-                    <ControlLabel> Price </ControlLabel> <FormControl type = "text"
+                    <ControlLabel> Price </ControlLabel><FormControl type = "text"
                     placeholder = "Enter text"
                     value = { this.state.price }
                     onChange = { this.handleChangePrice }
