@@ -6,7 +6,12 @@ require('styles//Home.css');
 import { Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon} from 'react-bootstrap';
 
 class HomeComponent extends React.Component {
-   constructor(){
+
+  handleClick = () => {
+   console.log("Call the post function to register the card item");
+  };
+
+  constructor(){
     super();
     this.productURL = 'http://localhost:3000/api/products';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
@@ -30,10 +35,10 @@ class HomeComponent extends React.Component {
                       <Image width={300} height={300} src={product.img} thumbnail />
                       <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button>
                       <ButtonToolbar>
-                        <Button style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
+                        <Button onClick={this.handleClick} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
                       </ButtonToolbar>
                   </Col>;
-                })}
+                }, this)}
             </Row>
           </Grid>
       </div>
