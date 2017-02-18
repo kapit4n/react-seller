@@ -4,7 +4,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 require('styles/product/ProductAdd.css');
-import { Button, ButtonToolbar, FormGroup, ControlLabel, FormControl, Grid } from 'react-bootstrap';
+import { Button, ButtonToolbar, FormGroup, ControlLabel, FormControl, Grid, Glyphicon} from 'react-bootstrap';
 
 class ProductAddComponent extends React.Component {
     handleClick = () => {
@@ -25,6 +25,12 @@ class ProductAddComponent extends React.Component {
             .catch((error) => { console.error(error); });
 
     };
+
+    handleGoList = () => {
+        browserHistory.push('/product-list');
+    };
+
+
 
     constructor() {
         super();
@@ -69,8 +75,8 @@ class ProductAddComponent extends React.Component {
           <div className = "productadd-component">
             <Grid>
                 <ButtonToolbar>
-                <Button onClick = { this.handleClick }> Save </Button> <Button bsStyle = "danger"
-                onClick = { this.handleClick }> Cancel </Button>
+                <Button onClick = { this.handleClick }><Glyphicon glyph="ok"/></Button>
+                <Button onClick = { this.handleGoList }><Glyphicon glyph="list"/></Button> 
                 </ButtonToolbar>
                 <FormGroup controlId = "formName">
                     <ControlLabel> Name </ControlLabel> <FormControl type = "text"
@@ -115,8 +121,8 @@ class ProductAddComponent extends React.Component {
                     />
                 </FormGroup>
                 <ButtonToolbar>
-                <Button onClick = { this.handleClick }> Save </Button> <Button bsStyle = "danger"
-                onClick = { this.handleClick }> Cancel </Button> </ButtonToolbar>
+                <Button onClick = { this.handleClick }><Glyphicon glyph="ok"/> </Button> <Button
+                onClick = { this.handleGoList }><Glyphicon glyph="list"/></Button> </ButtonToolbar>
             </Grid>
             </div>
         );

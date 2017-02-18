@@ -4,7 +4,7 @@ import React from 'react';
 
 require('styles/product/ProductShow.css');
 import { browserHistory } from 'react-router';
-import { Media, Grid, ListGroup, ListGroupItem, Button, ButtonToolbar} from 'react-bootstrap';
+import { Media, Grid, ListGroup, ListGroupItem, Button, ButtonToolbar, Glyphicon} from 'react-bootstrap';
 
 class ProductShowComponent extends React.Component {
   constructor(props) {
@@ -19,11 +19,20 @@ class ProductShowComponent extends React.Component {
     browserHistory.push('/product-edit/' + this.state.product.id);
   };
 
+  handleRemove = () => {
+    fetch(this.productURL + "/" + this.state.product.id + '?access_token=' + this.access_token, {
+      method: 'DELETE',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', }
+    }).then((response) => response.json())
+    .then((responseJson) => { browserHistory.push('/product-list');})
+    .catch((error) => { console.error(error);});
+  };
+
   componentDidMount() {
-  fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token) 
-    .then((response) => response.json())
-    .then((responseJson) => { this.setState({product: responseJson});})
-    .catch((error) => { console.error(error); });
+    fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token) 
+      .then((response) => response.json())
+      .then((responseJson) => { this.setState({product: responseJson});})
+      .catch((error) => { console.error(error); });
   }
 
   render() {
@@ -36,7 +45,9 @@ class ProductShowComponent extends React.Component {
             </Media.Left>
             <Media.Body>
               <ButtonToolbar>
-                <Button onClick = { this.handleClick }> Edit </Button></ButtonToolbar>
+                <Button onClick = { this.handleClick }><Glyphicon glyph="edit"/></Button>
+                <Button onClick = { this.handleRemove }><Glyphicon glyph="remove"/></Button>
+              </ButtonToolbar>
               <Media.Heading>Name: {this.state.product.name}</Media.Heading>
               <ListGroup>
                 <ListGroupItem><h4 style={{display: 'inline'}}>Code: </h4>{this.state.product.code}</ListGroupItem>

@@ -3,7 +3,7 @@
 import React from 'react';
 
 require('styles/product/ProductEdit.css');
-import { Button, ButtonToolbar, FormGroup, ControlLabel, FormControl, Grid, Media } from 'react-bootstrap';
+import { Button, ButtonToolbar, FormGroup, ControlLabel, FormControl, Grid, Media, Glyphicon } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
 class ProductEditComponent extends React.Component {
@@ -69,7 +69,7 @@ class ProductEditComponent extends React.Component {
 
     render() {
         return (
- 			<div className="productedit-component">
+      <div className="productedit-component">
         <Grid>
           <Media>
             <Media.Left>
@@ -78,7 +78,8 @@ class ProductEditComponent extends React.Component {
             <Media.Body>
              <Grid>
               <ButtonToolbar>
-                <Button onClick = { this.handleClick }> Save </Button></ButtonToolbar>
+                <Button onClick = { this.handleClick }><Glyphicon glyph="ok"/></Button>
+              </ButtonToolbar>
               <Media.Heading>Name: {this.state.name}</Media.Heading>
                 <FormGroup controlId = "formName">
                     <ControlLabel> Name </ControlLabel> <FormControl type = "text"
@@ -123,7 +124,8 @@ class ProductEditComponent extends React.Component {
                     />
                 </FormGroup>
                 <ButtonToolbar>
-                <Button onClick = { this.handleClick }> Save </Button></ButtonToolbar>
+                  <Button onClick = { this.handleClick }><Glyphicon glyph="ok"/></Button>
+                </ButtonToolbar>
             </Grid>
             </Media.Body>
           </Media>

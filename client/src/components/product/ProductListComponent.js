@@ -3,7 +3,8 @@
 import React from 'react';
 import $ from 'jquery'
 require('styles/product/ProductList.css');
-import { Table, Image, Button, Grid, Row, Col} from 'react-bootstrap';
+import { Table, Image, Button, Grid, Row, Col, Glyphicon} from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
 class ProductListComponent extends React.Component {
   constructor() {
@@ -21,6 +22,10 @@ class ProductListComponent extends React.Component {
     this.addPreviewEvent();
   }
 
+  handleAdd = () => {
+    browserHistory.push('/product-add/');
+  };
+
   addPreviewEvent() {
     var preview = $('#preview');
     $('.productRow').hover(function () {
@@ -35,7 +40,7 @@ class ProductListComponent extends React.Component {
     return (
       <div>
         <Grid>
-          <h2><a href="/product-add">+</a></h2>
+          <Button onClick = { this.handleAdd }><Glyphicon glyph="plus"/></Button>
           <img id="preview" style={{width: 300, position: 'absolute', left: '30%', top: '15%'}}/>
           <Table striped bordered condensed hover>
             <thead>

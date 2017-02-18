@@ -118,7 +118,7 @@ class CardCurrentComponent extends React.Component {
               </FormGroup>
             </Modal.Body>
             <Modal.Footer>
-              <Button onClick={close}>Save</Button>
+              <Button onClick={close}><Glyphicon glyph="ok"/></Button>
             </Modal.Footer>
           </Modal>
       </div>
