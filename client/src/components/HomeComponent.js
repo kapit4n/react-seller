@@ -6,8 +6,8 @@ import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon} from 'react-boo
 
 class HomeComponent extends React.Component {
 
-  handleClick = (id: any) => {
-    let item = {quantity: 20, price: 5, totalPrice: 100, discount: 0, product: id};
+  handleClick = (productId: any) => {
+    let item = {quantity: 20, price: 5, totalPrice: 100, discount: 0, product: {id: productId}};
     fetch(this.orderURL + '?access_token=' + this.access_token, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
