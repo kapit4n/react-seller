@@ -87,7 +87,9 @@ class CardCurrentComponent extends React.Component {
                           <td>{detail.quantity}</td>
                           <td>${detail.price}</td>
                           <td>${detail.totalPrice}</td>
-                          <td><Image src={detail.product.img} thumbnail width={60} height={60} /></td>
+                          <td>
+                            <Image src={detail.product.img} thumbnail width={60} height={60} />
+                          </td>
                           <td>
                             <Button onClick = {()=>this.removeItem(detail.id)}> <Glyphicon glyph="remove"/> </Button>
                             <Button onClick = {()=>this.handleEditItem(detail)}> <Glyphicon glyph="edit"/> </Button>
@@ -96,31 +98,30 @@ class CardCurrentComponent extends React.Component {
                 }, this)}
             </tbody>
           </Table>
-          </Grid>
-
-          <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
-            <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Grid>
-                <Row className="show-grid">
-                  <Col xs={6} md={4} height={60}>
-                    <Image width={60} height={60} src={this.state.detailEdit.product.img} thumbnail />
-                    {this.state.detailEdit.product.name}
-                  </Col>
-                </Row>
-              </Grid>
-              <FormGroup controlId = "formCode">
-                  <ControlLabel>Quantity</ControlLabel>
-                  <FormControl type = "text" placeholder = "Enter quantity"
-                  value = { this.state.quantity } onChange = { this.handleChangeQuantity } />
-              </FormGroup>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={close}><Glyphicon glyph="ok"/></Button>
-            </Modal.Footer>
-          </Modal>
+        </Grid>
+        <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Grid>
+              <Row className="show-grid">
+                <Col xs={6} md={4} height={60}>
+                  <Image width={60} height={60} src={this.state.detailEdit.product.img} thumbnail />
+                  {this.state.detailEdit.product.name}
+                </Col>
+              </Row>
+            </Grid>
+            <FormGroup controlId = "formCode">
+                <ControlLabel>Quantity</ControlLabel>
+                <FormControl type = "text" placeholder = "Enter quantity"
+                value = { this.state.quantity } onChange = { this.handleChangeQuantity } />
+            </FormGroup>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={close}><Glyphicon glyph="ok"/></Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

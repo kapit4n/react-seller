@@ -34,7 +34,7 @@ class AppComponent extends React.Component {
           </Nav>
           <Nav pullRight>
             <MenuItem eventKey={1} href="/card-current"><Glyphicon glyph="shopping-cart"/> Card</MenuItem>
-            <MenuItem eventKey={2} href="#">Login</MenuItem>
+            <MenuItem eventKey={2} href="/login">Login</MenuItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

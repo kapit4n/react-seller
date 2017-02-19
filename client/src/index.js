@@ -14,6 +14,7 @@ import CardList from './components/card/CardListComponent';
 import CardShow from './components/card/CardShowComponent';
 import CardAdd from './components/card/CardAddComponent';
 import CardEdit from './components/card/CardEditComponent';
+import Login from './components/user/LoginComponent';
 
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 
@@ -36,6 +37,7 @@ ReactDOM.render((
          <Route path = "card-show/:id" component = {CardShow} />
          <Route path = "card-add" component = {CardAdd} />
          <Route path = "card-edit/:id" component = {CardEdit} />
+         <Route path = "login" component = {Login} />
       </Route>
    </Router>
 ), document.getElementById('app'))

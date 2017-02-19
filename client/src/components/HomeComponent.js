@@ -6,7 +6,7 @@ import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon, Modal, FormGrou
 
 class HomeComponent extends React.Component {
   handleClick = () => {
-    let item = {
+    let item =  {
                   quantity: this.state.quantity,
                   price: this.state.product.price,
                   totalPrice: this.state.product.price * this.state.quantity,
@@ -27,7 +27,6 @@ class HomeComponent extends React.Component {
   handleClickBefore = (product: any) => {
     this.setState({ show: true});
     this.setState({ product: product});
-
   };
 
   constructor(){
@@ -90,7 +89,7 @@ class HomeComponent extends React.Component {
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={close}>Save</Button>
+            <Button onClick={close}><Glyphicon glyph="ok"/></Button>
           </Modal.Footer>
         </Modal>
 
