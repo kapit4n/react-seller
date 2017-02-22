@@ -14,14 +14,14 @@
 * loopback
 
 ## Install client
-* clone repo
-* cd projectPath/client
+* git clone https://github.com/kapit4n/react-seller.git
+* cd react-seller/client
 * npm install
 * npm start
 
 ## Install Sever
-* clone repo
-* projectPath/server
+* git clone https://github.com/kapit4n/react-seller.git
+* cd react-seller/server
 * npm install
 * node .
 
