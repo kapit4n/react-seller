@@ -59,7 +59,7 @@ class HomeComponent extends React.Component {
           <Row className="show-grid">
             {this.state.products.map(function (product) {
               return <Col xs={6} md={4} height={400}>
-                <Image width={300} height={300} src={product.img} thumbnail />
+                <Image width={310} height={300} src={product.img} thumbnail />
                 <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button>
                 <ButtonToolbar>
                   <Button onClick={()=>this.handleClickBefore(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
