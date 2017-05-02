@@ -4,7 +4,21 @@
 [Planning Board](https://github.com/kapit4n/react-seller/projects/1)
 
 # Mockups
+
+## Home Page
 ![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/home_react_seller.png)
+
+## Product View Page
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/product_view_react_seller.png)
+
+## Current Card View Page
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/current_card_react_seller.png)
+
+## Edit Shopping Card Item
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/add_shopping_card_item_react_seller.png)
+
+## Adding Shopping Card Item
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/edit_shopping_card_item_react_Seller.png)
 
 ## Pre-requisites
 
