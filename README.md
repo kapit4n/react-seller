@@ -26,6 +26,7 @@
 * [node 6](https://nodejs.org/en/)
 * [npm](https://docs.npmjs.com/)
 * [loopback](https://loopback.io/)
+* [MongoDB](https://www.mongodb.com/)
 
 ## Install client
 * git clone https://github.com/kapit4n/react-seller.git
@@ -38,6 +39,7 @@
 * cd react-seller/server
 * npm install
 * node .
+* 
 
 ## API
 * GET /products
