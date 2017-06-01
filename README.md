@@ -6,19 +6,19 @@
 # Mockups
 
 ## Home Page
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/home_react_seller.png)
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_home.png)
 
 ## Product View Page
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/product_view_react_seller.png)
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_product_view.png)
 
 ## Current Card View Page
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/current_card_react_seller.png)
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_current_card.png)
 
 ## Edit Shopping Card Item
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/add_shopping_card_item_react_seller.png)
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_add_shopping_card_item.png)
 
 ## Adding Shopping Card Item
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/edit_shopping_card_item_react_Seller.png)
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_edit_shopping_card_item.png)
 
 ## Pre-requisites
 
@@ -40,20 +40,7 @@
 * node .
 
 ## API
-* GET /products
-* GET /stock
-* GET /sells
-* GET /customers
-
-* POST /products
-* POST /stock
-* POST /sells
-* POST /customers
-
-* PUT /products
-* PUT /stock
-* PUT /sells
-* PUT /customers
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_api.png)
 
 
 # Development tasks
