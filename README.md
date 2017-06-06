@@ -6,19 +6,20 @@
 # Mockups
 
 ## Home Page
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_home.png)
+<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_home.png" alt="Drawing" width="100%"/>
 
 ## Product View Page
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_product_view.png)
+<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_product_view.png" alt="Drawing" width="100%"/>
 
 ## Current Card View Page
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_current_card.png)
+<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_current_card.png" alt="Drawing" width="100%"/>
 
 ## Edit Shopping Card Item
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_add_shopping_card_item.png)
+<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_add_shopping_card_item.png" alt="Drawing" width="100%"/>
 
 ## Adding Shopping Card Item
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_edit_shopping_card_item.png)
+<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_edit_shopping_card_item.png" alt="Drawing" width="100%"/>
+
 
 ## Pre-requisites
 
