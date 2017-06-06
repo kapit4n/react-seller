@@ -1,6 +1,12 @@
 {
   "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "reactseller",
+    "password": "password",
     "name": "db",
-    "connector": "memory"
+    "user": "reactseller",
+    "connector": "mongodb"
   }
 }
