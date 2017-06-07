@@ -28,7 +28,7 @@ class AppComponent extends React.Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">React-Seller</a>
+            <a href="/home">React-Seller</a>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
