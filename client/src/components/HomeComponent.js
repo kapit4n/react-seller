@@ -6,7 +6,7 @@ import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon, Modal, FormGrou
 
 class HomeComponent extends React.Component {
   handleClick = () => {
-    let item =  {
+    let item = {
                   quantity: this.state.quantity,
                   price: this.state.product.price,
                   totalPrice: this.state.product.price * this.state.quantity,
@@ -29,7 +29,7 @@ class HomeComponent extends React.Component {
     this.setState({ product: product});
   };
 
-  constructor(){
+  constructor() {
     super();
     this.productURL = 'http://localhost:3000/api/products';
     this.orderURL = 'http://localhost:3000/api/orderDetails';
@@ -60,7 +60,8 @@ class HomeComponent extends React.Component {
             {this.state.products.map(function (product) {
               return <Col xs={6} md={4} height={400}>
                 <Image width={310} height={300} src={product.img} thumbnail />
-                <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button>
+                <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>
+                <ControlLabel>${product.price}</ControlLabel>
                 <ButtonToolbar>
                   <Button onClick={()=>this.handleClickBefore(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
                 </ButtonToolbar>
@@ -78,8 +79,9 @@ class HomeComponent extends React.Component {
               <Row className="show-grid">
                 <Col xs={6} md={4} height={60}>
                   <Image width={60} height={60} src={this.state.product.img} thumbnail />
-                  {this.state.product.name}
-                </Col>;
+                  {this.state.product.name} <br />
+
+                </Col>
               </Row>
             </Grid>
             <FormGroup controlId = "formCode">
