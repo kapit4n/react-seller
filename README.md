@@ -11,15 +11,11 @@
 ## Product View Page
 <img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_product_view.png" alt="Drawing" width="100%"/>
 
-## Current Card View Page
-<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_current_card.png" alt="Drawing" width="100%"/>
-
-## Edit Shopping Card Item
-<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_add_shopping_card_item.png" alt="Drawing" width="100%"/>
+## Card View Page
+<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_card_view.png" alt="Drawing" width="100%"/>
 
 ## Adding Shopping Card Item
-<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_edit_shopping_card_item.png" alt="Drawing" width="100%"/>
-
+<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_card_item_add.png" alt="Drawing" width="100%"/>
 
 ## Pre-requisites
 
