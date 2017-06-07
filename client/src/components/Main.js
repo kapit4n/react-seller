@@ -3,13 +3,26 @@ require('styles/App.css');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Nav, NavItem,Navbar,MenuItem,NavDropdown, Table, Image, Button, Grid, Row, Col, Glyphicon} from 'react-bootstrap';
+import { Nav, NavItem, Navbar, MenuItem, NavDropdown, Table, Image, Button, Grid, Row, Col, Glyphicon, FormGroup, FormControl} from 'react-bootstrap';
 
 let yeomanImage = require('../images/yeoman.png');
 
 class AppComponent extends React.Component {
+  handleChangeSearchText = (event) => {
+    this.setState({ searchText: event.target.value });
+  }
+
+  constructor() {
+    super();
+    this.productURL = 'http://localhost:3000/api/products';
+    this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
+    this.state = {products: [], searchText: ""};
+  }
 
   render() {
+    let search = () => {
+      console.log("Search: " + this.state.searchText);
+    };
     return (
       <div>
       <Navbar inverse collapseOnSelect>
@@ -32,6 +45,13 @@ class AppComponent extends React.Component {
             </NavDropdown>
             <MenuItem eventKey={2} href="/about">About</MenuItem>
           </Nav>
+          <Navbar.Form pullLeft>
+            <FormGroup>
+              <FormControl type="text" placeholder="Search" value = { this.state.searchText } onChange = { this.handleChangeSearchText }/>
+            </FormGroup>
+            {''}
+          <Button type="submit"  onClick={search} >Search</Button>
+          </Navbar.Form>
           <Nav pullRight>
             <MenuItem eventKey={1} href="/card-current"><Glyphicon glyph="shopping-cart"/> Card</MenuItem>
             <MenuItem eventKey={2} href="/login">Login</MenuItem>
