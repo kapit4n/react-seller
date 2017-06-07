@@ -77,10 +77,12 @@ class HomeComponent extends React.Component {
           <Modal.Body>
             <Grid>
               <Row className="show-grid">
-                <Col xs={6} md={4} height={60}>
-                  <Image width={60} height={60} src={this.state.product.img} thumbnail />
-                  {this.state.product.name} <br />
-
+                <Col xs={9} sm={9} md={6} height={60}>
+                  <h2>{this.state.product.name}</h2><br />
+                  <Image width={300} src={this.state.product.img} thumbnail /><br />
+                  <ControlLabel> Price: </ControlLabel>${this.state.product.price} <br />
+                  <ControlLabel> Stock: </ControlLabel>{this.state.product.stock} <br />
+                  ${this.state.product.description}
                 </Col>
               </Row>
             </Grid>

@@ -88,7 +88,7 @@ class CardCurrentComponent extends React.Component {
                           <td>${detail.price}</td>
                           <td>${detail.totalPrice}</td>
                           <td>
-                            <Image src={detail.product.img} thumbnail width={60} height={60} />
+                            <Image src={detail.product.img} thumbnail width={100} />
                           </td>
                           <td>
                             <Button onClick = {()=>this.removeItem(detail.id)}> <Glyphicon glyph="remove"/> </Button>
@@ -101,14 +101,17 @@ class CardCurrentComponent extends React.Component {
         </Grid>
         <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
+            <Modal.Title id="contained-modal-title">Edit Shopping Card Item</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Grid>
               <Row className="show-grid">
-                <Col xs={6} md={4} height={60}>
-                  <Image width={60} height={60} src={this.state.detailEdit.product.img} thumbnail />
-                  {this.state.detailEdit.product.name}
+                <Col xs={9} sm={9} md={6} height={60}>
+                  <h2>{this.state.detailEdit.product.name}</h2><br />
+                  <Image width={300} src={this.state.detailEdit.product.img} thumbnail /><br />
+                  <ControlLabel> Price: </ControlLabel>${this.state.detailEdit.product.price} <br />
+                  <ControlLabel> Stock: </ControlLabel>{this.state.detailEdit.product.stock} <br />
+                  ${this.state.detailEdit.product.description}
                 </Col>
               </Row>
             </Grid>

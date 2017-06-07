@@ -118,7 +118,7 @@ class ProductEditComponent extends React.Component {
                 </FormGroup>
                 <FormGroup controlId = "formDescription">
                     <ControlLabel> Description </ControlLabel> <FormControl type = "text"
-                    placeholder = "Enter text"
+                    placeholder = "Description" componentClass="textarea"
                     value = { this.state.description }
                     onChange = { this.handleChangeDescription }
                     />
