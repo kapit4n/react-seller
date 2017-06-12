@@ -32,9 +32,12 @@
 * npm start
 
 ## Install Sever
-* create db reactseller
+### DB installation
+* connect to mongodb
 * use reactseller
 * create mongo user 'db.createUser({ user: "reactseller", pwd: "password", roles: [ "readWrite", "dbAdmin" ] })'
+
+### Run server project
 * git clone https://github.com/kapit4n/react-seller.git
 * cd react-seller/server
 * npm install
