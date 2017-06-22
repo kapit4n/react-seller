@@ -24,6 +24,7 @@
 * [npm](https://docs.npmjs.com/)
 * [loopback](https://loopback.io/)
 * [MongoDB](https://www.mongodb.com/)
+* [react-webpack-generator](https://github.com/react-webpack-generators/generator-react-webpack)
 
 ## Install client
 * git clone https://github.com/kapit4n/react-seller.git
