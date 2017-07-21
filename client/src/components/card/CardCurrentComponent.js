@@ -81,6 +81,12 @@ class CardCurrentComponent extends React.Component {
                 <th>Actions</th>
               </tr>
             </thead>
+              <tfoot>
+              <tr>
+                <td colSpan='3'>Order Total</td>
+                <td colSpan='3'>$180</td>
+              </tr>
+            </tfoot>
             <tbody>
               {this.state.orderDetails.map(function (detail) {
                 return  <tr className={'detailRow'}>
