@@ -67,7 +67,8 @@ class CardCurrentComponent extends React.Component {
     };
 
     return (
-      <div className="cardcurrent-component">
+      <div className="cardcurrent-component container">
+        <div className="container"> <a href={'card-list/'}>list</a> </div>
         <Grid>
           <Table striped bordered condensed hover>
             <thead>
