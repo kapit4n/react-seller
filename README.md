@@ -29,7 +29,7 @@
 * [MongoDB](https://www.mongodb.com/)
 * [react-webpack-generator](https://github.com/react-webpack-generators/generator-react-webpack)
 
-## Install API Server DB
+## Install API
 ### DB installation
 * connect to mongodb
 * use reactseller
