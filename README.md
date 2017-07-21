@@ -17,6 +17,9 @@
 ## Adding Shopping Card Item
 <img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_card_item_add.png" alt="Drawing" width="100%"/>
 
+## API
+![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_api.png)
+
 ## Pre-requisites
 
 [![Join the chat at https://gitter.im/react-seller/Lobby](https://badges.gitter.im/react-seller/Lobby.svg)](https://gitter.im/react-seller/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -26,28 +29,23 @@
 * [MongoDB](https://www.mongodb.com/)
 * [react-webpack-generator](https://github.com/react-webpack-generators/generator-react-webpack)
 
-## Install client
-* git clone https://github.com/kapit4n/react-seller.git
-* cd react-seller/client
-* npm install
-* npm start
-
-## Install Sever
+## Install API Server DB
 ### DB installation
 * connect to mongodb
 * use reactseller
 * create mongo user 'db.createUser({ user: "reactseller", pwd: "password", roles: [ "readWrite", "dbAdmin" ] })'
 
-### Run server project
+### Run API
 * git clone https://github.com/kapit4n/react-seller.git
 * cd react-seller/server
 * npm install
 * node .
-* 
 
-## API
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_api.png)
-
+## Install client
+* git clone https://github.com/kapit4n/react-seller.git
+* cd react-seller/client
+* npm install
+* npm start
 
 # Development tasks
 https://github.com/kapit4n/react-seller/projects/1
