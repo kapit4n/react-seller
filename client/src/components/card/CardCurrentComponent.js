@@ -11,7 +11,7 @@ class CardCurrentComponent extends React.Component {
     this.orderDetailURL = 'http://localhost:3000/api/orderDetails';
     this.orderFilter = '?filter[include]=product'
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
-    this.state = { orderDetails: [], detailEdit: {product: {}, quantity: 0}};
+    this.state = { orderDetails: [], totalPrice: 0, detailEdit: {product: {}, quantity: 0}};
   }
 
   removeItem = (id) => {
@@ -42,7 +42,13 @@ class CardCurrentComponent extends React.Component {
   loadItems() {
     fetch(this.orderDetailURL + this.orderFilter + '&access_token=' + this.access_token) 
       .then((response) => response.json())
-      .then((responseJson) => { this.setState({orderDetails: responseJson});})
+      .then((responseJson) => { 
+        var auxTotalPrice = 0;
+        for (var i = 0; i < responseJson.length; i++) {
+          auxTotalPrice += responseJson[i].totalPrice;
+        }
+        this.setState({orderDetails: responseJson, totalPrice: auxTotalPrice});
+      })
       .catch((error) => { console.error(error); });
   }
 
@@ -84,7 +90,7 @@ class CardCurrentComponent extends React.Component {
               <tfoot>
               <tr>
                 <td colSpan='3'>Order Total</td>
-                <td colSpan='3'>$180</td>
+                <td colSpan='3'>${this.state.totalPrice}</td>
               </tr>
             </tfoot>
             <tbody>
