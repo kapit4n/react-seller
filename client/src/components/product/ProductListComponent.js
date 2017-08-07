@@ -8,7 +8,7 @@ import { browserHistory } from 'react-router';
 
 class ProductListComponent extends React.Component {
   constructor() {
-     super();
+    super();
     this.productURL = 'http://localhost:3000/api/products';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.state = { products: []};

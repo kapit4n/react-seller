@@ -8,7 +8,7 @@ class ProductRelatedComponent extends React.Component {
   render() {
     return (
       <div className="productrelated-component">
-        Please edit src/components/product//ProductRelatedComponent.js to update this component!
+        Show the product list here
       </div>
     );
   }
