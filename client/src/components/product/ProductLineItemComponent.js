@@ -1,20 +1,26 @@
 'use strict';
 
 import React from 'react';
+import { Image } from 'react-bootstrap';
 
 require('styles/product/ProductLineItem.css');
 
 class ProductLineItemComponent extends React.Component {
-	constructor() {
-		this.state = { product: {code: 0, img: "", id: 0, name: ""}};
-	}
+  
+  constructor(props) {
+    super(props);
+    this.props = props;
+    console.log(this.props.product);
+    this.state = { product: this.props.product};
+  }
+
   render() {
     return (
       <tr className={'productlineitem-component'}>
-                          <td><a href={'product-show/' + product.id}>{product.name}</a></td>
-                          <td>{product.code}</td>
-                          <td><Image src={product.img} thumbnail width={60} height={60} /></td>
-                        </tr>
+        <td><a href={'product-show/' + this.state.product.id}>{this.state.product.name}</a></td>
+        <td>{this.state.product.code}</td>
+        <td><Image src={this.state.product.img} thumbnail width={60} height={60} /></td>
+      </tr>
     );
   }
 }

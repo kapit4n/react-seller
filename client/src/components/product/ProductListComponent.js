@@ -5,6 +5,7 @@ import $ from 'jquery'
 require('styles/product/ProductList.css');
 import { Table, Image, Button, Grid, Row, Col, Glyphicon} from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+import ProductLineItemComponent from './ProductLineItemComponent';
 
 class ProductListComponent extends React.Component {
   constructor() {
@@ -52,12 +53,9 @@ class ProductListComponent extends React.Component {
             </thead>
             <tbody>
               {this.state.products.map(function (product) {
-                return  <tr className={'productRow'}>
-                          <td><a href={'product-show/' + product.id}>{product.name}</a></td>
-                          <td>{product.code}</td>
-                          <td><Image src={product.img} thumbnail width={60} height={60} /></td>
-                        </tr>;
-                })}
+                return  <ProductLineItemComponent key={product.id} product={product}/>;
+                })
+              }
             </tbody>
           </Table>
           </Grid>
