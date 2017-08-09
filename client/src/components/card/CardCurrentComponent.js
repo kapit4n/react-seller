@@ -9,7 +9,8 @@ class CardCurrentComponent extends React.Component {
   constructor() {
     super();
     this.orderDetailURL = 'http://localhost:3000/api/orderDetails';
-    this.orderFilter = '?filter[include]=product'
+    this.currentItems = 'http://localhost:3000/api/orderDetails?filter[where][orderId][eq]=null&filter[include]=product';
+    this.orderFilter = '?filter[include]=product';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.state = { orderDetails: [], totalPrice: 0, detailEdit: {product: {}, quantity: 0}};
   }
@@ -39,7 +40,7 @@ class CardCurrentComponent extends React.Component {
   };
 
   submitCard = () => {
-    console.log("Submit card to store");
+    
   }
 
   clearCard = () => {
@@ -58,7 +59,7 @@ class CardCurrentComponent extends React.Component {
   }
 
   loadItems() {
-    fetch(this.orderDetailURL + this.orderFilter + '&access_token=' + this.access_token) 
+    fetch(this.currentItems + '&access_token=' + this.access_token) 
       .then((response) => response.json())
       .then((responseJson) => { 
         var auxTotalPrice = 0;
