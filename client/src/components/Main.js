@@ -12,6 +12,11 @@ class AppComponent extends React.Component {
     this.setState({ searchText: event.target.value });
   }
 
+  search = () => {
+    this.props.router.push('/home?search=' + this.state.searchText);
+    window.location.reload();
+  };
+
   constructor() {
     super();
     this.productURL = 'http://localhost:3000/api/products';
@@ -20,9 +25,6 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    let search = () => {
-      console.log("Search: " + this.state.searchText);
-    };
     return (
       <div>
       <Navbar inverse collapseOnSelect>
@@ -34,7 +36,7 @@ class AppComponent extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <MenuItem eventKey={1} href="/home">Home</MenuItem>
+            <MenuItem eventKey={1} href={"/home"}>Home</MenuItem>
             <NavDropdown eventKey={3} title="Products"  id="basic-nav-dropdown">
               <MenuItem eventKey={3.1} href="/product-list">List</MenuItem>
               <MenuItem eventKey={3.1} href="/product-add">New</MenuItem>
@@ -50,7 +52,7 @@ class AppComponent extends React.Component {
               <FormControl type="text" placeholder="Search" value = { this.state.searchText } onChange = { this.handleChangeSearchText }/>
             </FormGroup>
             {''}
-          <Button type="submit"  onClick={search} >Search</Button>
+          <Button type="submit" onClick={()=>this.search()} >Search</Button>
           </Navbar.Form>
           <Nav pullRight>
             <MenuItem eventKey={1} href="/card-current"><Glyphicon glyph="shopping-cart"/> Card</MenuItem>

@@ -40,6 +40,7 @@ class HomeComponent extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.location.query.search);
     fetch(this.productURL + '?access_token=' + this.access_token) 
       .then((response) => response.json())
       .then((responseJson) => { this.setState({products:responseJson});})
