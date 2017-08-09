@@ -9,6 +9,7 @@ class CardCurrentComponent extends React.Component {
   constructor() {
     super();
     this.orderDetailURL = 'http://localhost:3000/api/orderDetails';
+    this.orderURL = 'http://localhost:3000/api/orders';
     this.currentItems = 'http://localhost:3000/api/orderDetails?filter[where][orderId][eq]=null&filter[include]=product';
     this.orderFilter = '?filter[include]=product';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
@@ -20,8 +21,12 @@ class CardCurrentComponent extends React.Component {
       method: 'DELETE',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', }
     }).then((response) => response.json())
-    .then((responseJson) => {this.loadItems();})
-    .catch((error) => { console.error(error);});
+    .then((responseJson) => {
+      this.loadItems();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   };
 
   updateItem = () => {
@@ -34,13 +39,50 @@ class CardCurrentComponent extends React.Component {
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
       body: JSON.stringify(item)
     }).then((response) => response.json())
-    .then((responseJson) => {this.loadItems();})
-    .catch((error) => { console.error(error);});
+    .then((responseJson) => {
+      this.loadItems();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
     this.state = {detailEdit: {product: {}, quantity: 0}};
   };
 
   submitCard = () => {
-    
+    var thisAux = this;
+    let order = {
+                  "createdDate": "2017-08-09T11:53:30.425Z",
+                  "deliveryDate": "2017-08-09T11:53:30.425Z",
+                  "description": "Submitted Order",
+                  "customerId": "1",
+                  "paid": false,
+                  "delivered": false
+                };
+    fetch(this.orderURL + '?access_token=' + this.access_token, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+      body: JSON.stringify(order)
+    }).then((response) => response.json())
+    .then((orderSaved) => { 
+      thisAux.state.orderDetails.forEach(function(orderDetail){
+        var orderDetailAux = orderDetail;
+        orderDetail.orderId = orderSaved.id;
+        fetch(thisAux.orderDetailURL + "/" + orderDetail.id + '?access_token=' + thisAux.access_token, {
+          method: 'PUT',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
+          body: JSON.stringify(orderDetailAux)
+        }).then((response) => response.json())
+        .then((detailUpdated) => {
+          console.log(detailUpdated);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   clearCard = () => {
@@ -53,7 +95,9 @@ class CardCurrentComponent extends React.Component {
         console.log(responseJson);
         this.loadItems();
       })
-      .catch((error) => { console.error(error);});
+      .catch((error) => {
+        console.error(error);
+      });
     }
     
   }
@@ -68,7 +112,9 @@ class CardCurrentComponent extends React.Component {
         }
         this.setState({orderDetails: responseJson, totalPrice: auxTotalPrice});
       })
-      .catch((error) => { console.error(error); });
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   componentDidMount() {
