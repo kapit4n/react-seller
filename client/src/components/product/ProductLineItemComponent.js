@@ -10,7 +10,6 @@ class ProductLineItemComponent extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
-    console.log(this.props.product);
     this.state = { product: this.props.product};
   }
 

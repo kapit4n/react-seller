@@ -38,6 +38,24 @@ class CardCurrentComponent extends React.Component {
     this.state = {detailEdit: {product: {}, quantity: 0}};
   };
 
+  submitCard = () => {
+    console.log("Submit card to store");
+  }
+
+  clearCard = () => {
+    for (var i = 0; i < this.state.orderDetails.length; i++) {
+      fetch(this.orderDetailURL + "/" + this.state.orderDetails[i].id + '?access_token=' + this.access_token, {
+        method: 'DELETE',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', }
+      }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        this.loadItems();
+      })
+      .catch((error) => { console.error(error);});
+    }
+    
+  }
 
   loadItems() {
     fetch(this.orderDetailURL + this.orderFilter + '&access_token=' + this.access_token) 
@@ -111,6 +129,8 @@ class CardCurrentComponent extends React.Component {
                 }, this)}
             </tbody>
           </Table>
+          <Button onClick = {()=>this.clearCard()}> Clear </Button>
+          <Button onClick = {()=>this.submitCard()}> Submit Card </Button>
         </Grid>
         <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>

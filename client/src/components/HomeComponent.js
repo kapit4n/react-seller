@@ -18,16 +18,18 @@ class HomeComponent extends React.Component {
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
       body: JSON.stringify(item)
     }).then((response) => response.json())
-    .then((responseJson) => { console.log("Hello I saved "); })
+    .then((responseJson) => { this.eventSubscriptors(); })
     .catch((error) => { console.error(error); });
-    this.setState({ quantity: 1});
-    this.setState({ product: product});
   };
 
   handleClickBefore = (product: any) => {
     this.setState({ show: true});
     this.setState({ product: product});
   };
+
+  eventSubscriptors = () => {
+    console.log("Throw event to subscriptors");
+  }
 
   constructor() {
     super();
