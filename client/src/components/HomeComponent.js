@@ -40,8 +40,11 @@ class HomeComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.location.query.search);
-    fetch(this.productURL + '?access_token=' + this.access_token) 
+    var filter = "";
+    if (this.props.location.query.search) {
+      filter = 'filter[where][name][like]=' + this.props.location.query.search + '&';
+    }
+    fetch(this.productURL + '?' + filter + 'access_token=' + this.access_token) 
       .then((response) => response.json())
       .then((responseJson) => { this.setState({products:responseJson});})
       .catch((error) => { console.error(error); });

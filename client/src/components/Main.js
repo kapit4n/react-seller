@@ -24,6 +24,12 @@ class AppComponent extends React.Component {
     this.state = {products: [], searchText: ""};
   }
 
+  componentDidMount() {
+    if (this.props.location.query.search) {
+      tthis.setState({products: [], searchText: this.props.location.query.search});
+    }
+  }
+
   render() {
     return (
       <div>
