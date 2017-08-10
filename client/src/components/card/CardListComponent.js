@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import { ListGroup, ListGroupItem, Badge} from 'react-bootstrap';
 
 require('styles/card/CardList.css');
 
@@ -27,13 +28,17 @@ class CardListComponent extends React.Component {
   render() {
     return (
       <div className="cardlist-component">
-        <ol>
+        <ListGroup>
           {
-            this.state.orders.map(function(order){
-              return <li>order.createdDate</li>;
+            this.state.orders.map(function(order) {
+              let res = <ListGroupItem>{order.description}<Badge>{order.createdDate}</Badge></ListGroupItem>;
+              if (order.delivered) {
+                res = <ListGroupItem >{order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge></ListGroupItem>;
+              }
+              return res;
             })
           }
-        </ol>
+        </ListGroup>
       </div>
     );
   }
