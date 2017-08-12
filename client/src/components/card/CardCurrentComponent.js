@@ -50,9 +50,10 @@ class CardCurrentComponent extends React.Component {
 
   submitCard = () => {
     var thisAux = this;
+    var date = new Date();
     let order = {
-                  "createdDate": "2017-08-09T11:53:30.425Z",
-                  "deliveryDate": "2017-08-09T11:53:30.425Z",
+                  "createdDate": date.toString(),
+                  "deliveryDate": date.toString(),
                   "description": "Submitted Order",
                   "customerId": "1",
                   "paid": false,
