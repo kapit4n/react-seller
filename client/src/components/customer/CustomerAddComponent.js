@@ -8,7 +8,6 @@ class CustomerAddComponent extends React.Component {
   render() {
     return (
       <div className="customeradd-component">
-        Please edit src/components/customer//CustomerAddComponent.js to update this component!
       </div>
     );
   }

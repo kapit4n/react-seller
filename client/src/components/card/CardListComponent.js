@@ -31,9 +31,9 @@ class CardListComponent extends React.Component {
         <ListGroup>
           {
             this.state.orders.map(function(order) {
-              let res = <ListGroupItem>{order.description}<Badge>{order.createdDate}</Badge></ListGroupItem>;
+              let res = <ListGroupItem><a href={'../card-show/' + order.id}>SHOW</a> {order.description}<Badge>{order.createdDate}</Badge></ListGroupItem>;
               if (order.delivered) {
-                res = <ListGroupItem >{order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge></ListGroupItem>;
+                res = <ListGroupItem ><a href={'../card-show/' + order.id}>SHOW</a>{order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge></ListGroupItem>;
               }
               return res;
             })
