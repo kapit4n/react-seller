@@ -177,8 +177,8 @@ class CardCurrentComponent extends React.Component {
                 }, this)}
             </tbody>
           </Table>
-          <Button onClick = {()=>this.clearCard()}> Clear </Button>
-          <Button onClick = {()=>this.submitCard()}> Submit Card </Button>
+          <Button onClick = {()=>this.clearCard()}> <Glyphicon glyph="cleaning"/> Clear</Button>
+          <Button onClick = {()=>this.submitCard()}><Glyphicon glyph="send"/> Submit Card </Button>
         </Grid>
         <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>

@@ -6,7 +6,7 @@ import { ListGroup, ListGroupItem, Badge} from 'react-bootstrap';
 require('styles/card/CardList.css');
 
 class CardListComponent extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.orderURL = 'http://localhost:3000/api/orders';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
