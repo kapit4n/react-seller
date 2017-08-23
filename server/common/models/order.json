@@ -13,6 +13,9 @@
     "createdDate": {
       "type": "date"
     },
+    "total": {
+      "type": "number"
+    },
     "description": {
       "type": "string"
     },
