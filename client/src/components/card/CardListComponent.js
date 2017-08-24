@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { ListGroup, ListGroupItem, Badge} from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Badge, Button} from 'react-bootstrap';
 
 require('styles/card/CardList.css');
 
@@ -32,9 +32,9 @@ class CardListComponent extends React.Component {
         <ListGroup>
           {
             this.state.orders.map(function(order) {
-              let res = <ListGroupItem><a href={'../card-show/' + order.id}>SHOW</a> {order.description}<Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
+              let res = <ListGroupItem><Button bsStyle="info" href={'../card-show/' + order.id}>SHOW</Button> <Button bsStyle="danger" href={'../card-show/' + order.id}>CANCEL</Button> {order.description}<Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
               if (order.delivered) {
-                res = <ListGroupItem ><a href={'../card-show/' + order.id}>SHOW</a>{order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
+                res = <ListGroupItem ><Button bsStyle="info" href={'../card-show/' + order.id}>SHOW</Button> <Button bsStyle="danger" href={'../card-show/' + order.id}>CANCEL</Button> {order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
               }
               return res;
             })
