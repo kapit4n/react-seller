@@ -19,6 +19,7 @@ class CardListComponent extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => { 
         this.setState({orders: responseJson});
+        console.log(responseJson);
       })
       .catch((error) => {
         console.error(error);
@@ -31,9 +32,9 @@ class CardListComponent extends React.Component {
         <ListGroup>
           {
             this.state.orders.map(function(order) {
-              let res = <ListGroupItem><a href={'../card-show/' + order.id}>SHOW</a> {order.description}<Badge>{order.createdDate}</Badge></ListGroupItem>;
+              let res = <ListGroupItem><a href={'../card-show/' + order.id}>SHOW</a> {order.description}<Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
               if (order.delivered) {
-                res = <ListGroupItem ><a href={'../card-show/' + order.id}>SHOW</a>{order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge></ListGroupItem>;
+                res = <ListGroupItem ><a href={'../card-show/' + order.id}>SHOW</a>{order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
               }
               return res;
             })

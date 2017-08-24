@@ -57,7 +57,8 @@ class CardCurrentComponent extends React.Component {
                   "description": "Submitted Order",
                   "customerId": "1",
                   "paid": false,
-                  "delivered": false
+                  "delivered": false,
+                  "total": this.state.totalPrice
                 };
     fetch(this.orderURL + '?access_token=' + this.access_token, {
       method: 'POST',
