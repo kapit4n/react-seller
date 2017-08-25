@@ -18,6 +18,7 @@ import Login from './components/user/LoginComponent';
 import CustomerAdd from './components/customer/CustomerAddComponent';
 import CustomerList from './components/customer/CustomerListComponent';
 import CustomerEdit from './components/customer/CustomerEditComponent';
+import CustomerShow from './components/customer/CustomerShowComponent';
 
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 
@@ -32,6 +33,7 @@ ReactDOM.render((
          <Route path = "about" component = {About} />
          <Route path = "contact" component = {Contact} />
          <Route path = "customer-list" component = {CustomerList} />
+         <Route path = "customer-show/:id" component = {CustomerShow} />
          <Route path = "customer-add" component = {CustomerAdd} />
          <Route path = "customer-edit/:id" component = {CustomerEdit} />
          <Route path = "product-list" component = {ProductList} />
