@@ -5,11 +5,19 @@ import React from 'react';
 require('styles/customer/CustomerLineItem.css');
 
 class CustomerLineItemComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+    this.state = { customer: this.props.customer};
+  }
+
   render() {
     return (
-      <div className="customerlineitem-component">
-        Please edit src/components/customer//CustomerLineItemComponent.js to update this component!
-      </div>
+      <tr className={'customerlineitem-component'}>
+        <td><a href={'customer-show/' + this.state.customer.id}>{this.state.customer.name}</a></td>
+        <td>{this.state.customer.budget}</td>
+        <td>{this.state.customer.address}</td>
+      </tr>
     );
   }
 }
