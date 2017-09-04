@@ -38,7 +38,7 @@ module.exports = function (Product) {
     Product.remoteMethod(
         'updateStock',
         {
-            http: { path: '/updatestock', verb: 'get' },
+            http: { path: '/updateStock', verb: 'get' },
             accepts: [
                 { arg: 'id', type: 'string', http: { source: 'query' } },
                 { arg: 'amount', type: 'string', http: { source: 'query' } },
