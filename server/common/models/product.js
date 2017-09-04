@@ -18,6 +18,15 @@ module.exports = function (Product) {
             cb(null, response);
         });
     }
+    Product.checkStockToUpdate = function (productId, amount, cb) {
+        Product.findById(productId, function (err, instance) {
+            var response = "false";
+            if (amount <= instance.stock) {
+                response = "true";
+            }
+            cb(null, response);
+        });
+    }
     Product.remoteMethod(
         'getName',
         {
@@ -30,6 +39,17 @@ module.exports = function (Product) {
         'updateStock',
         {
             http: { path: '/updatestock', verb: 'get' },
+            accepts: [
+                { arg: 'id', type: 'string', http: { source: 'query' } },
+                { arg: 'amount', type: 'string', http: { source: 'query' } },
+            ],
+            returns: { arg: 'success', type: 'string' }
+        }
+    );
+    Product.remoteMethod(
+        'checkStockToUpdate',
+        {
+            http: { path: '/checkStock', verb: 'get' },
             accepts: [
                 { arg: 'id', type: 'string', http: { source: 'query' } },
                 { arg: 'amount', type: 'string', http: { source: 'query' } },
