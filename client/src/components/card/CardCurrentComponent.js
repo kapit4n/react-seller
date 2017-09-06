@@ -84,25 +84,7 @@ class CardCurrentComponent extends React.Component {
     this.state = { detailEdit: { product: {}, quantity: 0 } };
   };
 
-  requestAsync(url) {
-    return new Promise(function(resolve, reject) {
-      request(url, function(err, res, body) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve([res, body]);
-      });
-    });
-  }
-
   submitCard = () => {
-    var urls = [
-      this.requestAsync("url1"),
-      this.requestAsync("url2")
-    ];
-    
-    
-
     var thisAux = this;
     var date = new Date();
     let order = {
@@ -125,11 +107,16 @@ class CardCurrentComponent extends React.Component {
       .then(response => response.json())
       .then(orderSaved => {
 
-        var urls2 = thisAux.state.orderDetails.map(function(x) {
-          return {url: this.requestAsync("url1"), orderDetail: x};
+        var urlObjs = thisAux.state.orderDetails.map(function(orderDetail) {
+          orderDetail.orderId = orderSaved.id;
+          return {url: thisAux.orderDetailURL +
+            "/" +
+            orderDetail.id +
+            "?access_token=" +
+            thisAux.access_token, orderDetail: orderDetail};
         });
        
-      Promise.all(urls2.map(url => fetch(urlObj.url,
+      Promise.all(urlObjs.map(urlObj => fetch(urlObj.url,
         {
           method: "PUT",
           headers: {
@@ -138,36 +125,9 @@ class CardCurrentComponent extends React.Component {
           },
         body: JSON.stringify(urlObj.orderDetail)
         })))
-        .then(resp => resp).then(texts => {
-          console.log("This is the object");
+        .then(resp => resp).then( details => {
+          console.log("The card was submited");
         });
-
-        /*thisAux.state.orderDetails.forEach(function(orderDetail) {
-          var orderDetailAux = orderDetail;
-          orderDetail.orderId = orderSaved.id;
-          fetch(
-            thisAux.orderDetailURL +
-              "/" +
-              orderDetail.id +
-              "?access_token=" +
-              thisAux.access_token,
-            {
-              method: "PUT",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(orderDetailAux)
-            }
-          )
-            .then(response => response.json())
-            .then(detailUpdated => {
-              console.log(detailUpdated);
-            })
-            .catch(error => {
-              console.error(error);
-            });
-        });*/
       })
       .catch(error => {
         console.error(error);
