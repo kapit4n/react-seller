@@ -47,6 +47,10 @@
 * npm install
 * npm start
 
+## Run Client Unit tests
+* go to client folder
+* ./node_modules/karma/bin/karma start
+
 # Development tasks
 https://github.com/kapit4n/react-seller/projects/1
 
