@@ -14,7 +14,8 @@ import {
   Modal,
   FormGroup,
   ControlLabel,
-  FormControl
+  FormControl,
+  Alert
 } from "react-bootstrap";
 
 class CardCurrentComponent extends React.Component {
@@ -33,6 +34,7 @@ class CardCurrentComponent extends React.Component {
       customers: [],
       totalPrice: 0,
       customerId: 0,
+      successMessage: '',
       detailEdit: { product: {}, quantity: 0 }
     };
   }
@@ -129,7 +131,14 @@ class CardCurrentComponent extends React.Component {
         body: JSON.stringify(urlObj.orderDetail)
         })))
         .then(resp => resp).then( details => {
-          console.log("The card was submited");
+          thisAux.state.successMessage = 'Card was submited';
+          thisAux.state = {
+            orderDetails: [],
+            customers: [],
+            totalPrice: 0,
+            customerId: 0,
+            detailEdit: { product: {}, quantity: 0 }
+          };
         });
       })
       .catch(error => {
@@ -219,6 +228,9 @@ class CardCurrentComponent extends React.Component {
 
     return (
       <div className="cardcurrent-component container">
+        <Alert bsStyle="warning">
+          <strong>{this.state.successMessage}</strong>
+        </Alert>
         <div className="container">
           {" "}
           <a href={"card-list/"}>list</a>{" "}
