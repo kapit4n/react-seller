@@ -21,6 +21,7 @@ class CardCurrentComponent extends React.Component {
   constructor() {
     super();
     this.orderDetailURL = "http://localhost:3000/api/orderDetails";
+    this.customerUrl = "http://localhost:3000/api/customers";
     this.orderURL = "http://localhost:3000/api/orders";
     this.currentItems =
       "http://localhost:3000/api/orderDetails?filter[where][orderId][eq]=null&filter[include]=product";
@@ -29,6 +30,7 @@ class CardCurrentComponent extends React.Component {
       "T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7";
     this.state = {
       orderDetails: [],
+      customers: [],
       totalPrice: 0,
       detailEdit: { product: {}, quantity: 0 }
     };
@@ -177,6 +179,17 @@ class CardCurrentComponent extends React.Component {
       .catch(error => {
         console.error(error);
       });
+    fetch(this.customerUrl + "?access_token=" + this.access_token)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          customers: responseJson
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
   }
 
   componentDidMount() {
@@ -206,6 +219,16 @@ class CardCurrentComponent extends React.Component {
           <a href={"card-list/"}>list</a>{" "}
         </div>
         <Grid>
+        <FormGroup controlId="formControlsSelect">
+          <ControlLabel>Select Customer</ControlLabel>
+          <FormControl componentClass="select" placeholder="select">
+          {this.state.customers.map(function(customer) {
+            return (
+                <option value={customer.id}>{customer.name}</option>
+                );
+          }, this)}
+          </FormControl>
+        </FormGroup>
           <Table striped bordered condensed hover>
             <thead>
               <tr>
