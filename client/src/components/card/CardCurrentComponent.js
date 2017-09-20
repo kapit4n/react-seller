@@ -32,6 +32,7 @@ class CardCurrentComponent extends React.Component {
       orderDetails: [],
       customers: [],
       totalPrice: 0,
+      customerId: 0,
       detailEdit: { product: {}, quantity: 0 }
     };
   }
@@ -93,7 +94,7 @@ class CardCurrentComponent extends React.Component {
       createdDate: date.toString(),
       deliveryDate: date.toString(),
       description: "Submitted Order",
-      customerId: "1",
+      customerId: this.state.customerId,
       paid: false,
       delivered: false,
       total: this.state.totalPrice
@@ -205,6 +206,10 @@ class CardCurrentComponent extends React.Component {
     this.setState({ quantity: item.quantity });
     this.setState({ show: true });
   };
+  
+  handleChangeCustomerId = (event) => {
+    this.setState({ customerId: event.target.value });
+  }
 
   render() {
     let close = () => {
@@ -221,7 +226,8 @@ class CardCurrentComponent extends React.Component {
         <Grid>
         <FormGroup controlId="formControlsSelect">
           <ControlLabel>Select Customer</ControlLabel>
-          <FormControl componentClass="select" placeholder="select">
+          <FormControl componentClass="select" placeholder="select" value = { this.state.customerId }
+                    onChange = { this.handleChangeCustomerId }>
           {this.state.customers.map(function(customer) {
             return (
                 <option value={customer.id}>{customer.name}</option>
