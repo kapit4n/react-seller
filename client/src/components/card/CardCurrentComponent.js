@@ -14,13 +14,15 @@ import {
   Modal,
   FormGroup,
   ControlLabel,
-  FormControl
+  FormControl,
+  Alert
 } from "react-bootstrap";
 
 class CardCurrentComponent extends React.Component {
   constructor() {
     super();
     this.orderDetailURL = "http://localhost:3000/api/orderDetails";
+    this.customerUrl = "http://localhost:3000/api/customers";
     this.orderURL = "http://localhost:3000/api/orders";
     this.currentItems =
       "http://localhost:3000/api/orderDetails?filter[where][orderId][eq]=null&filter[include]=product";
@@ -29,7 +31,10 @@ class CardCurrentComponent extends React.Component {
       "T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7";
     this.state = {
       orderDetails: [],
+      customers: [],
       totalPrice: 0,
+      customerId: 0,
+      successMessage: '',
       detailEdit: { product: {}, quantity: 0 }
     };
   }
@@ -91,7 +96,7 @@ class CardCurrentComponent extends React.Component {
       createdDate: date.toString(),
       deliveryDate: date.toString(),
       description: "Submitted Order",
-      customerId: "1",
+      customerId: this.state.customerId,
       paid: false,
       delivered: false,
       total: this.state.totalPrice
@@ -126,7 +131,14 @@ class CardCurrentComponent extends React.Component {
         body: JSON.stringify(urlObj.orderDetail)
         })))
         .then(resp => resp).then( details => {
-          console.log("The card was submited");
+          thisAux.state.successMessage = 'Card was submited';
+          thisAux.state = {
+            orderDetails: [],
+            customers: [],
+            totalPrice: 0,
+            customerId: 0,
+            detailEdit: { product: {}, quantity: 0 }
+          };
         });
       })
       .catch(error => {
@@ -177,6 +189,17 @@ class CardCurrentComponent extends React.Component {
       .catch(error => {
         console.error(error);
       });
+    fetch(this.customerUrl + "?access_token=" + this.access_token)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          customers: responseJson
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
   }
 
   componentDidMount() {
@@ -192,6 +215,10 @@ class CardCurrentComponent extends React.Component {
     this.setState({ quantity: item.quantity });
     this.setState({ show: true });
   };
+  
+  handleChangeCustomerId = (event) => {
+    this.setState({ customerId: event.target.value });
+  }
 
   render() {
     let close = () => {
@@ -201,11 +228,25 @@ class CardCurrentComponent extends React.Component {
 
     return (
       <div className="cardcurrent-component container">
+        <Alert bsStyle="warning">
+          <strong>{this.state.successMessage}</strong>
+        </Alert>
         <div className="container">
           {" "}
           <a href={"card-list/"}>list</a>{" "}
         </div>
         <Grid>
+        <FormGroup controlId="formControlsSelect">
+          <ControlLabel>Select Customer</ControlLabel>
+          <FormControl componentClass="select" placeholder="select" value = { this.state.customerId }
+                    onChange = { this.handleChangeCustomerId }>
+          {this.state.customers.map(function(customer) {
+            return (
+                <option value={customer.id}>{customer.name}</option>
+                );
+          }, this)}
+          </FormControl>
+        </FormGroup>
           <Table striped bordered condensed hover>
             <thead>
               <tr>
