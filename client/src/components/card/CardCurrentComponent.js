@@ -21,9 +21,10 @@ import {
 class CardCurrentComponent extends React.Component {
   constructor() {
     super();
-    this.orderDetailURL = "http://localhost:3000/api/orderDetails";
+    this.updateStockUrl = "http://localhost:3000/api/products/updateStock";
+    this.orderDetailUrl = "http://localhost:3000/api/orderDetails";
     this.customerUrl = "http://localhost:3000/api/customers";
-    this.orderURL = "http://localhost:3000/api/orders";
+    this.orderUrl = "http://localhost:3000/api/orders";
     this.currentItems =
       "http://localhost:3000/api/orderDetails?filter[where][orderId][eq]=null&filter[include]=product";
     this.orderFilter = "?filter[include]=product";
@@ -41,7 +42,7 @@ class CardCurrentComponent extends React.Component {
 
   removeItem = id => {
     fetch(
-      this.orderDetailURL + "/" + id + "?access_token=" + this.access_token,
+      this.orderDetailUrl + "/" + id + "?access_token=" + this.access_token,
       {
         method: "DELETE",
         headers: {
@@ -65,7 +66,7 @@ class CardCurrentComponent extends React.Component {
       totalPrice: this.state.detailEdit.product.price * this.state.quantity
     };
     fetch(
-      this.orderDetailURL +
+      this.orderDetailUrl +
         "/" +
         this.state.detailEdit.id +
         "?access_token=" +
@@ -90,66 +91,88 @@ class CardCurrentComponent extends React.Component {
   };
 
   submitCard = () => {
-    var thisAux = this;
-    var date = new Date();
-    let order = {
-      createdDate: date.toString(),
-      deliveryDate: date.toString(),
-      description: "Submitted Order",
-      customerId: this.state.customerId,
-      paid: false,
-      delivered: false,
-      total: this.state.totalPrice
-    };
-    fetch(this.orderURL + "?access_token=" + this.access_token, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(order)
-    })
-      .then(response => response.json())
-      .then(orderSaved => {
+      var thisAux = this;
+      var date = new Date();
+      let order = {
+          createdDate: date.toString(),
+          deliveryDate: date.toString(),
+          description: "Submitted Order",
+          customerId: this.state.customerId,
+          paid: false,
+          delivered: false,
+          total: this.state.totalPrice
+      };
+      fetch(this.orderUrl + "?access_token=" + this.access_token, {
+              method: "POST",
+              headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify(order)
+          })
+          .then(response => response.json())
+          .then(orderSaved => {
 
-        var urlObjs = thisAux.state.orderDetails.map(function(orderDetail) {
-          orderDetail.orderId = orderSaved.id;
-          return {url: thisAux.orderDetailURL +
-            "/" +
-            orderDetail.id +
-            "?access_token=" +
-            thisAux.access_token, orderDetail: orderDetail};
-        });
-       
-      Promise.all(urlObjs.map(urlObj => fetch(urlObj.url,
-        {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          },
-        body: JSON.stringify(urlObj.orderDetail)
-        })))
-        .then(resp => resp).then( details => {
-          thisAux.state.successMessage = 'Card was submited';
-          thisAux.state = {
-            orderDetails: [],
-            customers: [],
-            totalPrice: 0,
-            customerId: 0,
-            detailEdit: { product: {}, quantity: 0 }
-          };
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
+              var orderDetailUrls = thisAux.state.orderDetails.map(function(orderDetail) {
+                  orderDetail.orderId = orderSaved.id;
+                  return {
+                      url: thisAux.orderDetailUrl +
+                          "/" +
+                          orderDetail.id +
+                          "?access_token=" +
+                          thisAux.access_token,
+                      orderDetail: orderDetail
+                  };
+              });
+
+              var updateStockUrls = thisAux.state.orderDetails.map(function(orderDetail) {
+                  return {
+                      url: thisAux.updateStockUrl +
+                          "?id=" +
+                          orderDetail.product.id + "&amount=" + orderDetail.quantity +
+                          "&access_token=" +
+                          thisAux.access_token
+                  };
+              });
+
+              Promise.all(orderDetailUrls.map(urlObj => fetch(urlObj.url, {
+                      method: "PUT",
+                      headers: {
+                          Accept: "application/json",
+                          "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify(urlObj.orderDetail)
+                  })))
+                  .then(resp => resp).then(details => {
+                      thisAux.state.successMessage = 'Card was submited';
+                      thisAux.state = {
+                          orderDetails: [],
+                          customers: [],
+                          totalPrice: 0,
+                          customerId: 0,
+                          detailEdit: { product: {}, quantity: 0 }
+                      };
+                  });
+              
+              Promise.all(updateStockUrls.map(updateObj => fetch(updateObj.url)))
+              .then(resp => resp).then(results => {
+                  console.log(results);
+              })
+              .catch(error => {
+                  console.error(error);
+              });
+
+          })
+          .catch(error => {
+              console.error(error);
+          });
+
+
   };
-
   clearCard = () => {
     for (var i = 0; i < this.state.orderDetails.length; i++) {
       fetch(
-        this.orderDetailURL +
+        this.orderDetailUrl +
           "/" +
           this.state.orderDetails[i].id +
           "?access_token=" +
