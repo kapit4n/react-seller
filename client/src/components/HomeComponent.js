@@ -42,7 +42,7 @@ class HomeComponent extends React.Component {
   componentDidMount() {
     var filter = "";
     if (this.props.location.query.search) {
-      filter = 'filter[where][name][like]=' + this.props.location.query.search + '&';
+      filter = 'filter[where][name][regexp]=/' + this.props.location.query.search + '/i&';
     }
     fetch(this.productURL + '?' + filter + 'access_token=' + this.access_token) 
       .then((response) => response.json())
