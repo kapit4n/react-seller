@@ -59,11 +59,11 @@ class HomeComponent extends React.Component {
       this.setState({ show: false});
       this.handleClick();
     };
-    const imageContainer = {
+    const cardImageContainer = {
       height: 180, width: 300, overflow: 'hidden'
     };
     
-    const gridPadding = {
+    const cardGridPadding = {
       paddingBottom: 10, paddingTop: 10
     };
 
@@ -72,8 +72,8 @@ class HomeComponent extends React.Component {
         <Grid>
           <Row className="show-grid">
             {this.state.products.map(function (product) {
-              return <Col xs={6} md={4} height={350} style={gridPadding}>
-                <div style={imageContainer}>
+              return <Col xs={6} md={4} height={350} style={cardGridPadding}>
+                <div style={cardImageContainer}>
                   <Image src={product.img} thumbnail />
                 </div> 
                 <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>

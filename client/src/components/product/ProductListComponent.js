@@ -6,6 +6,7 @@ require('styles/product/ProductList.css');
 import { Table, Image, Button, Grid, Row, Col, Glyphicon} from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 import ProductLineItemComponent from './ProductLineItemComponent';
+import { productsData } from '../../api'
 
 class ProductListComponent extends React.Component {
   constructor() {
@@ -13,6 +14,9 @@ class ProductListComponent extends React.Component {
     this.productURL = 'http://localhost:3000/api/products';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.state = { products: []};
+    console.log('productsData');
+    console.log(productsData);
+    productsData.map(product => console.log(product));
   }
 
   componentDidMount() {
