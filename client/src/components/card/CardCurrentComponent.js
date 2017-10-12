@@ -152,16 +152,15 @@ class CardCurrentComponent extends React.Component {
                           customerId: 0,
                           detailEdit: { product: {}, quantity: 0 }
                       };
+                    Promise.all(updateStockUrls.map(updateObj => fetch(updateObj.url)))
+                    .then(resp => resp).then(results => {
+                        console.log(results);
+                        thisAux.props.router.push('/card-show/' + orderSaved.id);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
                   });
-              
-              Promise.all(updateStockUrls.map(updateObj => fetch(updateObj.url)))
-              .then(resp => resp).then(results => {
-                  console.log(results);
-              })
-              .catch(error => {
-                  console.error(error);
-              });
-
           })
           .catch(error => {
               console.error(error);
