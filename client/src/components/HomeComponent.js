@@ -5,7 +5,7 @@ require('styles//Home.css');
 import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 class HomeComponent extends React.Component {
-  handleClick = () => {
+  sendProductToCard = () => {
     let item = {
                   quantity: this.state.quantity,
                   price: this.state.product.price,
@@ -22,7 +22,7 @@ class HomeComponent extends React.Component {
     .catch((error) => { console.error(error); });
   };
 
-  handleClickBefore = (product: any) => {
+  setProductForModal = (product: any) => {
     this.setState({ show: true});
     this.setState({ product: product});
   };
@@ -55,12 +55,22 @@ class HomeComponent extends React.Component {
   }
 
   render() {
-    let close = () => {
+    let closeItemOnCard = () => {
       this.setState({ show: false});
-      this.handleClick();
     };
+
+    let saveItemOnCard = () => {
+      this.setState({ show: false});
+      this.sendProductToCard();
+
+    }
+
     const cardImageContainer = {
       height: 180, width: 300, overflow: 'hidden'
+    };
+    
+    const priceStyle = {
+      fontSize: 25
     };
     
     const cardGridPadding = {
@@ -77,16 +87,16 @@ class HomeComponent extends React.Component {
                   <Image src={product.img} thumbnail />
                 </div> 
                 <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>
-                <ControlLabel>${product.price}</ControlLabel>
+                <ControlLabel style={priceStyle}>${product.price}</ControlLabel>
                 <ButtonToolbar>
-                  <Button onClick={()=>this.handleClickBefore(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
+                  <Button onClick={()=>this.setProductForModal(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
                 </ButtonToolbar>
               </Col>;
             }, this)}
           </Row>
         </Grid>
 
-        <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
+        <Modal show={this.state.show} onHide={closeItemOnCard} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
           </Modal.Header>
@@ -109,7 +119,7 @@ class HomeComponent extends React.Component {
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={close}><Glyphicon glyph="ok"/></Button>
+            <Button onClick={saveItemOnCard}><Glyphicon glyph="ok"/></Button>
           </Modal.Footer>
         </Modal>
 
