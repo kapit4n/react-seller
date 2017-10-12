@@ -1,4 +1,4 @@
-import { product } from '../api'
+import { product } from '../../api'
 
 const productActions = product.actions()
 export const ADD_PRODUCT = 'ADD_PRODUCT'

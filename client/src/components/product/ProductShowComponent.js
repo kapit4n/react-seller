@@ -12,7 +12,7 @@ class ProductShowComponent extends React.Component {
     this.productURL = 'http://localhost:3000/api/products/';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.props = props;
-    this.state = { product : {}, show: false, quantity: 0};
+    this.state = { product : {}, show: false, quantity: 0, quantityToCard: 0, showCardDialog: false};
   }
 
   handleClick = () => {
@@ -23,12 +23,20 @@ class ProductShowComponent extends React.Component {
     this.setState({ show: true});
   };
 
+  handleCardDialog = () => {
+    this.setState({ showCardDialog: true});
+  };
+
   handleUpdateStock = () => {
 
   };
 
   handleChangeQuantity = (event) => {
     this.setState({ quantity: event.target.value });
+  }
+
+  handleChangeQuantityToCard = (event) => {
+    this.setState({ quantityToCard: event.target.value });
   }
 
   handleRemove = () => {
@@ -48,9 +56,24 @@ class ProductShowComponent extends React.Component {
   }
 
   render() {
-    let close = () => {
+    let closeStock = () => {
       this.setState({ show: false});
       this.handleUpdateStock();
+    };
+
+    let saveStock = () => {
+      this.setState({ show: false});
+      this.handleUpdateStock();
+    };
+
+    let closeCardDialog = () => {
+      this.setState({ showCardDialog: false});
+      //this.handleUpdateStock();
+    };
+
+    let saveCardDialog = () => {
+      this.setState({ showCardDialog: false});
+      //this.handleUpdateStock();
     };
 
     return (
@@ -65,6 +88,7 @@ class ProductShowComponent extends React.Component {
                 <Button onClick = { this.handleClick }><Glyphicon glyph="edit"/></Button>
                 <Button onClick = { this.handleRemove }><Glyphicon glyph="remove"/></Button>
                 <Button onClick = { this.handleStock }><Glyphicon glyph="add"/>Add Stock</Button>
+                <Button onClick = { this.handleCardDialog }><Glyphicon glyph="add"/>Add to Card</Button>
               </ButtonToolbar>
               <Media.Heading>Name: {this.state.product.name}</Media.Heading>
               <ListGroup>
@@ -77,7 +101,7 @@ class ProductShowComponent extends React.Component {
           </Media>
         </Grid>
 
-        <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
+        <Modal show={this.state.show} onHide={closeStock} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title">Adding to Inventary</Modal.Title>
           </Modal.Header>
@@ -99,9 +123,37 @@ class ProductShowComponent extends React.Component {
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={close}><Glyphicon glyph="ok"/></Button>
+            <Button onClick={saveStock}><Glyphicon glyph="ok"/></Button>
           </Modal.Footer>
         </Modal>
+
+        <Modal show={this.state.showCardDialog} onHide={closeCardDialog} container={this} aria-labelledby="contained-modal-title">
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Grid>
+              <Row className="show-grid">
+                <Col xs={9} sm={9} md={6} height={60}>
+                  <h2>{this.state.product.name}</h2><br />
+                  <Image width={300} src={this.state.product.img} thumbnail /><br />
+                  <ControlLabel> Price: </ControlLabel>${this.state.product.price} <br />
+                  <ControlLabel> Stock: </ControlLabel>{this.state.product.stock} <br />
+                  ${this.state.product.description}
+                </Col>
+              </Row>
+            </Grid>
+            <FormGroup controlId = "formCode">
+                <ControlLabel>Quantity</ControlLabel>
+                <FormControl type = "text" placeholder = "Enter quantity"
+                value = { this.state.quantityToCard } onChange = { this.handleChangeQuantityToCard } />
+            </FormGroup>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={saveCardDialog}><Glyphicon glyph="ok"/></Button>
+          </Modal.Footer>
+        </Modal>
+
       </div>
     );
   }

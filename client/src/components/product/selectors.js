@@ -1,6 +1,6 @@
 // import { createSelector } from 'reselect'
 import _ from 'lodash'
-import {product} from '../api'
+import {product} from '../../api'
 const productSelectors = product.selectors()
 
 export const isProductsLoading = productSelectors.isLoading

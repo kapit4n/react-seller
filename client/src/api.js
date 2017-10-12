@@ -1,4 +1,5 @@
 import RestRedux from 'rest-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 
 const restRedux = new RestRedux({
   basePath: 'http://localhost:3000/api',
@@ -8,16 +9,17 @@ const restRedux = new RestRedux({
       'Content-Type': 'application/json'
     }
   },
-  models: [{
-    modelName: 'products'}, {
-    modelName: 'users'
-  }, ]
+  models: [{ modelName: 'products' }]
 })
 
-export default restRedux
+let reducer = combineReducers({
+  rest: restRedux.reducer
+})
 
-export const restReduxReducer = restRedux.reducer
-export const restReduxMiddleware = restRedux.middleware
+let store = createStore(
+  reducer,
+  applyMiddleware(
+    restRedux.middleware
+  )
+)
 
-export const productsData = restRedux.get('products')
-export const user = restRedux.get('users')
