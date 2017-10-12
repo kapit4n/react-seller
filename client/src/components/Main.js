@@ -20,14 +20,23 @@ class AppComponent extends React.Component {
   constructor() {
     super();
     this.productURL = 'http://localhost:3000/api/products';
+    this.orderDetailURL = 'http://localhost:3000/api/orderDetails';
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
-    this.state = {products: [], searchText: ""};
+    this.state = {products: [], searchText: "", currentTotal: 10};
   }
 
   componentDidMount() {
     if (this.props.location.query.search) {
-      tthis.setState({products: [], searchText: this.props.location.query.search});
+      this.setState({products: [], searchText: this.props.location.query.search});
     }
+    this.loadCurrentCardTotal();
+  }
+
+  loadCurrentCardTotal() {
+    fetch(this.orderDetailURL + '/currentTotal?' + 'access_token=' + this.access_token) 
+      .then((response) => response.json())
+      .then((responseJson) => { this.setState({currentTotal:responseJson.total});})
+      .catch((error) => { console.error(error); });
   }
 
   render() {
@@ -61,7 +70,7 @@ class AppComponent extends React.Component {
           <Button type="submit" onClick={()=>this.search()} >Search</Button>
           </Navbar.Form>
           <Nav pullRight>
-            <MenuItem eventKey={1} href="/card-current"><Glyphicon glyph="shopping-cart"/> Card</MenuItem>
+            <MenuItem eventKey={1} href="/card-current"><Glyphicon glyph="shopping-cart"/>Card(${this.state.currentTotal})</MenuItem>
             <MenuItem eventKey={2} href="/login">Login</MenuItem>
           </Nav>
         </Navbar.Collapse>
