@@ -52,15 +52,18 @@ class AppComponent extends React.Component {
         <Navbar.Collapse>
           <Nav>
             <MenuItem eventKey={1} href={"/home"}>Home</MenuItem>
-            <NavDropdown eventKey={3} title="Products"  id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1} href="/product-list">List</MenuItem>
-              <MenuItem eventKey={3.1} href="/product-add">New</MenuItem>
+            <NavDropdown eventKey={2} title="Products"  id="basic-nav-dropdown">
+              <MenuItem eventKey={2.1} href="/product-list">List</MenuItem>
+              <MenuItem eventKey={2.1} href="/product-add">New</MenuItem>
             </NavDropdown>
-            <NavDropdown eventKey={4} title="Customers"  id="basic-nav-dropdown">
-              <MenuItem eventKey={4.1} href="/customer-list">List</MenuItem>
-              <MenuItem eventKey={4.1} href="/customer-add">New</MenuItem>
+            <NavDropdown eventKey={3} title="Customers"  id="basic-nav-dropdown">
+              <MenuItem eventKey={3.1} href="/customer-list">List</MenuItem>
+              <MenuItem eventKey={3.1} href="/customer-add">New</MenuItem>
             </NavDropdown>
-            <MenuItem eventKey={2} href="/about">About</MenuItem>
+            <NavDropdown eventKey={4} title="Orders"  id="basic-nav-dropdown">
+              <MenuItem eventKey={4.1} href="/card-list">List</MenuItem>
+            </NavDropdown>
+
           </Nav>
           <Navbar.Form pullLeft>
             <FormGroup>
