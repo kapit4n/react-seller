@@ -63,6 +63,9 @@ class AppComponent extends React.Component {
             <NavDropdown eventKey={4} title="Orders"  id="basic-nav-dropdown">
               <MenuItem eventKey={4.1} href="/card-list">List</MenuItem>
             </NavDropdown>
+            <NavDropdown eventKey={5} title="Vendor"  id="basic-nav-dropdown">
+              <MenuItem eventKey={5.1} href="/vendor-list">List</MenuItem>
+            </NavDropdown>
 
           </Nav>
           <Navbar.Form pullLeft>

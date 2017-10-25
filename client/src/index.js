@@ -40,6 +40,10 @@ ReactDOM.render((
          <Route path = "product-show/:id" component = {ProductShow} />
          <Route path = "product-add" component = {ProductAdd} />
          <Route path = "product-edit/:id" component = {ProductEdit} />
+         <Route path = "vendor-list" component = {VendorList} />
+         <Route path = "vendor-show/:id" component = {VendorShow} />
+         <Route path = "vendor-add" component = {VendorAdd} />
+         <Route path = "vendor-edit/:id" component = {VendorEdit} />
          <Route path = "card-current" component = {CardCurrent} />
          <Route path = "card-list" component = {CardList} />
          <Route path = "card-show/:id" component = {CardShow} />
