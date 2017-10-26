@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import VendoShowComponent from 'components/vendor/VendoShowComponent.js';
+import VendorEditComponent from 'components/vendor/VendorEditComponent.js';
 
-describe('VendoShowComponent', () => {
+describe('VendorEditComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(VendoShowComponent);
+    component = createComponent(VendorEditComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('vendoshow-component');
+    expect(component.props.className).to.equal('vendoredit-component');
   });
 });
