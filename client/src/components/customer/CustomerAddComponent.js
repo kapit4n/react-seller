@@ -7,8 +7,6 @@ import {FieldGroup, ControlLabel, FormControl, FormGroup, HelpBlock, Grid, Glyph
 require('styles/customer/CustomerAdd.css');
 
 class CustomerAddComponent extends React.Component {
-
-
   constructor() {
       super();
       this.customerURL = 'http://localhost:3000/api/customers';
