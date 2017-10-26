@@ -10,9 +10,10 @@ class ProductShowComponent extends React.Component {
   constructor(props) {
     super(props);
     this.productURL = 'http://localhost:3000/api/products/';
+    this.vendorUrl = "http://localhost:3000/api/vendors";
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.props = props;
-    this.state = { product : {}, show: false, quantity: 0, quantityToCard: 0, showCardDialog: false};
+    this.state = { product : {}, show: false, quantity: 0, quantityToCard: 0, showCardDialog: false, vendors: [], customerId: 0 };
   }
 
   handleClick = () => {
@@ -28,7 +29,7 @@ class ProductShowComponent extends React.Component {
   };
 
   handleUpdateStock = () => {
-
+    
   };
 
   handleChangeQuantity = (event) => {
@@ -53,6 +54,20 @@ class ProductShowComponent extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => { this.setState({product: responseJson});})
       .catch((error) => { console.error(error); });
+    fetch(this.vendorUrl + "?access_token=" + this.access_token)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          vendors: responseJson
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  handleChangeVendorId = (event) => {
+    this.setState({ vendorId: event.target.value });
   }
 
   render() {
@@ -112,15 +127,26 @@ class ProductShowComponent extends React.Component {
                   <h2>{this.state.product.name}</h2><br />
                   <Image width={300} src={this.state.product.img} thumbnail /><br />
                   <ControlLabel> Price: </ControlLabel>${this.state.product.price} <br />
-                  <ControlLabel> Stock: </ControlLabel>{this.state.product.stock} <br />
+                  <FormGroup controlId="formControlsSelect">
+                  <ControlLabel>Select Vendor</ControlLabel>
+                  <FormControl componentClass="select" placeholder="select" value = { this.state.vendorId }
+                            onChange = { this.handleChangeVendorId }>
+                  {this.state.vendors.map(function(vendor) {
+                    return (
+                        <option value={vendor.id}>{vendor.name}</option>
+                        );
+                  }, this)}
+                  </FormControl>
+                </FormGroup>
+                  <ControlLabel> Current Stock: </ControlLabel>{this.state.product.stock} <br />
+                <FormGroup controlId = "formCode">
+                    <ControlLabel>Quantity</ControlLabel>
+                    <FormControl type = "text" placeholder = "Enter quantity"
+                    value = { this.state.quantity } onChange = { this.handleChangeQuantity } />
+                </FormGroup>
                 </Col>
               </Row>
             </Grid>
-            <FormGroup controlId = "formCode">
-                <ControlLabel>Quantity</ControlLabel>
-                <FormControl type = "text" placeholder = "Enter quantity"
-                value = { this.state.quantity } onChange = { this.handleChangeQuantity } />
-            </FormGroup>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={saveStock}><Glyphicon glyph="ok"/></Button>
