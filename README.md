@@ -1,4 +1,6 @@
 # react-seller
+React seller is a platform where you can register products and sell them in a web application.
+It can be implemented in a store/shopping or another business that registers their products to show them to their customers.
 
 ## Planning
 [Planning Board](https://github.com/kapit4n/react-seller/projects/1)
