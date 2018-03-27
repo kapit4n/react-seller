@@ -19,4 +19,10 @@ describe('VendorEditComponent', () => {
   it('should have its component name as default className', () => {
     expect(component.props.className).to.equal('vendoredit-component');
   });
+
+  it('should render the Vendor information', () => {
+    // set and load the vendor by id
+    // query vendor fields
+    // match that the information of vendor is not null
+  });
 });
