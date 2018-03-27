@@ -11,7 +11,9 @@ import VendorEditComponent from 'components/vendor/VendorEditComponent.js';
 
 describe('VendorEditComponent', () => {
   let component;
+  let vendorId = 1;
 
+  // Set id param to load the component by id  
   beforeEach(() => {
     component = createComponent(VendorEditComponent);
   });
@@ -25,4 +27,12 @@ describe('VendorEditComponent', () => {
     // query vendor fields
     // match that the information of vendor is not null
   });
+  
+  it('should update vendor information', () => {
+    // set and load the vendor by id
+    // query vendor fields
+    // change vendor name
+    // match that the information of vendor was updated
+  });
+
 });
