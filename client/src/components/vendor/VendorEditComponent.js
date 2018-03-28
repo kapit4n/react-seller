@@ -6,6 +6,9 @@ import { browserHistory } from 'react-router';
 
 require('styles/vendor/VendorEdit.css');
 
+/**
+ * Component to edit the vendor information
+ */
 class VendorEditComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -14,6 +17,10 @@ class VendorEditComponent extends React.Component {
         this.props = props;
         this.state = { id: 0, name: '', budget: '', address: ''};
     }
+    
+    /**
+     * Sends the new vendor information to API to be updated
+     */
     handleOk = () => {
         var vendor = {
             id: this.state.id,
@@ -31,6 +38,9 @@ class VendorEditComponent extends React.Component {
             .catch((error) => { console.error(error); });
     };
 
+    /**
+     * Loads vendor information and set to state
+     */
     componentDidMount() {
         fetch(this.vendorURL + this.props.params.id + '?access_token=' + this.access_token)
             .then((response) => response.json())
@@ -39,18 +49,22 @@ class VendorEditComponent extends React.Component {
             .catch((error) => { console.error(error); });
     }
 
+    /** Updates the name property of status */
     handleChangeName = (event) => {
         this.setState({ name: event.target.value });
     }
 
+    /** Updates the budged property of status */
     handleChangeBudget = (event) => {
         this.setState({ budget: event.target.value });
     }
 
+    /** Updates the address property of status */
     handleChangeAddress = (event) => {
         this.setState({ address: event.target.value });
     }
 
+    /** Renders the vendor edit component */
     render() {
         return (
       <div className="vendoredit-component">
