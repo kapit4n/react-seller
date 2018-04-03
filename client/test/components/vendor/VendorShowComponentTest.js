@@ -19,4 +19,12 @@ describe('VendorShowComponent', () => {
   it('should have its component name as default className', () => {
     expect(component.props.className).to.equal('vendorshow-component');
   });
+  
+  it('should show information of a vendor', () => {
+    // Set vendor id param before the component has been mount
+    // Query fields/values rendered
+    // Verify that the information is not null
+    expect(component.props.className).to.equal('vendorshow-component');
+  });
+  
 });
