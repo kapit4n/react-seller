@@ -1,10 +1,17 @@
 'use strict';
 
-import React from 'react';
 require('styles//Home.css');
+import React from 'react';
 import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
+/**
+ * Component that displays the shopping products
+ */
 class HomeComponent extends React.Component {
+
+  /**
+   * Sends Product to shopping cart
+   */
   sendProductToCart = () => {
     let item = {
                   quantity: this.state.quantity,
@@ -13,6 +20,7 @@ class HomeComponent extends React.Component {
                   discount: 0,
                   product: {id: this.state.product.id}
                 };
+
     fetch(this.orderURL + '?access_token=' + this.access_token, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
@@ -22,6 +30,9 @@ class HomeComponent extends React.Component {
     .catch((error) => { console.error(error); });
   };
 
+  /**
+   * Shows modal to add/send product to shopping cart
+   */
   setProductForModal = (product: any) => {
     this.setState({ show: true});
     this.setState({ product: product});
@@ -31,6 +42,9 @@ class HomeComponent extends React.Component {
     console.log("Throw event to subscriptors");
   }
 
+  /**
+   * Constructor that initialize the state and the API urls
+   */
   constructor() {
     super();
     this.productURL = 'http://localhost:3000/api/products';
@@ -39,6 +53,9 @@ class HomeComponent extends React.Component {
     this.state = {products: [], quantity: 0, show: false, product: {}};
   }
 
+  /**
+   * Loads the products from API and set the state
+   */
   componentDidMount() {
     var filter = "";
     if (this.props.location.query.search) {
@@ -54,16 +71,10 @@ class HomeComponent extends React.Component {
     this.setState({ quantity: event.target.value });
   }
 
+  /** Render the component */
   render() {
-    let closeItemOnCart = () => {
-      this.setState({ show: false});
-    };
 
-    let saveItemOnCart = () => {
-      this.setState({ show: false});
-      this.sendProductToCart();
-    }
-
+<<<<<<< HEAD
     const cartImageContainer = {
       height: 180, width: 300, overflow: 'hidden'
     };
@@ -73,6 +84,20 @@ class HomeComponent extends React.Component {
     };
 
     const cartGridPadding = {
+=======
+    // Image properties
+    const cartImageContainer = {
+      height: 180, width: 300, overflow: 'hidden'
+    };
+
+    // Prices style
+    const priceStyle = {
+      fontSize: 25
+    };
+
+    // shopping card grid padding
+    const cartGridPadding = {
+>>>>>>> 02c6ce9d7d52735648d3bcb1f6ee7f9681b69732
       paddingBottom: 10, paddingTop: 10
     };
 
