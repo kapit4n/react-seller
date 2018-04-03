@@ -8,10 +8,6 @@ import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon, Modal, FormGrou
  * Component that displays the shopping products
  */
 class HomeComponent extends React.Component {
-
-  /**
-   * Sends Product to shopping cart
-   */
   sendProductToCart = () => {
     let item = {
                   quantity: this.state.quantity,
@@ -74,17 +70,15 @@ class HomeComponent extends React.Component {
   /** Render the component */
   render() {
 
-<<<<<<< HEAD
-    const cartImageContainer = {
-      height: 180, width: 300, overflow: 'hidden'
+    // close item on cart
+    let closeItemOnCart = () => {
+        this.setState({ show: false});
     };
 
-    const priceStyle = {
-      fontSize: 25
-    };
-
-    const cartGridPadding = {
-=======
+    // Save item on cart
+    let saveItemOnCart = () => {
+       this.sendProductToCart();
+    }
     // Image properties
     const cartImageContainer = {
       height: 180, width: 300, overflow: 'hidden'
@@ -97,7 +91,6 @@ class HomeComponent extends React.Component {
 
     // shopping card grid padding
     const cartGridPadding = {
->>>>>>> 02c6ce9d7d52735648d3bcb1f6ee7f9681b69732
       paddingBottom: 10, paddingTop: 10
     };
 
