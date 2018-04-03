@@ -13,31 +13,31 @@ class ProductShowComponent extends React.Component {
     this.vendorUrl = "http://localhost:3000/api/vendors";
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.props = props;
-    this.state = { product : {}, show: false, quantity: 0, quantityToCard: 0, showCardDialog: false, vendors: [], customerId: 0 };
+    this.state = { product : {}, show: false, quantity: 0, quantityToCart: 0, showCartDialog: false, vendors: [], customerId: 0 };
   }
 
   handleClick = () => {
     browserHistory.push('/product-edit/' + this.state.product.id);
   };
 
-  handleStock = () => {
+  handleAddStock = () => {
     this.setState({ show: true});
   };
 
-  handleCardDialog = () => {
-    this.setState({ showCardDialog: true});
+  handleAddToCart = () => {
+    this.setState({ showCartDialog: true});
   };
 
   handleUpdateStock = () => {
-    
+
   };
 
   handleChangeQuantity = (event) => {
     this.setState({ quantity: event.target.value });
   }
 
-  handleChangeQuantityToCard = (event) => {
-    this.setState({ quantityToCard: event.target.value });
+  handleChangeQuantityToCart = (event) => {
+    this.setState({ quantityToCart: event.target.value });
   }
 
   handleRemove = () => {
@@ -50,7 +50,7 @@ class ProductShowComponent extends React.Component {
   };
 
   componentDidMount() {
-    fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token) 
+    fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token)
       .then((response) => response.json())
       .then((responseJson) => { this.setState({product: responseJson});})
       .catch((error) => { console.error(error); });
@@ -81,13 +81,13 @@ class ProductShowComponent extends React.Component {
       this.handleUpdateStock();
     };
 
-    let closeCardDialog = () => {
-      this.setState({ showCardDialog: false});
+    let closeCartDialog = () => {
+      this.setState({ showCartDialog: false});
       //this.handleUpdateStock();
     };
 
-    let saveCardDialog = () => {
-      this.setState({ showCardDialog: false});
+    let saveCartDialog = () => {
+      this.setState({ showCartDialog: false});
       //this.handleUpdateStock();
     };
 
@@ -102,8 +102,8 @@ class ProductShowComponent extends React.Component {
               <ButtonToolbar>
                 <Button onClick = { this.handleClick }><Glyphicon glyph="edit"/></Button>
                 <Button onClick = { this.handleRemove }><Glyphicon glyph="remove"/></Button>
-                <Button onClick = { this.handleStock }><Glyphicon glyph="add"/>Add Stock</Button>
-                <Button onClick = { this.handleCardDialog }><Glyphicon glyph="add"/>Add to Card</Button>
+                <Button onClick = { this.handleAddStock }><Glyphicon glyph="add"/>Add Stock</Button>
+                <Button onClick = { this.handleAddToCart }><Glyphicon glyph="add"/>Add to Cart</Button>
               </ButtonToolbar>
               <Media.Heading>Name: {this.state.product.name}</Media.Heading>
               <ListGroup>
@@ -153,9 +153,9 @@ class ProductShowComponent extends React.Component {
           </Modal.Footer>
         </Modal>
 
-        <Modal show={this.state.showCardDialog} onHide={closeCardDialog} container={this} aria-labelledby="contained-modal-title">
+        <Modal show={this.state.showCartDialog} onHide={closeCartDialog} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
+            <Modal.Title id="contained-modal-title">Adding to Shopping Cart</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Grid>
@@ -172,11 +172,11 @@ class ProductShowComponent extends React.Component {
             <FormGroup controlId = "formCode">
                 <ControlLabel>Quantity</ControlLabel>
                 <FormControl type = "text" placeholder = "Enter quantity"
-                value = { this.state.quantityToCard } onChange = { this.handleChangeQuantityToCard } />
+                value = { this.state.quantityToCart } onChange = { this.handleChangeQuantityToCart } />
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={saveCardDialog}><Glyphicon glyph="ok"/></Button>
+            <Button onClick={saveCartDialog}><Glyphicon glyph="ok"/></Button>
           </Modal.Footer>
         </Modal>
 

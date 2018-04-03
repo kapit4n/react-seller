@@ -3,9 +3,9 @@
 import React from 'react';
 import { ListGroup, ListGroupItem, Badge, Image, Button, Glyphicon, Grid, Media, ButtonToolbar} from 'react-bootstrap';
 
-require('styles/card/CardShow.css');
+require('styles/cart/CartShow.css');
 
-class CardShowComponent extends React.Component {
+class CartShowComponent extends React.Component {
   constructor(props) {
     super(props);
     this.orderURL = "http://localhost:3000/api/orders/" + this.props.params.id;
@@ -25,12 +25,12 @@ class CardShowComponent extends React.Component {
 
   render() {
     return (
-      <div className="cardshow-component">
+      <div className="cartshow-component">
 
         <Grid>
           <Media>
             <Media.Left>
-              
+
             </Media.Left>
             <Media.Body>
               <ButtonToolbar>
@@ -61,18 +61,18 @@ class CardShowComponent extends React.Component {
 
   loadItems() {
 
-    fetch(this.orderURL + '?access_token=' + this.access_token) 
+    fetch(this.orderURL + '?access_token=' + this.access_token)
       .then((response) => response.json())
-      .then((responseJson) => { 
+      .then((responseJson) => {
         this.setState({order: responseJson});
       })
       .catch((error) => {
         console.error(error);
       });
 
-    fetch(this.orderDetails + '&access_token=' + this.access_token) 
+    fetch(this.orderDetails + '&access_token=' + this.access_token)
       .then((response) => response.json())
-      .then((responseJson) => { 
+      .then((responseJson) => {
         this.setState({orderDetails: responseJson});
       })
       .catch((error) => {
@@ -81,10 +81,10 @@ class CardShowComponent extends React.Component {
   }
 }
 
-CardShowComponent.displayName = 'CardCardShowComponent';
+CartShowComponent.displayName = 'CartCartShowComponent';
 
 // Uncomment properties you need
-// CardShowComponent.propTypes = {};
-// CardShowComponent.defaultProps = {};
+// CartShowComponent.propTypes = {};
+// CartShowComponent.defaultProps = {};
 
-export default CardShowComponent;
+export default CartShowComponent;

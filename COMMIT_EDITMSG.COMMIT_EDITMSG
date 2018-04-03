@@ -1,0 +1,20 @@
+Instructions to run unit tests with karma
+
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/README.md b/README.md
+index d889939..2c21b19 100644
+--- a/README.md
++++ b/README.md
+@@ -47,6 +47,10 @@
+ * npm install
+ * npm start
+ 
++## Run Client Unit tests
++* go to client folder
++* ./node_modules/karma/bin/karma start
++
+ # Development tasks
+ https://github.com/kapit4n/react-seller/projects/1

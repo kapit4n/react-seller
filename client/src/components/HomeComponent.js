@@ -5,7 +5,7 @@ require('styles//Home.css');
 import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 class HomeComponent extends React.Component {
-  sendProductToCard = () => {
+  sendProductToCart = () => {
     let item = {
                   quantity: this.state.quantity,
                   price: this.state.product.price,
@@ -44,7 +44,7 @@ class HomeComponent extends React.Component {
     if (this.props.location.query.search) {
       filter = 'filter[where][or][0][name][regexp]=/' + this.props.location.query.search + '/i[name]=a&';
     }
-    fetch(this.productURL + '?' + filter + 'access_token=' + this.access_token) 
+    fetch(this.productURL + '?' + filter + 'access_token=' + this.access_token)
       .then((response) => response.json())
       .then((responseJson) => { this.setState({products:responseJson});})
       .catch((error) => { console.error(error); });
@@ -55,25 +55,24 @@ class HomeComponent extends React.Component {
   }
 
   render() {
-    let closeItemOnCard = () => {
+    let closeItemOnCart = () => {
       this.setState({ show: false});
     };
 
-    let saveItemOnCard = () => {
+    let saveItemOnCart = () => {
       this.setState({ show: false});
-      this.sendProductToCard();
-
+      this.sendProductToCart();
     }
 
-    const cardImageContainer = {
+    const cartImageContainer = {
       height: 180, width: 300, overflow: 'hidden'
     };
-    
+
     const priceStyle = {
       fontSize: 25
     };
-    
-    const cardGridPadding = {
+
+    const cartGridPadding = {
       paddingBottom: 10, paddingTop: 10
     };
 
@@ -82,23 +81,23 @@ class HomeComponent extends React.Component {
         <Grid>
           <Row className="show-grid">
             {this.state.products.map(function (product) {
-              return <Col xs={6} md={4} height={350} style={cardGridPadding}>
-                <div style={cardImageContainer}>
+              return <Col xs={6} md={4} height={350} style={cartGridPadding}>
+                <div style={cartImageContainer}>
                   <Image src={product.img} thumbnail />
-                </div> 
+                </div>
                 <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>
                 <ControlLabel style={priceStyle}>${product.price}</ControlLabel>
                 <ButtonToolbar>
-                  <Button onClick={()=>this.setProductForModal(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
+                  <Button onClick={()=>this.setProductForModal(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Cart </Button>
                 </ButtonToolbar>
               </Col>;
             }, this)}
           </Row>
         </Grid>
 
-        <Modal show={this.state.show} onHide={closeItemOnCard} container={this} aria-labelledby="contained-modal-title">
+        <Modal show={this.state.show} onHide={closeItemOnCart} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
+            <Modal.Title id="contained-modal-title">Adding to Shopping Cart</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Grid>
@@ -119,7 +118,7 @@ class HomeComponent extends React.Component {
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={saveItemOnCard}><Glyphicon glyph="ok"/></Button>
+            <Button onClick={saveItemOnCart}><Glyphicon glyph="ok"/></Button>
           </Modal.Footer>
         </Modal>
 

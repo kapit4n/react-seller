@@ -2,7 +2,7 @@
 
 import React from "react";
 
-require("styles/card/CardCurrent.css");
+require("styles/cart/CartCurrent.css");
 import {
   Table,
   Image,
@@ -18,7 +18,7 @@ import {
   Alert
 } from "react-bootstrap";
 
-class CardCurrentComponent extends React.Component {
+class CartCurrentComponent extends React.Component {
   constructor() {
     super();
     this.updateStockUrl = "http://localhost:3000/api/products/updateStock";
@@ -90,7 +90,7 @@ class CardCurrentComponent extends React.Component {
     this.state = { detailEdit: { product: {}, quantity: 0 } };
   };
 
-  submitCard = () => {
+  submitCart = () => {
       var thisAux = this;
       var date = new Date();
       let order = {
@@ -144,7 +144,7 @@ class CardCurrentComponent extends React.Component {
                       body: JSON.stringify(urlObj.orderDetail)
                   })))
                   .then(resp => resp).then(details => {
-                      thisAux.state.successMessage = 'Card was submited';
+                      thisAux.state.successMessage = 'Cart was submited';
                       thisAux.state = {
                           orderDetails: [],
                           customers: [],
@@ -155,7 +155,7 @@ class CardCurrentComponent extends React.Component {
                     Promise.all(updateStockUrls.map(updateObj => fetch(updateObj.url)))
                     .then(resp => resp).then(results => {
                         console.log(results);
-                        thisAux.props.router.push('/card-show/' + orderSaved.id);
+                        thisAux.props.router.push('/cart-show/' + orderSaved.id);
                     })
                     .catch(error => {
                         console.error(error);
@@ -168,7 +168,7 @@ class CardCurrentComponent extends React.Component {
 
 
   };
-  clearCard = () => {
+  clearCart = () => {
     for (var i = 0; i < this.state.orderDetails.length; i++) {
       fetch(
         this.orderDetailUrl +
@@ -249,13 +249,13 @@ class CardCurrentComponent extends React.Component {
     };
 
     return (
-      <div className="cardcurrent-component container">
+      <div className="cartcurrent-component container">
         <Alert bsStyle="warning">
           <strong>{this.state.successMessage}</strong>
         </Alert>
         <div className="container">
           {" "}
-          <a href={"card-list/"}>list</a>{" "}
+          <a href={"cart-list/"}>list</a>{" "}
         </div>
         <Grid>
         <FormGroup controlId="formControlsSelect">
@@ -316,12 +316,12 @@ class CardCurrentComponent extends React.Component {
               }, this)}
             </tbody>
           </Table>
-          <Button onClick={() => this.clearCard()}>
+          <Button onClick={() => this.clearCart()}>
             {" "}
             <Glyphicon glyph="cleaning" /> Clear
           </Button>
-          <Button onClick={() => this.submitCard()}>
-            <Glyphicon glyph="send" /> Submit Card{" "}
+          <Button onClick={() => this.submitCart()}>
+            <Glyphicon glyph="send" /> Submit Cart{" "}
           </Button>
         </Grid>
         <Modal
@@ -332,7 +332,7 @@ class CardCurrentComponent extends React.Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title">
-              Edit Shopping Card Item
+              Edit Shopping Cart Item
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -376,10 +376,10 @@ class CardCurrentComponent extends React.Component {
   }
 }
 
-CardCurrentComponent.displayName = "CardCardCurrentComponent";
+CartCurrentComponent.displayName = "CartCartCurrentComponent";
 
 // Uncomment properties you need
-// CardCurrentComponent.propTypes = {};
-// CardCurrentComponent.defaultProps = {};
+// CartCurrentComponent.propTypes = {};
+// CartCurrentComponent.defaultProps = {};
 
-export default CardCurrentComponent;
+export default CartCurrentComponent;
