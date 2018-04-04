@@ -264,7 +264,7 @@ class CartCurrentComponent extends React.Component {
                     onChange = { this.handleChangeCustomerId }>
           {this.state.customers.map(function(customer) {
             return (
-                <option value={customer.id}>{customer.name}</option>
+                <option value={customer.id} key={customer.id}>{customer.name}</option>
                 );
           }, this)}
           </FormControl>
@@ -289,7 +289,7 @@ class CartCurrentComponent extends React.Component {
             <tbody>
               {this.state.orderDetails.map(function(detail) {
                 return (
-                  <tr className={"detailRow"}>
+                  <tr className={"detailRow"} key={detail.id}>
                     <td>
                       <a href={"product-show/" + detail.product.id}>
                         {detail.product.id}
