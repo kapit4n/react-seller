@@ -30,6 +30,7 @@ class HomeComponent extends React.Component {
    * Shows modal to add/send product to shopping cart
    */
   setProductForModal = (product: any) => {
+    console.log(product);
     this.setState({ show: true});
     this.setState({ product: product});
   };
@@ -103,7 +104,7 @@ class HomeComponent extends React.Component {
                 <div style={cartImageContainer}>
                   <Image src={product.img} thumbnail />
                 </div>
-                <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>
+                <Button bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>
                 <ControlLabel style={priceStyle}>${product.price}</ControlLabel>
                 <ButtonToolbar>
                   <Button onClick={()=>this.setProductForModal(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Cart </Button>

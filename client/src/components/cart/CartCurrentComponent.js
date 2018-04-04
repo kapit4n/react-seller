@@ -237,7 +237,7 @@ class CartCurrentComponent extends React.Component {
     this.setState({ quantity: item.quantity });
     this.setState({ show: true });
   };
-  
+
   handleChangeCustomerId = (event) => {
     this.setState({ customerId: event.target.value });
   }
