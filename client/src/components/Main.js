@@ -50,7 +50,8 @@ class AppComponent extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-
+          <Nav>
+            <MenuItem eventKey={1} href={"/home"}>Home</MenuItem>
             <NavDropdown eventKey={2} title="Products"  id="basic-nav-dropdown">
               <MenuItem eventKey={2.1} href="/product-list">List</MenuItem>
               <MenuItem eventKey={2.1} href="/product-add">New</MenuItem>
@@ -66,7 +67,7 @@ class AppComponent extends React.Component {
               <MenuItem eventKey={5.1} href="/vendor-list">List</MenuItem>
             </NavDropdown>
 
-        
+          </Nav>
           <Navbar.Form pullLeft>
             <FormGroup>
               <FormControl type="text" placeholder="Search" value = { this.state.searchText } onChange = { this.handleChangeSearchText }/>
