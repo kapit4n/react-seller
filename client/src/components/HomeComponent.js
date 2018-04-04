@@ -100,7 +100,7 @@ class HomeComponent extends React.Component {
         <Grid>
           <Row className="show-grid">
             {this.state.products.map(function (product) {
-              return <Col xs={6} md={4} height={350} style={cartGridPadding}>
+              return <Col key={product.id} xs={6} md={4} height={350} style={cartGridPadding}>
                 <div style={cartImageContainer}>
                   <Image src={product.img} thumbnail />
                 </div>
