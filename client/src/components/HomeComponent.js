@@ -78,7 +78,8 @@ class HomeComponent extends React.Component {
 
     // Save item on cart
     let saveItemOnCart = () => {
-       this.sendProductToCart();
+      this.setState({ show: false});
+      this.sendProductToCart();
     }
     // Image properties
     const cartImageContainer = {
