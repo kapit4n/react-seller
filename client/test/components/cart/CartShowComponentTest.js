@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import CardShowComponent from 'components/card/CardShowComponent.js';
+import CartShowComponent from 'components/cart/CartShowComponent.js';
 
-describe('CardShowComponent', () => {
+describe('CartShowComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(CardShowComponent);
+    component = createComponent(CartShowComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('cardshow-component');
+    expect(component.props.className).to.equal('cartshow-component');
   });
 });

@@ -7,16 +7,16 @@
 // import TestUtils from 'react-addons-test-utils';
 import createComponent from 'helpers/shallowRenderHelper';
 
-import CardEditComponent from 'components/card/CardEditComponent.js';
+import CartEditComponent from 'components/cart/CartEditComponent.js';
 
-describe('CardEditComponent', () => {
+describe('CartEditComponent', () => {
   let component;
 
   beforeEach(() => {
-    component = createComponent(CardEditComponent);
+    component = createComponent(CartEditComponent);
   });
 
   it('should have its component name as default className', () => {
-    expect(component.props.className).to.equal('cardedit-component');
+    expect(component.props.className).to.equal('cartedit-component');
   });
 });
