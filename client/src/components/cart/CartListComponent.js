@@ -15,11 +15,10 @@ class CartListComponent extends React.Component {
   }
 
   loadItems() {
-    fetch(this.orderURL + '?access_token=' + this.access_token)
+    fetch(this.orderURL + '?filter[include]=customer&access_token=' + this.access_token)
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({orders: responseJson});
-        console.log(responseJson);
       })
       .catch((error) => {
         console.error(error);
@@ -33,9 +32,9 @@ class CartListComponent extends React.Component {
           <ListGroup>
             {
               this.state.orders.map(function(order) {
-                let res = <ListGroupItem><Button bsStyle="info" href={'../cart-show/' + order.id}>SHOW</Button> <Button bsStyle="danger" href={'../cart-show/' + order.id}>CANCEL</Button> {order.description}<Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
+                let res = <ListGroupItem><Button bsStyle="info" href={'../cart-show/' + order.id}>SHOW</Button> <Button bsStyle="danger" href={'../cart-show/' + order.id}>CANCEL</Button> {order.description}, customer: {order.customer ? order.customer.name: ""}<Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
                 if (order.delivered) {
-                  res = <ListGroupItem ><Button bsStyle="info" href={'../cart-show/' + order.id}>SHOW</Button> <Button bsStyle="danger" href={'../cart-show/' + order.id}>CANCEL</Button> {order.description} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
+                  res = <ListGroupItem ><Button bsStyle="info" href={'../cart-show/' + order.id}>SHOW</Button> <Button bsStyle="danger" href={'../cart-show/' + order.id}>CANCEL</Button> {order.description}, customer: {order.customer ? order.customer.name : ""} <Badge>Delivered</Badge> <Badge>{order.createdDate}</Badge><Badge>Total: {order.total}</Badge></ListGroupItem>;
                 }
                 return res;
               })

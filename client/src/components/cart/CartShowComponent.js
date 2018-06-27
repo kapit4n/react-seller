@@ -8,18 +8,18 @@ require('styles/cart/CartShow.css');
 class CartShowComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.orderURL = "http://localhost:3000/api/orders/" + this.props.params.id;
+    this.orderURL = "http://localhost:3000/api/orders?filter[include]=customer&filter[where][id]=" + this.props.params.id;
     this.orderDetails = "http://localhost:3000/api/orderDetails?filter[where][orderId]=" + this.props.params.id + "&filter[include]=product";
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.state = { orderDetails: [], order:{} };
     this.loadItems();
   }
 
-  deliverOrder(id){
+  deliverOrder(id) {
     console.log("TODO deliver order");
   }
 
-  cancelOrder(id){
+  cancelOrder(id) {
     console.log("TODO cancel order");
   }
 
@@ -39,7 +39,7 @@ class CartShowComponent extends React.Component {
               </ButtonToolbar>
               <Media.Heading>Order Details</Media.Heading>
               <ListGroup>
-                <ListGroupItem><h4 style={{display: 'inline'}}>Customer: </h4>{this.state.order.customerId}</ListGroupItem>
+                <ListGroupItem><h4 style={{ display: 'inline' }}>Customer: </h4>{this.state.order.customer ? this.state.order.customer.name: ""}</ListGroupItem>
                 <ListGroupItem><h4 style={{display: 'inline'}}>Date: </h4>{this.state.order.createdDate}</ListGroupItem>
                 <ListGroupItem><h4 style={{display: 'inline'}}>Total: </h4>${this.state.order.total}</ListGroupItem>
               </ListGroup>
@@ -61,10 +61,11 @@ class CartShowComponent extends React.Component {
 
   loadItems() {
 
-    fetch(this.orderURL + '?access_token=' + this.access_token)
+    fetch(this.orderURL + '&access_token=' + this.access_token)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({order: responseJson});
+        console.log(responseJson[0]);
+        this.setState({order: responseJson[0]});
       })
       .catch((error) => {
         console.error(error);

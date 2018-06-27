@@ -26,6 +26,4 @@ describe('CartCurrentComponent', () => {
     // Verify that the component is displaying current cart information
     expect(component.props.className).to.equal('cartcurrent-component');
   });
-
-
 });

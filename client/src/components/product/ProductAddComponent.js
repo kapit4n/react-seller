@@ -30,8 +30,6 @@ class ProductAddComponent extends React.Component {
         browserHistory.push('/product-list');
     };
 
-
-
     constructor() {
         super();
         this.productURL = 'http://localhost:3000/api/products';
