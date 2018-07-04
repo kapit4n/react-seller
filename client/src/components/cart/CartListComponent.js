@@ -62,7 +62,7 @@ class CartListComponent extends React.Component {
             {this.state.orders.map(order => {
               return <ListGroupItem key={order.id}>
                   <Button bsStyle="info" href={"../cart-show/" + order.id}>
-                  <Glyphicon glyph="open" />{" "}
+                    <Glyphicon glyph="folder-open" />{" "}
                   </Button>
                   <Button onClick={() => this.removeOrder(order.id)} bsStyle="danger">
                     <Glyphicon glyph="remove" />{" "}
