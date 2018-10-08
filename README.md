@@ -5,17 +5,6 @@ It can be implemented in a store/shopping or another business that registers the
 ## Planning
 [Planning Board](https://github.com/kapit4n/react-seller/projects/1)
 
-# Mockups
-
-## Home Page
-<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_home.png" alt="Drawing" width="100%"/>
-
-## Product View Page
-<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_product_view.png" alt="Drawing" width="100%"/>
-
-## Card View Page
-<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_card_view.png" alt="Drawing" width="100%"/>
-
 ## Adding Shopping Card Item
 <img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_card_item_add.png" alt="Drawing" width="100%"/>
 
