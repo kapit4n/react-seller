@@ -8,9 +8,6 @@ It can be implemented in a store/shopping or another business that registers the
 ## Adding Shopping Card Item
 <img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_card_item_add.png" alt="Drawing" width="100%"/>
 
-## API
-![Item View Page](https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_api.png)
-
 ## Pre-requisites
 
 [![Join the chat at https://gitter.im/react-seller/Lobby](https://badges.gitter.im/react-seller/Lobby.svg)](https://gitter.im/react-seller/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
