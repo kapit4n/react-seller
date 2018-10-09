@@ -1,11 +1,14 @@
 'use strict';
 
-import React from 'react';
 require('styles//Home.css');
+import React from 'react';
 import {Grid, Row, Col, Image, Button, ButtonToolbar, Glyphicon, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
+/**
+ * Component that displays the shopping products
+ */
 class HomeComponent extends React.Component {
-  handleClick = () => {
+  sendProductToCart = () => {
     let item = {
                   quantity: this.state.quantity,
                   price: this.state.product.price,
@@ -13,6 +16,7 @@ class HomeComponent extends React.Component {
                   discount: 0,
                   product: {id: this.state.product.id}
                 };
+
     fetch(this.orderURL + '?access_token=' + this.access_token, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', },
@@ -22,7 +26,11 @@ class HomeComponent extends React.Component {
     .catch((error) => { console.error(error); });
   };
 
-  handleClickBefore = (product: any) => {
+  /**
+   * Shows modal to add/send product to shopping cart
+   */
+  setProductForModal = (product: any) => {
+    console.log(product);
     this.setState({ show: true});
     this.setState({ product: product});
   };
@@ -31,6 +39,9 @@ class HomeComponent extends React.Component {
     console.log("Throw event to subscriptors");
   }
 
+  /**
+   * Constructor that initialize the state and the API urls
+   */
   constructor() {
     super();
     this.productURL = 'http://localhost:3000/api/products';
@@ -39,12 +50,15 @@ class HomeComponent extends React.Component {
     this.state = {products: [], quantity: 0, show: false, product: {}};
   }
 
+  /**
+   * Loads the products from API and set the state
+   */
   componentDidMount() {
     var filter = "";
     if (this.props.location.query.search) {
-      filter = 'filter[where][name][like]=' + this.props.location.query.search + '&';
+      filter = 'filter[where][or][0][name][regexp]=/' + this.props.location.query.search + '/i&';
     }
-    fetch(this.productURL + '?' + filter + 'access_token=' + this.access_token) 
+    fetch(this.productURL + '?' + filter + 'access_token=' + this.access_token)
       .then((response) => response.json())
       .then((responseJson) => { this.setState({products:responseJson});})
       .catch((error) => { console.error(error); });
@@ -54,31 +68,56 @@ class HomeComponent extends React.Component {
     this.setState({ quantity: event.target.value });
   }
 
+  /** Render the component */
   render() {
-    let close = () => {
-      this.setState({ show: false});
-      this.handleClick();
+
+    // close item on cart
+    let closeItemOnCart = () => {
+        this.setState({ show: false});
     };
+
+    // Save item on cart
+    let saveItemOnCart = () => {
+      this.setState({ show: false});
+      this.sendProductToCart();
+    }
+    // Image properties
+    const cartImageContainer = {
+      height: 180, width: 300, overflow: 'hidden'
+    };
+
+    // Prices style
+    const priceStyle = {
+      fontSize: 25
+    };
+
+    // shopping card grid padding
+    const cartGridPadding = {
+      paddingBottom: 10, paddingTop: 10
+    };
+
     return (
       <div className="home-component">
         <Grid>
           <Row className="show-grid">
             {this.state.products.map(function (product) {
-              return <Col xs={6} md={4} height={400}>
-                <Image width={310} height={300} src={product.img} thumbnail />
-                <Button xs={12} md={12}  bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>
-                <ControlLabel>${product.price}</ControlLabel>
+              return <Col key={product.id} xs={6} md={4} height={350} style={cartGridPadding}>
+                <div style={cartImageContainer}>
+                  <Image src={product.img} thumbnail />
+                </div>
+                <Button bsStyle="link" href={'product-show/' + product.id}>{product.name}</Button><br/>
+                <ControlLabel style={priceStyle}>${product.price}</ControlLabel>
                 <ButtonToolbar>
-                  <Button onClick={()=>this.handleClickBefore(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Card </Button>
+                  <Button onClick={()=>this.setProductForModal(product)} style={{width: 250, marginLeft: 25}}><Glyphicon glyph="shopping-cart"/> Add to Cart </Button>
                 </ButtonToolbar>
               </Col>;
             }, this)}
           </Row>
         </Grid>
 
-        <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
+        <Modal show={this.state.show} onHide={closeItemOnCart} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title">Adding to Shopping Card</Modal.Title>
+            <Modal.Title id="contained-modal-title">Adding to Shopping Cart</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Grid>
@@ -99,7 +138,7 @@ class HomeComponent extends React.Component {
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={close}><Glyphicon glyph="ok"/></Button>
+            <Button onClick={saveItemOnCart}><Glyphicon glyph="ok"/></Button>
           </Modal.Footer>
         </Modal>
 

@@ -30,8 +30,6 @@ class ProductAddComponent extends React.Component {
         browserHistory.push('/product-list');
     };
 
-
-
     constructor() {
         super();
         this.productURL = 'http://localhost:3000/api/products';
@@ -114,7 +112,11 @@ class ProductAddComponent extends React.Component {
                     />
                 </FormGroup>
                 <FormGroup controlId = "formDescription">
-                    <ControlLabel> Description </ControlLabel> <FormControl type = "text"
+                    <ControlLabel> Description </ControlLabel>
+                    <FormControl
+                    componentClass="textarea"
+                    type = "text"
+                    rows= "10"
                     placeholder = "Enter text"
                     value = { this.state.description }
                     onChange = { this.handleChangeDescription }

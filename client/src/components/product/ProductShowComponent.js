@@ -10,17 +10,22 @@ class ProductShowComponent extends React.Component {
   constructor(props) {
     super(props);
     this.productURL = 'http://localhost:3000/api/products/';
+    this.vendorUrl = "http://localhost:3000/api/vendors";
     this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
     this.props = props;
-    this.state = { product : {}, show: false, quantity: 0};
+    this.state = { product : {}, show: false, quantity: 0, quantityToCart: 0, showCartDialog: false, vendors: [], customerId: 0 };
   }
 
   handleClick = () => {
     browserHistory.push('/product-edit/' + this.state.product.id);
   };
 
-  handleStock = () => {
+  handleAddStock = () => {
     this.setState({ show: true});
+  };
+
+  handleAddToCart = () => {
+    this.setState({ showCartDialog: true});
   };
 
   handleUpdateStock = () => {
@@ -29,6 +34,10 @@ class ProductShowComponent extends React.Component {
 
   handleChangeQuantity = (event) => {
     this.setState({ quantity: event.target.value });
+  }
+
+  handleChangeQuantityToCart = (event) => {
+    this.setState({ quantityToCart: event.target.value });
   }
 
   handleRemove = () => {
@@ -41,16 +50,45 @@ class ProductShowComponent extends React.Component {
   };
 
   componentDidMount() {
-    fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token) 
+    fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token)
       .then((response) => response.json())
       .then((responseJson) => { this.setState({product: responseJson});})
       .catch((error) => { console.error(error); });
+    fetch(this.vendorUrl + "?access_token=" + this.access_token)
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          vendors: responseJson
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  handleChangeVendorId = (event) => {
+    this.setState({ vendorId: event.target.value });
   }
 
   render() {
-    let close = () => {
+    let closeStock = () => {
       this.setState({ show: false});
       this.handleUpdateStock();
+    };
+
+    let saveStock = () => {
+      this.setState({ show: false});
+      this.handleUpdateStock();
+    };
+
+    let closeCartDialog = () => {
+      this.setState({ showCartDialog: false});
+      //this.handleUpdateStock();
+    };
+
+    let saveCartDialog = () => {
+      this.setState({ showCartDialog: false});
+      //this.handleUpdateStock();
     };
 
     return (
@@ -64,7 +102,8 @@ class ProductShowComponent extends React.Component {
               <ButtonToolbar>
                 <Button onClick = { this.handleClick }><Glyphicon glyph="edit"/></Button>
                 <Button onClick = { this.handleRemove }><Glyphicon glyph="remove"/></Button>
-                <Button onClick = { this.handleStock }><Glyphicon glyph="add"/>Add Stock</Button>
+                <Button onClick = { this.handleAddStock }><Glyphicon glyph="add"/>Add Stock</Button>
+                <Button onClick = { this.handleAddToCart }><Glyphicon glyph="add"/>Add to Cart</Button>
               </ButtonToolbar>
               <Media.Heading>Name: {this.state.product.name}</Media.Heading>
               <ListGroup>
@@ -77,7 +116,7 @@ class ProductShowComponent extends React.Component {
           </Media>
         </Grid>
 
-        <Modal show={this.state.show} onHide={close} container={this} aria-labelledby="contained-modal-title">
+        <Modal show={this.state.show} onHide={closeStock} container={this} aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title">Adding to Inventary</Modal.Title>
           </Modal.Header>
@@ -88,20 +127,59 @@ class ProductShowComponent extends React.Component {
                   <h2>{this.state.product.name}</h2><br />
                   <Image width={300} src={this.state.product.img} thumbnail /><br />
                   <ControlLabel> Price: </ControlLabel>${this.state.product.price} <br />
+                  <FormGroup controlId="formControlsSelect">
+                  <ControlLabel>Select Vendor</ControlLabel>
+                  <FormControl componentClass="select" placeholder="select" value = { this.state.vendorId }
+                            onChange = { this.handleChangeVendorId }>
+                  {this.state.vendors.map(function(vendor) {
+                    return (
+                        <option value={vendor.id}>{vendor.name}</option>
+                        );
+                  }, this)}
+                  </FormControl>
+                </FormGroup>
+                  <ControlLabel> Current Stock: </ControlLabel>{this.state.product.stock} <br />
+                <FormGroup controlId = "formCode">
+                    <ControlLabel>Quantity</ControlLabel>
+                    <FormControl type = "text" placeholder = "Enter quantity"
+                    value = { this.state.quantity } onChange = { this.handleChangeQuantity } />
+                </FormGroup>
+                </Col>
+              </Row>
+            </Grid>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={saveStock}><Glyphicon glyph="ok"/></Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={this.state.showCartDialog} onHide={closeCartDialog} container={this} aria-labelledby="contained-modal-title">
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title">Adding to Shopping Cart</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Grid>
+              <Row className="show-grid">
+                <Col xs={9} sm={9} md={6} height={60}>
+                  <h2>{this.state.product.name}</h2><br />
+                  <Image width={300} src={this.state.product.img} thumbnail /><br />
+                  <ControlLabel> Price: </ControlLabel>${this.state.product.price} <br />
                   <ControlLabel> Stock: </ControlLabel>{this.state.product.stock} <br />
+                  ${this.state.product.description}
                 </Col>
               </Row>
             </Grid>
             <FormGroup controlId = "formCode">
                 <ControlLabel>Quantity</ControlLabel>
                 <FormControl type = "text" placeholder = "Enter quantity"
-                value = { this.state.quantity } onChange = { this.handleChangeQuantity } />
+                value = { this.state.quantityToCart } onChange = { this.handleChangeQuantityToCart } />
             </FormGroup>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={close}><Glyphicon glyph="ok"/></Button>
+            <Button onClick={saveCartDialog}><Glyphicon glyph="ok"/></Button>
           </Modal.Footer>
         </Modal>
+
       </div>
     );
   }

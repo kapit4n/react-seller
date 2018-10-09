@@ -1,10 +1,10 @@
 'use strict';
 
 import React from 'react';
-
-require('styles/customer/CustomerShow.css');
 import { Media, Grid, ListGroup, ListGroupItem, Button, ButtonToolbar, Glyphicon} from 'react-bootstrap';
 import { browserHistory } from 'react-router';
+
+require('styles/customer/CustomerShow.css');
 
 class CustomerShowComponent extends React.Component {
   constructor(props) {

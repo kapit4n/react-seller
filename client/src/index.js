@@ -9,11 +9,15 @@ import ProductList from './components/product/ProductListComponent';
 import ProductShow from './components/product/ProductShowComponent';
 import ProductAdd from './components/product/ProductAddComponent';
 import ProductEdit from './components/product/ProductEditComponent';
-import CardCurrent from './components/card/CardCurrentComponent';
-import CardList from './components/card/CardListComponent';
-import CardShow from './components/card/CardShowComponent';
-import CardAdd from './components/card/CardAddComponent';
-import CardEdit from './components/card/CardEditComponent';
+import VendorList from './components/vendor/VendorListComponent';
+import VendorShow from './components/vendor/VendorShowComponent';
+import VendorAdd from './components/vendor/VendorAddComponent';
+import VendorEdit from './components/vendor/VendorEditComponent';
+import CartCurrent from './components/cart/CartCurrentComponent';
+import CartList from './components/cart/CartListComponent';
+import CartShow from './components/cart/CartShowComponent';
+import CartAdd from './components/cart/CartAddComponent';
+import CartEdit from './components/cart/CartEditComponent';
 import Login from './components/user/LoginComponent';
 import CustomerAdd from './components/customer/CustomerAddComponent';
 import CustomerList from './components/customer/CustomerListComponent';
@@ -40,11 +44,15 @@ ReactDOM.render((
          <Route path = "product-show/:id" component = {ProductShow} />
          <Route path = "product-add" component = {ProductAdd} />
          <Route path = "product-edit/:id" component = {ProductEdit} />
-         <Route path = "card-current" component = {CardCurrent} />
-         <Route path = "card-list" component = {CardList} />
-         <Route path = "card-show/:id" component = {CardShow} />
-         <Route path = "card-add" component = {CardAdd} />
-         <Route path = "card-edit/:id" component = {CardEdit} />
+         <Route path = "vendor-list" component = {VendorList} />
+         <Route path = "vendor-show/:id" component = {VendorShow} />
+         <Route path = "vendor-add" component = {VendorAdd} />
+         <Route path = "vendor-edit/:id" component = {VendorEdit} />
+         <Route path = "cart-current" component = {CartCurrent} />
+         <Route path = "cart-list" component = {CartList} />
+         <Route path = "cart-show/:id" component = {CartShow} />
+         <Route path = "cart-add" component = {CartAdd} />
+         <Route path = "cart-edit/:id" component = {CartEdit} />
          <Route path = "login" component = {Login} />
       </Route>
    </Router>

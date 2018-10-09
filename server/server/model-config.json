@@ -47,5 +47,13 @@
   "customer": {
     "dataSource": "db",
     "public": true
+  },
+  "purchase-order": {
+    "dataSource": "db",
+    "public": true
+  },
+  "purchase-item": {
+    "dataSource": "db",
+    "public": true
   }
 }

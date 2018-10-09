@@ -7,7 +7,6 @@ import { browserHistory } from 'react-router';
 require('styles/customer/CustomerEdit.css');
 
 class CustomerEditComponent extends React.Component {
-
     constructor(props) {
         super(props);
         this.customerURL = 'http://localhost:3000/api/customers/';
