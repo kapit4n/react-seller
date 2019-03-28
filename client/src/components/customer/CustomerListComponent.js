@@ -73,7 +73,7 @@ class CustomerListComponent extends React.Component {
             </thead>
             <tbody>
               {this.state.customers.map( customer => {
-                return <tr className={"customerlineitem-component"}>
+                return <tr key={customer.Id} className={"customerlineitem-component"}>
                     <td>
                       <a href={"customer-show/" + customer.id}>
                         {customer.name}
