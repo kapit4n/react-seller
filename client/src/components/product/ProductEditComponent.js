@@ -14,6 +14,12 @@ class ProductEditComponent extends React.Component {
         this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
         this.props = props;
         this.state = { id: 0, name: '', code: '', price: '', stock: '', description: '', img: '' };
+        this.handleChangeCode = this.handleChangeCode.bind(this);
+        this.handleChangeDescription = this.handleChangeDescription.bind(this);
+        this.handleChangeImg = this.handleChangeImg.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangePrice = this.handleChangePrice.bind(this);
+        this.handleChangeStock = this.handleChangeStock.bind(this);
     }
     handleClick = () => {
         var product = {

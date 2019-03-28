@@ -15,7 +15,9 @@ class VendorEditComponent extends React.Component {
         this.vendorURL = 'http://localhost:3000/api/vendors/';
         this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
         this.props = props;
-        this.state = { id: 0, name: '', budget: '', address: ''};
+        this.state = { id: 0, name: '', address: ''};
+        this.handleChangeAddress = this.handleChangeAddress.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
     }
     
     /**
@@ -52,11 +54,6 @@ class VendorEditComponent extends React.Component {
     /** Updates the name property of status */
     handleChangeName = (event) => {
         this.setState({ name: event.target.value });
-    }
-
-    /** Updates the budged property of status */
-    handleChangeBudget = (event) => {
-        this.setState({ budget: event.target.value });
     }
 
     /** Updates the address property of status */

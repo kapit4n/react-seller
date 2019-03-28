@@ -19,6 +19,8 @@ class VendorAddComponent extends React.Component {
       this.vendorURL = 'http://localhost:3000/api/vendors';
       this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
       this.state = { name: '', budget: '', address: ''};
+      this.handleChangeName = this.handleChangeName.bind(this);
+      this.handleChangeAddress = this.handleChangeAddress.bind(this);
   }
 
   /**
@@ -26,13 +28,6 @@ class VendorAddComponent extends React.Component {
    */
   handleChangeName = (event) => {
       this.setState({ name: event.target.value });
-  }
-
-  /**
-   * Sets new value to budget property of state with the one entered on the input
-   */
-  handleChangeBudget = (event) => {
-      this.setState({ budget: event.target.value });
   }
 
   /**

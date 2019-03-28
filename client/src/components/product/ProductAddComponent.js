@@ -35,13 +35,16 @@ class ProductAddComponent extends React.Component {
         this.productURL = 'http://localhost:3000/api/products';
         this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
         this.state = { name: '', code: '', price: '', stock: '', description: '', img: '' };
+        this.handleChangeCode = this.handleChangeCode.bind(this);
+        this.handleChangeDescription = this.handleChangeDescription.bind(this);
+        this.handleChangeImg = this.handleChangeImg.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangePrice = this.handleChangePrice.bind(this);
+        this.handleChangeStock = this.handleChangeStock.bind(this);
     };
 
     componentDidMount() {
-        fetch(this.productURL + this.props.params.id + '?access_token=' + this.access_token)
-            .then((response) => response.json())
-            .then((responseJson) => { this.setState({ product: responseJson }); })
-            .catch((error) => { console.error(error); });
+        
     }
 
     handleChangeName = (event) => {

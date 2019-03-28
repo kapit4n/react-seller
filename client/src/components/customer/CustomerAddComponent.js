@@ -12,8 +12,10 @@ class CustomerAddComponent extends React.Component {
       this.customerURL = 'http://localhost:3000/api/customers';
       this.access_token = 'T4SH5NkUULeFPSLEXhycyMvt0HMNINxTdOvYjGzGZkxvMmKZeJbne4TdJfcDLAr7';
       this.state = { name: '', budget: '', address: ''};
+      this.handleChangeName = this.handleChangeName.bind(this);
+      this.handleChangeBudget = this.handleChangeBudget.bind(this);
+      this.handleChangeAddress = this.handleChangeAddress.bind(this);
   };
-
 
   handleChangeName = (event) => {
       this.setState({ name: event.target.value });
@@ -63,7 +65,8 @@ class CustomerAddComponent extends React.Component {
                     />
                 </FormGroup>
                 <FormGroup controlId = "formBudget">
-                    <ControlLabel> Budget </ControlLabel> <FormControl type = "text"
+                    <ControlLabel> Budget </ControlLabel>
+                    <FormControl type = "text"
                     placeholder = "Enter Budget"
                     value = { this.state.budget }
                     onChange = { this.handleChangeBudget }
