@@ -37,7 +37,7 @@ class ProductAddComponent extends React.Component {
         this.state = { name: '', code: '', price: '', stock: '', description: '', img: '' };
         this.handleChangeCode = this.handleChangeCode.bind(this);
         this.handleChangeDescription = this.handleChangeDescription.bind(this);
-        this.handleChangeImg = this.handleChangeDescription.bind(this);
+        this.handleChangeImg = this.handleChangeImg.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangePrice = this.handleChangePrice.bind(this);
         this.handleChangeStock = this.handleChangeStock.bind(this);
