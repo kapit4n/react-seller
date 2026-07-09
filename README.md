@@ -1,39 +1,142 @@
-# Selling app
-React seller is a platform where you can register products and sell them in a web application.
-It can be implemented in a store/shopping or another business that registers their products to show them to their customers.
+# React Seller
 
-<img src="https://github.com/kapit4n/react-seller/raw/master/mockups/react_seller_card_item_add.png" alt="Drawing" width="100%"/>
+An inventory and sales management dashboard built with React 19, TypeScript, and Vite.
 
-## Pre-requisites
+## Architecture
 
-[![Join the chat at https://gitter.im/react-seller/Lobby](https://badges.gitter.im/react-seller/Lobby.svg)](https://gitter.im/react-seller/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-* [node 6](https://nodejs.org/en/)
-* [npm](https://docs.npmjs.com/)
-* [loopback](https://loopback.io/)
-* [react-webpack-generator](https://github.com/react-webpack-generators/generator-react-webpack)
+```
+react-seller/
+├── client/                   # React 19 frontend (Vite + TypeScript)
+│   └── src/
+│       ├── app/              # App shell (layouts, providers, router)
+│       ├── components/       # Reusable UI and shared components
+│       ├── features/         # Feature-based modules
+│       │   ├── auth/         # Authentication
+│       │   ├── dashboard/    # Overview page
+│       │   ├── products/     # Product CRUD
+│       │   ├── customers/    # Customer CRUD
+│       │   ├── vendors/      # Vendor CRUD
+│       │   └── sales/        # Orders and cart management
+│       ├── hooks/            # Global hooks (auth, theme, toast)
+│       ├── lib/              # Utility functions
+│       ├── services/api/     # Axios client with interceptors
+│       └── types/            # Shared TypeScript types
+├── server/                   # LoopBack 4 API
+│   └── src/
+│       ├── controllers/      # REST API controllers
+│       ├── datasources/      # Memory datasource
+│       ├── models/           # Entity models
+│       ├── repositories/     # Data access layer
+│       └── migrate.ts        # Seed data script
+└── docs/                     # Documentation
+```
 
-> Note: This project uses LoopBack's built-in memory connector instead of MongoDB for a zero-setup, fast install (no native compilation required). Data is persisted to `server/react-seller-data.json`.
+## Tech Stack
 
-## Install API
-### Run API
-* git clone https://github.com/kapit4n/react-seller.git
-* cd react-seller/server
-* npm install
-* node .
+### Frontend
+- **React 19** — Latest React with hooks and concurrent features
+- **TypeScript** — Strict mode
+- **Vite** — Fast dev server and build tool
+- **React Router v7** — Nested routing with lazy loading
+- **TanStack Query** — Server state management and caching
+- **Zustand** — Lightweight client state (auth, theme)
+- **React Hook Form + Zod** — Form handling and validation
+- **Tailwind CSS** — Utility-first CSS framework
+- **shadcn/ui** — Accessible, reusable UI components
+- **Lucide React** — Icon library
+- **Axios** — HTTP client with interceptors
 
-## Install client
-* git clone https://github.com/kapit4n/react-seller.git
-* cd react-seller/client
-* npm install
-* npm start
+### Backend
+- **LoopBack 4** — TypeScript REST framework
+- **Memory connector** — Zero-setup data persistence
 
-## Run Client Unit tests
-* go to client folder
-* ./node_modules/karma/bin/karma start
+## Prerequisites
 
-# Development tasks
-https://github.com/kapit4n/react-seller/projects/1
+- **Node.js** >= 20
+- **npm** >= 9
 
-# Util Commands
-## Create new component
-* yo react-webpack:component product/productList
+## Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/kapit4n/react-seller.git
+cd react-seller
+
+# Start the API server (port 3000)
+cd server
+npm install
+npm run build
+npm run migrate   # Seed sample data
+npm start
+
+# In a new terminal, start the client (port 3001)
+cd client
+npm install
+npm run dev
+```
+
+The client proxies `/api` requests to the server at `http://localhost:3000`.
+
+## Available Scripts
+
+### Client
+| Command | Description |
+|---|---|
+| `npm run dev` | Start dev server (port 3001) |
+| `npm run build` | TypeScript check + Vite production build |
+| `npm run preview` | Preview production build |
+
+### Server
+| Command | Description |
+|---|---|
+| `npm run build` | Compile TypeScript |
+| `npm start` | Start server (port 3000) |
+| `npm run migrate` | Seed database with sample data |
+
+## Features
+
+- **Dashboard** — Overview with stat cards (products, customers, orders, revenue)
+- **Products** — Full CRUD with stock management, search, image preview
+- **Customers** — Full CRUD with budget tracking
+- **Vendors** — Full CRUD
+- **Sales / Cart** — Shopping cart, order submission with stock update, order history
+- **Authentication** — Token-based, protected routes, auto-logout on 401
+- **Dark Mode** — Toggleable light/dark theme with persistence
+- **Responsive** — Desktop, tablet, mobile layouts
+
+## API Endpoints
+
+All endpoints are under `/api` and proxied to `http://localhost:3000`.
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET/POST/PUT/DELETE | `/api/products` | Product CRUD |
+| GET/POST/PUT/DELETE | `/api/customers` | Customer CRUD |
+| GET/POST/PUT/DELETE | `/api/vendors` | Vendor CRUD |
+| GET/POST/PUT/DELETE | `/api/orders` | Order CRUD |
+| GET/POST/PUT/DELETE | `/api/orderDetails` | Order detail CRUD |
+
+## Filtering
+
+Supports legacy bracket notation and JSON string filters:
+
+```
+GET /api/products?filter[where][code]=ABC
+GET /api/products?filter={"where":{"code":"ABC"}}
+GET /api/products?filter={"include":[{"relation":"orderDetails"}]}
+```
+
+## Architectural Decisions
+
+- **Feature-based folders** — Each feature owns its pages, components, hooks, services, types, and validation for better cohesion and scalability.
+- **Zustand over Redux** — Lighter weight, simpler API, sufficient for the app's global state needs (auth, theme).
+- **TanStack Query for server state** — Automatic caching, background refetching, optimistic updates.
+- **React Hook Form + Zod** — Centralized validation schemas, type-safe forms, reduced boilerplate.
+- **No AI features** — Milestone 1 focuses exclusively on modernization; AI capabilities are deferred.
+
+## Contributing
+
+1. Create a feature branch from `develop`
+2. Make changes with logically grouped commits
+3. Verify the build: `npm run build`
+4. Open a pull request
