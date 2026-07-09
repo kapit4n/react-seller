@@ -1,8 +1,10 @@
 {
   "ids": {
     "Product": 11,
-    "OrderDetail": 1,
-    "Vendor": 1
+    "OrderDetail": 2,
+    "Vendor": 1,
+    "Order": 1,
+    "Customer": 1
   },
   "models": {
     "Product": {
@@ -17,7 +19,11 @@
       "9": "{\"name\":\"Razer BlackWidow V4\",\"code\":\"KEY-BWV4\",\"price\":169.99,\"description\":\"Full-size mechanical keyboard with green tactile switches and a magnetic wrist rest.\",\"stock\":14,\"img\":\"/images/KEY-BWV4.jpg\",\"id\":9}",
       "10": "{\"name\":\"Razer Viper V2 Pro\",\"code\":\"MOU-VIPV2\",\"price\":149.99,\"description\":\"Featherlight 58g wireless esports mouse with Focus Pro 30K sensor and zero mouse drift.\",\"stock\":17,\"img\":\"/images/MOU-VIPV2.png\",\"id\":10}"
     },
-    "OrderDetail": {},
-    "Vendor": {}
+    "OrderDetail": {
+      "1": "{\"quantity\":2,\"price\":159.99,\"totalPrice\":319.98,\"discount\":0,\"productId\":1,\"id\":1}"
+    },
+    "Vendor": {},
+    "Order": {},
+    "Customer": {}
   }
 }

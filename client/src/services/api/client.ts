@@ -1,4 +1,5 @@
 import axios, {type AxiosError, type InternalAxiosRequestConfig} from 'axios'
+import {useAuthStore} from '@/hooks/use-auth'
 import type {ApiError} from '@/types'
 
 const apiClient = axios.create({
@@ -7,7 +8,7 @@ const apiClient = axios.create({
 })
 
 apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  const token = localStorage.getItem('access_token')
+  const token = useAuthStore.getState().token
   if (token) {
     config.params = {...config.params, access_token: token}
   }
@@ -18,7 +19,7 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ApiError>) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('access_token')
+      useAuthStore.getState().logout()
       window.location.href = '/login'
     }
     return Promise.reject(error)

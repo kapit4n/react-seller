@@ -31,7 +31,7 @@ echo "Starting server (LoopBack 4)..."
 SERVER_PID=$!
 
 echo "Starting client (React)..."
-(cd "$CLIENT_DIR" && npm start) &
+(cd "$CLIENT_DIR" && npm run dev) &
 CLIENT_PID=$!
 
 echo "Server PID: $SERVER_PID | Client PID: $CLIENT_PID"
