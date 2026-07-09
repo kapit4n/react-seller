@@ -8,6 +8,7 @@ import {PageHeader} from '@/components/shared/PageHeader'
 import {PageLayout} from '@/components/shared/PageLayout'
 import {SearchBar} from '@/components/shared/SearchBar'
 import {ConfirmDialog} from '@/components/shared/ConfirmDialog'
+import ProductImage from '@/components/shared/ProductImage'
 import {useProducts, useDeleteProduct} from '../hooks/useProducts'
 import type {Product} from '@/types'
 
@@ -21,7 +22,7 @@ export default function ProductListPage() {
   const deleteMutation = useDeleteProduct()
 
   const columns: Column<Product>[] = [
-    {key: 'img', header: '', cell: (p) => p.img ? <img src={p.img} alt="" className="h-10 w-10 rounded object-cover" /> : <div className="h-10 w-10 rounded bg-muted" />},
+    {key: 'img', header: '', cell: (p) => <ProductImage src={p.img} alt={p.name} />},
     {key: 'name', header: 'Name', cell: (p) => <Link to={`/dashboard/products/${p.id}`} className="font-medium hover:underline">{p.name}</Link>},
     {key: 'code', header: 'Code', cell: (p) => <span className="text-muted-foreground">{p.code}</span>},
     {key: 'price', header: 'Price', cell: (p) => <span>${p.price.toFixed(2)}</span>},

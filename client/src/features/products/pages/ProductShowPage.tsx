@@ -6,6 +6,7 @@ import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card'
 import {PageLayout} from '@/components/shared/PageLayout'
 import {LoadingState} from '@/components/shared/LoadingState'
 import {ErrorState} from '@/components/shared/ErrorState'
+import ProductImage from '@/components/shared/ProductImage'
 import {useProduct} from '../hooks/useProducts'
 
 export default function ProductShowPage() {
@@ -38,13 +39,7 @@ export default function ProductShowPage() {
             <CardTitle className="text-base">Product Image</CardTitle>
           </CardHeader>
           <CardContent>
-            {product.img ? (
-              <img src={product.img} alt={product.name} className="w-full max-w-xs rounded-lg object-cover" />
-            ) : (
-              <div className="flex h-48 w-full max-w-xs items-center justify-center rounded-lg bg-muted text-muted-foreground">
-                No image
-              </div>
-            )}
+            <ProductImage src={product.img} alt={product.name} className="w-full max-w-xs rounded-lg object-cover h-48" iconClassName="h-10 w-10" />
           </CardContent>
         </Card>
 
