@@ -1,29 +1,67 @@
 {
   "ids": {
-    "Product": 11,
-    "OrderDetail": 2,
-    "Vendor": 1,
-    "Order": 1,
-    "Customer": 1
+    "Product": 26,
+    "Customer": 9,
+    "Vendor": 6,
+    "Order": 2,
+    "OrderDetail": 4,
+    "PurchaseOrder": 1,
+    "PurchaseItem": 1
   },
   "models": {
     "Product": {
-      "1": "{\"name\":\"Logitech G502 X Plus\",\"code\":\"MOU-G502X\",\"price\":159.99,\"description\":\"Wireless gaming mouse with LIGHTFORCE hybrid switches and 25K DPI HERO sensor.\",\"stock\":10,\"img\":\"/images/MOU-G502X.png\",\"id\":1}",
-      "2": "{\"name\":\"Razer DeathAdder V3 Pro\",\"code\":\"MOU-DAV3\",\"price\":149.99,\"description\":\"Ultra-lightweight ergonomic esports gaming mouse with Focus Pro 30K optical sensor.\",\"stock\":18,\"img\":\"/images/MOU-DAV3.jpg\",\"id\":2}",
-      "3": "{\"name\":\"Keychron Q1 Pro\",\"code\":\"KEY-Q1P\",\"price\":199,\"description\":\"QMK/VIA wireless mechanical keyboard with CNC aluminum body and hot-swappable switches.\",\"stock\":12,\"img\":\"/images/KEY-Q1P.jpg\",\"id\":3}",
-      "4": "{\"name\":\"Corsair K70 RGB Pro\",\"code\":\"KEY-K70R\",\"price\":179.99,\"description\":\"Mechanical gaming keyboard with Cherry MX Red switches, PBT caps and per-key RGB.\",\"stock\":20,\"img\":\"/images/KEY-K70R.jpg\",\"id\":4}",
-      "5": "{\"name\":\"SteelSeries Apex Pro\",\"code\":\"KEY-APEX\",\"price\":189.99,\"description\":\"Adjustable mechanical keyboard with OmniPoint 2.0 switches and an OLED smart display.\",\"stock\":15,\"img\":\"/images/KEY-APEX.jpg\",\"id\":5}",
-      "6": "{\"name\":\"Glorious Model O\",\"code\":\"MOU-MODELO\",\"price\":49.99,\"description\":\"Superlight honeycomb gaming mouse with PIXART 3360 sensor and flexible cable.\",\"stock\":40,\"img\":\"/images/MOU-MODELO.jpg\",\"id\":6}",
-      "7": "{\"name\":\"Logitech MX Master 3S\",\"code\":\"MOU-MXM3\",\"price\":99.99,\"description\":\"Productivity mouse for developers with 8K DPI, quiet clicks and multi-device flow.\",\"stock\":30,\"img\":\"/images/MOU-MXM3.png\",\"id\":7}",
-      "8": "{\"name\":\"HyperX Alloy Origins 65\",\"code\":\"KEY-HYX65\",\"price\":89.99,\"description\":\"Compact 65% mechanical keyboard with HyperX Red switches and aircraft-grade aluminum.\",\"stock\":22,\"img\":\"/images/KEY-HYX65.png\",\"id\":8}",
-      "9": "{\"name\":\"Razer BlackWidow V4\",\"code\":\"KEY-BWV4\",\"price\":169.99,\"description\":\"Full-size mechanical keyboard with green tactile switches and a magnetic wrist rest.\",\"stock\":14,\"img\":\"/images/KEY-BWV4.jpg\",\"id\":9}",
-      "10": "{\"name\":\"Razer Viper V2 Pro\",\"code\":\"MOU-VIPV2\",\"price\":149.99,\"description\":\"Featherlight 58g wireless esports mouse with Focus Pro 30K sensor and zero mouse drift.\",\"stock\":17,\"img\":\"/images/MOU-VIPV2.png\",\"id\":10}"
+      "1": "{\"name\":\"Coca-Cola 600ml\",\"code\":\"BEV-CC600\",\"price\":6,\"description\":\"Refresco Coca-Cola original 600ml.\",\"stock\":100,\"img\":\"/images/BEV-CC600.png\",\"id\":1}",
+      "2": "{\"name\":\"Coca-Cola 2L\",\"code\":\"BEV-CC2L\",\"price\":12,\"description\":\"Coca-Cola familiar 2 litros.\",\"stock\":60,\"img\":\"/images/BEV-CC2L.png\",\"id\":2}",
+      "3": "{\"name\":\"Coca-Cola Zero 600ml\",\"code\":\"BEV-CCZ600\",\"price\":6,\"description\":\"Coca-Cola sin azúcar 600ml.\",\"stock\":80,\"img\":\"/images/BEV-CCZ600.png\",\"id\":3}",
+      "4": "{\"name\":\"Pepsi 500ml\",\"code\":\"BEV-PEP500\",\"price\":5.5,\"description\":\"Pepsi cola 500ml.\",\"stock\":90,\"img\":\"/images/BEV-PEP500.png\",\"id\":4}",
+      "5": "{\"name\":\"Pepsi 2L\",\"code\":\"BEV-PEP2L\",\"price\":11,\"description\":\"Pepsi familiar 2 litros.\",\"stock\":55,\"img\":\"/images/BEV-PEP2L.png\",\"id\":5}",
+      "6": "{\"name\":\"Agua Vital 600ml\",\"code\":\"BEV-AGT600\",\"price\":3.5,\"description\":\"Agua purificada Vital 600ml.\",\"stock\":120,\"img\":\"/images/BEV-AGT600.png\",\"id\":6}",
+      "7": "{\"name\":\"Agua Vital 2L\",\"code\":\"BEV-AGT2L\",\"price\":6.5,\"description\":\"Agua purificada Vital 2 litros.\",\"stock\":70,\"img\":\"/images/BEV-AGT2L.png\",\"id\":7}",
+      "8": "{\"name\":\"Sprite 600ml\",\"code\":\"BEV-SPR600\",\"price\":6,\"description\":\"Sprite lima-limón 600ml.\",\"stock\":75,\"img\":\"/images/BEV-SPR600.png\",\"id\":8}",
+      "9": "{\"name\":\"Fanta Naranja 600ml\",\"code\":\"BEV-FAN600\",\"price\":6,\"description\":\"Fanta naranja 600ml.\",\"stock\":65,\"img\":\"/images/BEV-FAN600.png\",\"id\":9}",
+      "10": "{\"name\":\"Jugo Del Valle Durazno 1L\",\"code\":\"BEV-DVD1L\",\"price\":8,\"description\":\"Jugo Del Valle sabor durazno 1 litro.\",\"stock\":40,\"img\":\"/images/BEV-DVD1L.png\",\"id\":10}",
+      "11": "{\"name\":\"Lays Clásicas 50g\",\"code\":\"SNK-LYS50\",\"price\":4,\"description\":\"Papas fritas Lays clásicas 50g.\",\"stock\":150,\"img\":\"/images/SNK-LYS50.png\",\"id\":11}",
+      "12": "{\"name\":\"Lays Clásicas 150g\",\"code\":\"SNK-LYS150\",\"price\":8,\"description\":\"Papas fritas Lays clásicas 150g.\",\"stock\":80,\"img\":\"/images/SNK-LYS150.png\",\"id\":12}",
+      "13": "{\"name\":\"Doritos Nacho 60g\",\"code\":\"SNK-DRT60\",\"price\":5,\"description\":\"Doritos sabor nacho 60g.\",\"stock\":100,\"img\":\"/images/SNK-DRT60.png\",\"id\":13}",
+      "14": "{\"name\":\"Doritos Nacho 160g\",\"code\":\"SNK-DRT160\",\"price\":9,\"description\":\"Doritos sabor nacho 160g.\",\"stock\":60,\"img\":\"/images/SNK-DRT160.png\",\"id\":14}",
+      "15": "{\"name\":\"Cheetos Torciditos 50g\",\"code\":\"SNK-CHT50\",\"price\":4.5,\"description\":\"Cheetos Torciditos 50g.\",\"stock\":110,\"img\":\"/images/SNK-CHT50.png\",\"id\":15}",
+      "16": "{\"name\":\"Ruffles Queso 55g\",\"code\":\"SNK-RFL55\",\"price\":4.5,\"description\":\"Ruffles sabor queso 55g.\",\"stock\":90,\"img\":\"/images/SNK-RFL55.png\",\"id\":16}",
+      "17": "{\"name\":\"Chocolate Snickers 52g\",\"code\":\"SNK-SNK52\",\"price\":7,\"description\":\"Barra de chocolate Snickers 52g.\",\"stock\":70,\"img\":\"/images/SNK-SNK52.png\",\"id\":17}",
+      "18": "{\"name\":\"Galletas Oreo 90g\",\"code\":\"SNK-ORO90\",\"price\":6,\"description\":\"Galletas Oreo original 90g.\",\"stock\":85,\"img\":\"/images/SNK-ORO90.png\",\"id\":18}",
+      "19": "{\"name\":\"Chicles Trident Menta\",\"code\":\"SNK-TRM\",\"price\":2,\"description\":\"Chicles Trident sabor menta 12 unidades.\",\"stock\":200,\"img\":\"/images/SNK-TRM.png\",\"id\":19}",
+      "20": "{\"name\":\"Maní Salado 100g\",\"code\":\"SNK-MAN100\",\"price\":5,\"description\":\"Maní salado 100g.\",\"stock\":95,\"img\":\"/images/SNK-MAN100.png\",\"id\":20}",
+      "21": "{\"name\":\"Logitech G502 X Plus\",\"code\":\"MOU-G502X\",\"price\":159.99,\"description\":\"Wireless gaming mouse with LIGHTFORCE hybrid switches and 25K DPI HERO sensor.\",\"stock\":25,\"img\":\"/images/MOU-G502X.png\",\"id\":21}",
+      "22": "{\"name\":\"Razer DeathAdder V3 Pro\",\"code\":\"MOU-DAV3\",\"price\":149.99,\"description\":\"Ultra-lightweight ergonomic esports gaming mouse with Focus Pro 30K optical sensor.\",\"stock\":18,\"img\":\"/images/MOU-DAV3.jpg\",\"id\":22}",
+      "23": "{\"name\":\"Keychron Q1 Pro\",\"code\":\"KEY-Q1P\",\"price\":199,\"description\":\"QMK/VIA wireless mechanical keyboard with CNC aluminum body and hot-swappable switches.\",\"stock\":12,\"img\":\"/images/KEY-Q1P.jpg\",\"id\":23}",
+      "24": "{\"name\":\"Logitech MX Master 3S\",\"code\":\"MOU-MXM3\",\"price\":99.99,\"description\":\"Productivity mouse with 8K DPI, quiet clicks and multi-device flow.\",\"stock\":30,\"img\":\"/images/MOU-MXM3.png\",\"id\":24}",
+      "25": "{\"name\":\"Corsair K70 RGB Pro\",\"code\":\"KEY-K70R\",\"price\":179.99,\"description\":\"Mechanical gaming keyboard with Cherry MX Red switches, PBT caps and per-key RGB.\",\"stock\":20,\"img\":\"/images/KEY-K70R.jpg\",\"id\":25}"
+    },
+    "Customer": {
+      "1": "{\"name\":\"Juan Pérez\",\"address\":\"Av. Ballivián 123, Edif. Torres, Of. 4B\",\"budget\":500,\"id\":1}",
+      "2": "{\"name\":\"María García\",\"address\":\"Calle Potosí 456, Zona Central\",\"budget\":300,\"id\":2}",
+      "3": "{\"name\":\"Carlos López\",\"address\":\"Av. San Martín 789, Sopocachi\",\"budget\":750,\"id\":3}",
+      "4": "{\"name\":\"Ana Rodríguez\",\"address\":\"Calle Linares 234, Zona Sur\",\"budget\":200,\"id\":4}",
+      "5": "{\"name\":\"Pedro Martínez\",\"address\":\"Av. 6 de Agosto 567, Miraflores\",\"budget\":1000,\"id\":5}",
+      "6": "{\"name\":\"Laura Fernández\",\"address\":\"Calle Colombia 890, San Pedro\",\"budget\":350,\"id\":6}",
+      "7": "{\"name\":\"Diego Morales\",\"address\":\"Av. Arce 123, Calacoto\",\"budget\":600,\"id\":7}",
+      "8": "{\"name\":\"Sofía Vargas\",\"address\":\"Calle Ecuador 456, Villa Fátima\",\"budget\":150,\"id\":8}"
+    },
+    "Vendor": {
+      "1": "{\"name\":\"Embol S.A.\",\"address\":\"Av. Blanco Galindo Km 8\",\"img\":\"/images/embol.png\",\"id\":1}",
+      "2": "{\"name\":\"PepsiCo Bolivia\",\"address\":\"Zona Industrial Santa Cruz\",\"img\":\"/images/pepsico.png\",\"id\":2}",
+      "3": "{\"name\":\"Nestlé Bolivia\",\"address\":\"Av. Montenegro 1234\",\"img\":\"/images/nestle.png\",\"id\":3}",
+      "4": "{\"name\":\"Mondelez Bolivia\",\"address\":\"Zona Franca El Alto\",\"img\":\"/images/mondelez.png\",\"id\":4}",
+      "5": "{\"name\":\"Ingenious SRL\",\"address\":\"Av. 16 de Julio 456\",\"img\":\"/images/ingenious.png\",\"id\":5}"
+    },
+    "Order": {
+      "1": "{\"customerId\":1,\"createdDate\":\"2026-07-09T18:32:09.534Z\",\"total\":45,\"paid\":true,\"delivered\":true,\"deliveryDate\":\"2026-07-09T18:32:09.534Z\",\"id\":1}"
     },
     "OrderDetail": {
-      "1": "{\"quantity\":2,\"price\":159.99,\"totalPrice\":319.98,\"discount\":0,\"productId\":1,\"id\":1}"
+      "1": "{\"quantity\":3,\"price\":6,\"totalPrice\":18,\"discount\":0,\"orderId\":1,\"productId\":1,\"id\":1}",
+      "2": "{\"quantity\":2,\"price\":5.5,\"totalPrice\":11,\"discount\":0,\"orderId\":1,\"productId\":4,\"id\":2}",
+      "3": "{\"quantity\":4,\"price\":4,\"totalPrice\":16,\"discount\":0,\"orderId\":1,\"productId\":12,\"id\":3}"
     },
-    "Vendor": {},
-    "Order": {},
-    "Customer": {}
+    "PurchaseOrder": {},
+    "PurchaseItem": {}
   }
 }
