@@ -1,18 +1,24 @@
+import {PageLayout} from '@/components/shared/PageLayout'
 import {Link} from 'react-router-dom'
-import {FileSearch} from 'lucide-react'
 import {Button} from '@/components/ui/button'
 
 export default function NotFoundPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center space-y-4">
-        <FileSearch className="mx-auto h-16 w-16 text-muted-foreground/50" />
-        <h1 className="text-4xl font-bold">404</h1>
-        <p className="text-muted-foreground">The page you're looking for doesn't exist.</p>
-        <Button asChild>
-          <Link to="/dashboard">Go to Dashboard</Link>
-        </Button>
+    <PageLayout>
+      <div className="flex flex-col items-center justify-center min-h-[50vh] text-center">
+        <div className="space-y-4">
+          <h1 className="text-6xl font-bold text-primary">404</h1>
+          <h2 className="text-2xl font-semibold tracking-tight">Page Not Found</h2>
+          <p className="text-muted-foreground max-w-md">
+            The page you're looking for doesn't exist or has been moved.
+          </p>
+          <div className="pt-4">
+            <Link to="/dashboard">
+              <Button>Return to Dashboard</Button>
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </PageLayout>
   )
 }

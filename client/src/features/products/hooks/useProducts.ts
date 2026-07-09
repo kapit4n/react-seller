@@ -2,7 +2,6 @@ import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 import {useNavigate} from 'react-router-dom'
 import {productsApi} from '../services/products'
 import type {ProductForm} from '../validation/product'
-import type {Product} from '@/types'
 
 const PRODUCTS_KEY = ['products'] as const
 

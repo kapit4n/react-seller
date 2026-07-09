@@ -1,23 +1,45 @@
-import {useState} from 'react'
+import React, {useState} from 'react'
 import {Package} from 'lucide-react'
+import {cn} from '@/lib/utils'
 
-interface Props {
-  src?: string | null
+interface ProductImageProps {
+  src?: string
   alt?: string
   className?: string
-  iconClassName?: string
+  fallbackIcon?: React.ReactNode
 }
 
-export default function ProductImage({src, alt = '', className = 'h-10 w-10 rounded object-cover', iconClassName = 'h-5 w-5'}: Props) {
-  const [failed, setFailed] = useState(false)
+export default function ProductImage({
+  src,
+  alt = 'Product image',
+  className,
+  fallbackIcon,
+}: ProductImageProps) {
+  const [error, setError] = useState(false)
 
-  if (!src || failed) {
+  if (!src || error) {
     return (
-      <div className={`flex items-center justify-center bg-muted ${className}`}>
-        <Package className={iconClassName} />
+      <div
+        className={cn(
+          'flex items-center justify-center bg-muted/50 rounded-md',
+          className
+        )}
+      >
+        {fallbackIcon || (
+          <div className="p-4 rounded-md bg-muted/50">
+            <Package className="h-8 w-8 text-muted-foreground/50" />
+          </div>
+        )}
       </div>
     )
   }
 
-  return <img src={src} alt={alt} className={className} onError={() => setFailed(true)} />
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={cn('rounded-md object-cover', className)}
+      onError={() => setError(true)}
+    />
+  )
 }

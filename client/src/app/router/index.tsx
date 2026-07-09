@@ -52,6 +52,7 @@ export function AppRouter() {
         <Route path="/dashboard/sales" element={<CartListPage />} />
         <Route path="/dashboard/sales/current" element={<CartCurrentPage />} />
         <Route path="/dashboard/sales/:id" element={<CartShowPage />} />
+        <Route path="/dashboard/ai-assistant" element={<ProductAddPage />} />
       </Route>
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="*" element={<NotFoundPage />} />
