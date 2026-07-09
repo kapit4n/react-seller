@@ -3,7 +3,7 @@
     "Product": 26,
     "Customer": 9,
     "Vendor": 6,
-    "Order": 2,
+    "Order": 3,
     "OrderDetail": 4,
     "PurchaseOrder": 1,
     "PurchaseItem": 1
@@ -54,7 +54,8 @@
       "5": "{\"name\":\"Ingenious SRL\",\"address\":\"Av. 16 de Julio 456\",\"img\":\"/images/ingenious.png\",\"id\":5}"
     },
     "Order": {
-      "1": "{\"customerId\":1,\"createdDate\":\"2026-07-09T18:32:09.534Z\",\"total\":45,\"paid\":true,\"delivered\":true,\"deliveryDate\":\"2026-07-09T18:32:09.534Z\",\"id\":1}"
+      "1": "{\"customerId\":1,\"createdDate\":\"2026-07-09T18:32:09.534Z\",\"total\":45,\"paid\":true,\"delivered\":true,\"deliveryDate\":\"2026-07-09T18:32:09.534Z\",\"id\":1}",
+      "2": "{\"customerId\":2,\"total\":45,\"paid\":false,\"delivered\":false,\"id\":2}"
     },
     "OrderDetail": {
       "1": "{\"quantity\":3,\"price\":6,\"totalPrice\":18,\"discount\":0,\"orderId\":1,\"productId\":1,\"id\":1}",

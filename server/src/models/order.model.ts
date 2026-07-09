@@ -25,8 +25,8 @@ export class Order extends Entity {
   @property({required: true, default: false})
   delivered!: boolean;
 
-  @property({required: true})
-  deliveryDate!: Date;
+  @property()
+  deliveryDate?: Date;
 
   @hasMany(() => OrderDetail)
   orderDetails?: OrderDetail[];

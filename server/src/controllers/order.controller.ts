@@ -27,7 +27,7 @@ export class OrderController {
   }
 
   @post('/api/orders')
-  async create(@requestBody({content: {'application/json': {schema: getModelSchemaRef(Order, {exclude: ['id']})}}}) data: Partial<Order>): Promise<Order> {
+  async create(@requestBody({content: {'application/json': {schema: getModelSchemaRef(Order, {exclude: ['id', 'paid', 'delivered', 'deliveryDate']})}}}) data: Partial<Order>): Promise<Order> {
     return this.repo.create(data);
   }
 

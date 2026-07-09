@@ -8,7 +8,7 @@ export declare class Order extends Entity {
     description?: string;
     paid: boolean;
     delivered: boolean;
-    deliveryDate: Date;
+    deliveryDate?: Date;
     orderDetails?: OrderDetail[];
     constructor(data?: Partial<Order>);
 }

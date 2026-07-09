@@ -61,7 +61,7 @@ __decorate([
 ], OrderController.prototype, "findById", null);
 __decorate([
     (0, rest_1.post)('/api/orders'),
-    __param(0, (0, rest_1.requestBody)({ content: { 'application/json': { schema: (0, rest_1.getModelSchemaRef)(order_model_1.Order, { exclude: ['id'] }) } } })),
+    __param(0, (0, rest_1.requestBody)({ content: { 'application/json': { schema: (0, rest_1.getModelSchemaRef)(order_model_1.Order, { exclude: ['id', 'paid', 'delivered', 'deliveryDate'] }) } } })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)

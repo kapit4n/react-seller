@@ -68,9 +68,6 @@ export function useSubmitOrder() {
     mutationFn: async ({customerId, total, items}: {customerId: number; total: number; items: Array<{id: number; productId: number; quantity: number}>}) => {
       const order = await ordersApi.create({customerId, total})
       await Promise.all(items.map((item) => orderDetailsApi.update(item.id, {orderId: order.id})))
-      await Promise.all(items.map((item) =>
-        apiCall(() => Promise.resolve({success: 'true'}))
-      ))
       return order
     },
     onSuccess: () => {
@@ -80,6 +77,4 @@ export function useSubmitOrder() {
   })
 }
 
-async function apiCall<T>(fn: () => Promise<T>): Promise<T> {
-  return fn()
-}
+

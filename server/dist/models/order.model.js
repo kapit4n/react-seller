@@ -48,7 +48,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Order.prototype, "delivered", void 0);
 __decorate([
-    (0, repository_1.property)({ required: true }),
+    (0, repository_1.property)(),
     __metadata("design:type", Date)
 ], Order.prototype, "deliveryDate", void 0);
 __decorate([
