@@ -26,7 +26,7 @@ start_dir() {
 start_dir "$SERVER_DIR" "server"
 start_dir "$CLIENT_DIR" "client"
 
-echo "Starting server (LoopBack)..."
+echo "Starting server (LoopBack 4)..."
 (cd "$SERVER_DIR" && npm start) &
 SERVER_PID=$!
 
