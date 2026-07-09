@@ -10,15 +10,11 @@ It can be implemented in a store/shopping or another business that registers the
 * [node 6](https://nodejs.org/en/)
 * [npm](https://docs.npmjs.com/)
 * [loopback](https://loopback.io/)
-* [MongoDB](https://www.mongodb.com/)
 * [react-webpack-generator](https://github.com/react-webpack-generators/generator-react-webpack)
 
-## Install API
-### DB installation
-* connect to mongodb
-* use reactseller
-* create mongo user 'db.createUser({ user: "reactseller", pwd: "password", roles: [ "readWrite", "dbAdmin" ] })'
+> Note: This project uses LoopBack's built-in memory connector instead of MongoDB for a zero-setup, fast install (no native compilation required). Data is persisted to `server/react-seller-data.json`.
 
+## Install API
 ### Run API
 * git clone https://github.com/kapit4n/react-seller.git
 * cd react-seller/server

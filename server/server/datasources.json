@@ -1,12 +1,7 @@
 {
   "db": {
-    "host": "localhost",
-    "port": 27017,
-    "url": "",
-    "database": "reactseller",
-    "password": "password",
     "name": "db",
-    "user": "reactseller",
-    "connector": "mongodb"
+    "connector": "memory",
+    "file": "react-seller-data.json"
   }
 }

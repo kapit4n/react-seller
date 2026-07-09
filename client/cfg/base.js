@@ -25,7 +25,13 @@ module.exports = {
     hot: true,
     port: defaultSettings.port,
     publicPath: defaultSettings.publicPath,
-    noInfo: false
+    noInfo: false,
+    proxy: {
+      '/images/*': {
+        target: 'http://localhost:3000',
+        secure: false
+      }
+    }
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
