@@ -2,8 +2,11 @@ import apiClient from '@/services/api/client'
 import type {Order} from '@/types'
 
 export const ordersApi = {
-  list: () =>
-    apiClient.get<Order[]>('/orders').then((r) => r.data),
+  list: (filter?: Record<string, unknown>) =>
+    apiClient.get<Order[]>('/orders', {params: {filter: filter ? JSON.stringify(filter) : undefined}}).then((r) => r.data),
+
+  listWithDetails: () =>
+    apiClient.get<Order[]>('/orders', {params: {filter: JSON.stringify({include: ['orderDetails']})}}).then((r) => r.data),
 
   getById: (id: number) =>
     apiClient.get<Order>(`/orders/${id}`).then((r) => r.data),

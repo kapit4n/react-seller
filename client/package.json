@@ -34,7 +34,6 @@
     "react-hook-form": "^7.81.0",
     "react-router-dom": "^7.18.1",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss-animate": "^1.0.7",
     "zod": "^4.4.3",
     "zustand": "^5.0.14"
   },
@@ -52,6 +51,7 @@
     "postcss": "^8.5.16",
     "prettier": "^3.9.5",
     "tailwindcss": "^4.3.2",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "~6.0.2",
     "vite": "^8.1.1"
   }

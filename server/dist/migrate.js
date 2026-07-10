@@ -136,18 +136,73 @@ async function migrate() {
         console.log(`Found ${oc} existing orders, skipping.`);
     }
     else {
-        const order = await Order.create({
-            customerId: 1,
-            createdDate: new Date(),
-            total: 45.00,
-            paid: true,
-            delivered: true,
-            deliveryDate: new Date(),
-        });
-        await OrderDetail.create({ orderId: order.id, productId: 1, quantity: 3, price: 6.00, totalPrice: 18.00 });
-        await OrderDetail.create({ orderId: order.id, productId: 4, quantity: 2, price: 5.50, totalPrice: 11.00 });
-        await OrderDetail.create({ orderId: order.id, productId: 12, quantity: 4, price: 4.00, totalPrice: 16.00 });
-        console.log('Seeded 1 order with 3 items.');
+        const sampleDetails = [
+            { productId: 1, price: 6.00 },
+            { productId: 2, price: 12.00 },
+            { productId: 3, price: 6.00 },
+            { productId: 4, price: 5.50 },
+            { productId: 5, price: 11.00 },
+            { productId: 6, price: 3.50 },
+            { productId: 7, price: 6.50 },
+            { productId: 8, price: 6.00 },
+            { productId: 9, price: 6.00 },
+            { productId: 10, price: 8.00 },
+            { productId: 11, price: 4.00 },
+            { productId: 12, price: 8.00 },
+            { productId: 13, price: 5.00 },
+            { productId: 14, price: 9.00 },
+            { productId: 15, price: 4.50 },
+            { productId: 16, price: 4.50 },
+            { productId: 17, price: 7.00 },
+            { productId: 18, price: 6.00 },
+            { productId: 19, price: 2.00 },
+            { productId: 20, price: 5.00 },
+        ];
+        // Generate orders across May, June, July 2026
+        const orderData = [
+            // May (month 4)
+            { month: 4, day: 5, customerId: 1, details: [{ pid: 1, qty: 2 }, { pid: 6, qty: 3 }, { pid: 18, qty: 1 }] },
+            { month: 4, day: 12, customerId: 3, details: [{ pid: 5, qty: 1 }, { pid: 14, qty: 2 }] },
+            { month: 4, day: 18, customerId: 5, details: [{ pid: 2, qty: 2 }, { pid: 11, qty: 5 }, { pid: 19, qty: 3 }] },
+            { month: 4, day: 22, customerId: 2, details: [{ pid: 8, qty: 1 }, { pid: 13, qty: 2 }] },
+            { month: 4, day: 28, customerId: 7, details: [{ pid: 10, qty: 3 }, { pid: 17, qty: 2 }] },
+            // June (month 5)
+            { month: 5, day: 3, customerId: 4, details: [{ pid: 3, qty: 2 }, { pid: 7, qty: 1 }] },
+            { month: 5, day: 7, customerId: 6, details: [{ pid: 1, qty: 4 }, { pid: 15, qty: 2 }, { pid: 20, qty: 3 }] },
+            { month: 5, day: 10, customerId: 2, details: [{ pid: 12, qty: 3 }, { pid: 4, qty: 2 }] },
+            { month: 5, day: 14, customerId: 8, details: [{ pid: 9, qty: 2 }, { pid: 16, qty: 1 }, { pid: 6, qty: 4 }] },
+            { month: 5, day: 18, customerId: 1, details: [{ pid: 2, qty: 1 }, { pid: 5, qty: 1 }, { pid: 14, qty: 2 }] },
+            { month: 5, day: 22, customerId: 3, details: [{ pid: 7, qty: 3 }, { pid: 11, qty: 4 }] },
+            { month: 5, day: 26, customerId: 5, details: [{ pid: 1, qty: 3 }, { pid: 18, qty: 2 }, { pid: 19, qty: 5 }] },
+            { month: 5, day: 30, customerId: 7, details: [{ pid: 13, qty: 2 }, { pid: 8, qty: 1 }] },
+            // July (month 6)
+            { month: 6, day: 2, customerId: 4, details: [{ pid: 4, qty: 3 }, { pid: 10, qty: 2 }, { pid: 17, qty: 1 }] },
+            { month: 6, day: 5, customerId: 6, details: [{ pid: 2, qty: 1 }, { pid: 6, qty: 5 }] },
+            { month: 6, day: 7, customerId: 1, details: [{ pid: 12, qty: 4 }, { pid: 3, qty: 2 }, { pid: 15, qty: 2 }] },
+        ];
+        for (const order of orderData) {
+            const date = new Date(2026, order.month, order.day, 10 + Math.floor(Math.random() * 8), Math.floor(Math.random() * 60));
+            let total = 0;
+            const orderDetails = [];
+            for (const d of order.details) {
+                const product = sampleDetails.find(s => s.productId === d.pid);
+                const lineTotal = product.price * d.qty;
+                total += lineTotal;
+                orderDetails.push({ productId: d.pid, quantity: d.qty, price: product.price, totalPrice: lineTotal });
+            }
+            const created = await Order.create({
+                customerId: order.customerId,
+                createdDate: date,
+                total: parseFloat(total.toFixed(2)),
+                paid: true,
+                delivered: true,
+                deliveryDate: date,
+            });
+            for (const od of orderDetails) {
+                await OrderDetail.create({ ...od, orderId: created.id });
+            }
+        }
+        console.log(`Seeded ${orderData.length} orders with order details.`);
     }
     console.log('Migration complete.');
 }

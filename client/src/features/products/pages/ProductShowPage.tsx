@@ -39,7 +39,7 @@ export default function ProductShowPage() {
             <CardTitle className="text-base">Product Image</CardTitle>
           </CardHeader>
           <CardContent>
-            <ProductImage src={product.img} alt={product.name} className="w-full max-w-xs rounded-lg object-cover h-48" iconClassName="h-10 w-10" />
+            <ProductImage src={product.img} alt={product.name} className="w-full max-w-xs rounded-lg object-cover h-48" />
           </CardContent>
         </Card>
 

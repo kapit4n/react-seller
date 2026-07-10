@@ -11,7 +11,7 @@ const products = [
   {name: 'Agua Vital 2L', code: 'BEV-AGT2L', price: 6.50, description: 'Agua purificada Vital 2 litros.', stock: 70, img: '/images/BEV-AGT2L.png'},
   {name: 'Sprite 600ml', code: 'BEV-SPR600', price: 6.00, description: 'Sprite lima-limón 600ml.', stock: 75, img: '/images/BEV-SPR600.png'},
   {name: 'Fanta Naranja 600ml', code: 'BEV-FAN600', price: 6.00, description: 'Fanta naranja 600ml.', stock: 65, img: '/images/BEV-FAN600.png'},
-  {name: 'Jugo Del Valle Durazno 1L', code: 'BEV-DVD1L', price: 8.00, description: 'Jugo Del Valle sabor durazno 1 litro.', stock: 40, img: '/images/BEV-DVD1L.png'},
+  {name: 'Jugo Del Valle Durazno 1L', code: 'BEV-DVD1L', price: 8.00, description: 'Jugo Del Valle sabor durazno 1 litro.', stock: 4, img: '/images/BEV-DVD1L.png'},
 
   // Snacks
   {name: 'Lays Clásicas 50g', code: 'SNK-LYS50', price: 4.00, description: 'Papas fritas Lays clásicas 50g.', stock: 150, img: '/images/SNK-LYS50.png'},
@@ -27,10 +27,10 @@ const products = [
 
   // Tech (existing)
   {name: 'Logitech G502 X Plus', code: 'MOU-G502X', price: 159.99, description: 'Wireless gaming mouse with LIGHTFORCE hybrid switches and 25K DPI HERO sensor.', stock: 25, img: '/images/MOU-G502X.png'},
-  {name: 'Razer DeathAdder V3 Pro', code: 'MOU-DAV3', price: 149.99, description: 'Ultra-lightweight ergonomic esports gaming mouse with Focus Pro 30K optical sensor.', stock: 18, img: '/images/MOU-DAV3.jpg'},
-  {name: 'Keychron Q1 Pro', code: 'KEY-Q1P', price: 199.00, description: 'QMK/VIA wireless mechanical keyboard with CNC aluminum body and hot-swappable switches.', stock: 12, img: '/images/KEY-Q1P.jpg'},
+  {name: 'Razer DeathAdder V3 Pro', code: 'MOU-DAV3', price: 149.99, description: 'Ultra-lightweight ergonomic esports gaming mouse with Focus Pro 30K optical sensor.', stock: 3, img: '/images/MOU-DAV3.jpg'},
+  {name: 'Keychron Q1 Pro', code: 'KEY-Q1P', price: 199.00, description: 'QMK/VIA wireless mechanical keyboard with CNC aluminum body and hot-swappable switches.', stock: 2, img: '/images/KEY-Q1P.jpg'},
   {name: 'Logitech MX Master 3S', code: 'MOU-MXM3', price: 99.99, description: 'Productivity mouse with 8K DPI, quiet clicks and multi-device flow.', stock: 30, img: '/images/MOU-MXM3.png'},
-  {name: 'Corsair K70 RGB Pro', code: 'KEY-K70R', price: 179.99, description: 'Mechanical gaming keyboard with Cherry MX Red switches, PBT caps and per-key RGB.', stock: 20, img: '/images/KEY-K70R.jpg'},
+  {name: 'Corsair K70 RGB Pro', code: 'KEY-K70R', price: 179.99, description: 'Mechanical gaming keyboard with Cherry MX Red switches, PBT caps and per-key RGB.', stock: 5, img: '/images/KEY-K70R.jpg'},
 ];
 
 const customers = [
@@ -148,18 +148,78 @@ async function migrate(): Promise<void> {
   if (oc > 0) {
     console.log(`Found ${oc} existing orders, skipping.`);
   } else {
-    const order = await Order.create({
-      customerId: 1,
-      createdDate: new Date(),
-      total: 45.00,
-      paid: true,
-      delivered: true,
-      deliveryDate: new Date(),
-    });
-    await OrderDetail.create({orderId: order.id, productId: 1, quantity: 3, price: 6.00, totalPrice: 18.00});
-    await OrderDetail.create({orderId: order.id, productId: 4, quantity: 2, price: 5.50, totalPrice: 11.00});
-    await OrderDetail.create({orderId: order.id, productId: 12, quantity: 4, price: 4.00, totalPrice: 16.00});
-    console.log('Seeded 1 order with 3 items.');
+    const sampleDetails = [
+      {productId: 1, price: 6.00},
+      {productId: 2, price: 12.00},
+      {productId: 3, price: 6.00},
+      {productId: 4, price: 5.50},
+      {productId: 5, price: 11.00},
+      {productId: 6, price: 3.50},
+      {productId: 7, price: 6.50},
+      {productId: 8, price: 6.00},
+      {productId: 9, price: 6.00},
+      {productId: 10, price: 8.00},
+      {productId: 11, price: 4.00},
+      {productId: 12, price: 8.00},
+      {productId: 13, price: 5.00},
+      {productId: 14, price: 9.00},
+      {productId: 15, price: 4.50},
+      {productId: 16, price: 4.50},
+      {productId: 17, price: 7.00},
+      {productId: 18, price: 6.00},
+      {productId: 19, price: 2.00},
+      {productId: 20, price: 5.00},
+    ];
+
+    // Generate orders across May, June, July 2026
+    const orderData: Array<{month: number; day: number; customerId: number; details: Array<{pid: number; qty: number}>}> = [
+      // May (month 4)
+      {month: 4, day: 5, customerId: 1, details: [{pid: 1, qty: 2}, {pid: 6, qty: 3}, {pid: 18, qty: 1}]},
+      {month: 4, day: 12, customerId: 3, details: [{pid: 5, qty: 1}, {pid: 14, qty: 2}]},
+      {month: 4, day: 18, customerId: 5, details: [{pid: 2, qty: 2}, {pid: 11, qty: 5}, {pid: 19, qty: 3}]},
+      {month: 4, day: 22, customerId: 2, details: [{pid: 8, qty: 1}, {pid: 13, qty: 2}]},
+      {month: 4, day: 28, customerId: 7, details: [{pid: 10, qty: 3}, {pid: 17, qty: 2}]},
+      // June (month 5)
+      {month: 5, day: 3, customerId: 4, details: [{pid: 3, qty: 2}, {pid: 7, qty: 1}]},
+      {month: 5, day: 7, customerId: 6, details: [{pid: 1, qty: 4}, {pid: 15, qty: 2}, {pid: 20, qty: 3}]},
+      {month: 5, day: 10, customerId: 2, details: [{pid: 12, qty: 3}, {pid: 4, qty: 2}]},
+      {month: 5, day: 14, customerId: 8, details: [{pid: 9, qty: 2}, {pid: 16, qty: 1}, {pid: 6, qty: 4}]},
+      {month: 5, day: 18, customerId: 1, details: [{pid: 2, qty: 1}, {pid: 5, qty: 1}, {pid: 14, qty: 2}]},
+      {month: 5, day: 22, customerId: 3, details: [{pid: 7, qty: 3}, {pid: 11, qty: 4}]},
+      {month: 5, day: 26, customerId: 5, details: [{pid: 1, qty: 3}, {pid: 18, qty: 2}, {pid: 19, qty: 5}]},
+      {month: 5, day: 30, customerId: 7, details: [{pid: 13, qty: 2}, {pid: 8, qty: 1}]},
+      // July (month 6)
+      {month: 6, day: 2, customerId: 4, details: [{pid: 4, qty: 3}, {pid: 10, qty: 2}, {pid: 17, qty: 1}]},
+      {month: 6, day: 5, customerId: 6, details: [{pid: 2, qty: 1}, {pid: 6, qty: 5}]},
+      {month: 6, day: 7, customerId: 1, details: [{pid: 12, qty: 4}, {pid: 3, qty: 2}, {pid: 15, qty: 2}]},
+    ];
+
+    for (const order of orderData) {
+      const date = new Date(2026, order.month, order.day, 10 + Math.floor(Math.random() * 8), Math.floor(Math.random() * 60));
+      let total = 0;
+      const orderDetails: Array<{productId: number; quantity: number; price: number; totalPrice: number}> = [];
+
+      for (const d of order.details) {
+        const product = sampleDetails.find(s => s.productId === d.pid)!;
+        const lineTotal = product.price * d.qty;
+        total += lineTotal;
+        orderDetails.push({productId: d.pid, quantity: d.qty, price: product.price, totalPrice: lineTotal});
+      }
+
+      const created = await Order.create({
+        customerId: order.customerId,
+        createdDate: date,
+        total: parseFloat(total.toFixed(2)),
+        paid: true,
+        delivered: true,
+        deliveryDate: date,
+      });
+
+      for (const od of orderDetails) {
+        await OrderDetail.create({...od, orderId: created.id});
+      }
+    }
+    console.log(`Seeded ${orderData.length} orders with order details.`);
   }
 
   console.log('Migration complete.');
